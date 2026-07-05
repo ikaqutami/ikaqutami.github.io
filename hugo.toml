@@ -46,9 +46,9 @@ url = "/publication/"
 weight = 10
 
 [[menu.main]]
-identifier = "projects"
-name = "Projects"
-url = "/projects/"
+identifier = "project"
+name = "Project"
+url = "/project/"
 weight = 10
 
 [outputs]

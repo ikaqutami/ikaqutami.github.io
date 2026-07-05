@@ -1,8 +1,9 @@
----
-title: "Research Projects"
-date: 2026-07-06
-draft: false
----
++++
+title = "Project"
+date = 2026-07-05T22:30:00+07:00
+draft = false
+summary = "List of Projects"
++++
 
 # Research Projects
 
