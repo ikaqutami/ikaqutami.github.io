@@ -15,31 +15,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: latest
-          extended: true
-
-      - run: hugo
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
-    needs: build
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: latest
+          extended: true
+
+      - run: hugo --minify
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
       - id: deployment
         uses: actions/deploy-pages@v4
