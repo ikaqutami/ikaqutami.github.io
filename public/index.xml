@@ -9,6 +9,13 @@
     <lastBuildDate>Sun, 05 Jul 2026 22:30:00 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Project</title>
+      <link>http://localhost:1313/project/</link>
+      <pubDate>Sun, 05 Jul 2026 22:30:00 +0700</pubDate>
+      <guid>http://localhost:1313/project/</guid>
+      <description>List of Projects</description>
+    </item>
+    <item>
       <title>Publications</title>
       <link>http://localhost:1313/publication/</link>
       <pubDate>Sun, 05 Jul 2026 22:30:00 +0700</pubDate>
