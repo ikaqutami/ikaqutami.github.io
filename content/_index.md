@@ -4,8 +4,7 @@ draft : false
 title : 'Home'
 ---
 
-<img src="/images/pp.jpeg" alt="Ika Utami" align="right" style="width: 180px; margin-left: 20px; border-radius: 8px;">
 
-Hi, I'm Ika Utami.
-
-Welcome to my personal website. This space serves as a platform for sharing my thoughts, research, and experiences in the field of Artificial Intelligence, with a particular focus on Natural Language Processing (NLP), Large Language Models (LLMs), and Applied Data Science.
+| | |
+| :--- | :--- |
+| **Hi, I'm Ika Utami.** <br><br> Welcome to my personal website. This space serves as a platform for sharing my thoughts, research, and experiences in the field of Artificial Intelligence, with a particular focus on Natural Language Processing (NLP), Large Language Models (LLMs), and Applied Data Science. | <img src="/images/pp.jpeg" alt="Ika Utami" width="180" style="border-radius: 8px; min-width: 180px;"> |
