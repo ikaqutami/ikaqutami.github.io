@@ -14,22 +14,6 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
-outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
-
-params:
-  ShowReadingTime: true
-  ShowPostNavLinks: true
-
-menu:
-  main:
-    - name: "Search"
-      url: "/search/" 
-      weight: 1
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
