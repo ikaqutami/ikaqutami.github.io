@@ -30,6 +30,12 @@ url = "/posts/"
 weight = 10
 
 [[menu.main]]
+identifier = "archive"
+name = "Archive"
+url = "/archive/"
+weight = 10
+
+[[menu.main]]
 identifier = "publications"
 name = "Publications"
 url = "/publications/"
