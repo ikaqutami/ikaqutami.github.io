@@ -45,6 +45,12 @@ name = "Publications"
 url = "/publication/"
 weight = 10
 
+[[menu.main]]
+identifier = "project"
+name = "Projects"
+url = "/project/"
+weight = 10
+
 [outputs]
   home = ["HTML", "RSS", "JSON"]
 
