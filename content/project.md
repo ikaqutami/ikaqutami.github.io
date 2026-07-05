@@ -5,8 +5,6 @@ draft = false
 summary = "List of Projects"
 +++
 
-# Research Projects
-
 This page highlights several research projects related to Artificial Intelligence, Data Science, Natural Language Processing, and Educational Technology.
 
 ## 1. AI-Powered Adaptive English Speaking Tutor
