@@ -13,6 +13,14 @@ For a complete and up-to-date list of my work, please visit my profile on [Resea
 
 ### Journal Articles & Conference Papers
 
+* **SocioMathLLM: A Multimodal Large Language Model Framework for Generating Authentic Mathematical Word Problems Driving Socialization (2026)**
+  * *IEEE Transactions on Learning Technologies*
+  * [Publisher Source](https://ieeexplore.ieee.org/abstract/document/11455325)
+
+* **Comparing Human and LLM in Evaluating Social Aspect of Mathematical Word Problems (2026)**
+  * *2026 14th International Conference on Information and Education Technology (ICIET)*
+  * [Publisher Source](https://ieeexplore.ieee.org/abstract/document/11561663/)
+
 * **Using GPT and authentic contextual recognition to generate math word problems with difficulty levels (2024)**
   * *Education and Information Technologies*
   * [Publisher Source](https://scholar.unair.ac.id/en/publications/using-gpt-and-authentic-contextual-recognition-to-generate-math-w/)
