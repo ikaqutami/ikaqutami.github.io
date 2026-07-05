@@ -16,7 +16,7 @@ For a complete and up-to-date list of my work, please visit my profile on [Resea
 * **SocioMathLLM: A Multimodal Large Language Model Framework for Generating Authentic Mathematical Word Problems Driving Socialization (2026)**
   * *IEEE Transactions on Learning Technologies*
   * [Publisher Source](https://ieeexplore.ieee.org/abstract/document/11455325)
-
+    <br>
 
 * **Comparing Human and LLM in Evaluating Social Aspect of Mathematical Word Problems (2026)**
   * *2026 14th International Conference on Information and Education Technology (ICIET)*
@@ -67,4 +67,3 @@ For a complete and up-to-date list of my work, please visit my profile on [Resea
   * *Conference Proceedings Paper*
   * [ResearchGate Entry](https://www.researchgate.net/profile/Ika-Utami-2)
 
-  
