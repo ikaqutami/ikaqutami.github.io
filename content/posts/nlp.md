@@ -1,10 +1,10 @@
 ---
-date = '2026-07-05T20:03:13+07:00'
-draft = false
-slug = 'introduction-nlp'
-categories = 'nlp'
-tags = 'nlp'
-title = 'Introduction to Natural Language Processing'
+date : '2026-07-05T20:03:13+07:00'
+draft : false
+slug : 'introduction-nlp'
+categories : 'nlp'
+tags : 'nlp'
+title : 'Introduction to Natural Language Processing'
 ---
 
 Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to understand, process, and generate human language. By combining linguistics, computer science, and machine learning, NLP allows machines to analyze text and speech in ways that support meaningful interaction between humans and computers.
