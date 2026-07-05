@@ -38,6 +38,4 @@ Exploration of machine learning and deep learning approaches for evaluating stud
 ## 10. Educational Knowledge Graph Construction
 Development of knowledge graph frameworks that integrate educational resources, learning outcomes, and curriculum structures to support intelligent learning systems.
 
----
 
-**Research Areas:** Artificial Intelligence, Machine Learning, Natural Language Processing, Learning Analytics, Large Language Models, Educational Technology, and Data Science.
