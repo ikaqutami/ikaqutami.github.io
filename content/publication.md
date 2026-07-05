@@ -5,9 +5,7 @@ draft = false
 summary = "List of research publications and scientific papers."
 +++
 
-Here is a list of my scientific publications and research work. 
-
-For a complete and up-to-date list of my work, please visit my profile on [ResearchGate](https://www.researchgate.net/profile/Ika-Utami-2).
+Here is a list of my scientific publications and research work. For a complete and up-to-date list of my work, please visit my profile on [ResearchGate](https://www.researchgate.net/profile/Ika-Utami-2).
 
 ---
 
