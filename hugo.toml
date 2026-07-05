@@ -16,11 +16,11 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 
 [params.homeInfoParams]
-Title = "Welcome to My Academic Website"
+Title = "Welcome to My Blog"
 Content = """
-Hello, I am a lecturer and researcher whose work focuses on the intersection of Artificial Intelligence, Applied Data Science, 
-and Large Language Models (LLMs) for data-driven learning and education. I am particularly interested in leveraging LLMs, educational data, 
-and computational approaches to support learning analytics, improve learning performance, and develop innovative AI-assisted educational systems.
+Hi, I'm Ika, a lecturer and researcher in Artificial Intelligence, Applied Data Science, and Large Language Models (LLMs). 
+My work focuses on using AI and data-driven approaches to support learning and improve education. 
+I am especially interested in developing innovative educational systems powered by LLMs and educational data.
 """
 
 [[menu.main]]
@@ -30,7 +30,19 @@ url = "/posts/"
 weight = 10
 
 [[menu.main]]
-identifier = "publications"
-name = "Publications"
-url = "/publications/"
+identifier = "archives"
+name = "Archives"
+url = "/archives/"
+weight = 20
+
+[[menu.main]]
+identifier = "tags"
+name = "Tas"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
 weight = 20
