@@ -15,14 +15,6 @@ ShowPostNavLinks = true
 ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 
-[params.homeInfoParams]
-Title = "Welcome to My Blog"
-Content = """
-Hi, I'm Ika, a lecturer and researcher in Artificial Intelligence, Applied Data Science, and Large Language Models (LLMs). 
-My work focuses on using AI and data-driven approaches to support learning and improve education. 
-I am especially interested in developing innovative educational systems powered by LLMs and educational data.
-"""
-
 [[menu.main]]
 identifier = "posts"
 name = "Posts"

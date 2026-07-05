@@ -4,6 +4,7 @@ draft = false
 title = 'Introduction'
 +++
 
+Title = "Welcome to My Blog"
 
 Hi, I'm Ika Utami.
 
