@@ -22,9 +22,9 @@ url = "/posts/"
 weight = 10
 
 [[menu.main]]
-identifier = "archive"
+identifier = "archives"
 name = "Archive"
-url = "/archive/"
+url = "/archives/"
 weight = 10
 
 [[menu.main]]
