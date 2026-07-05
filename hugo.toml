@@ -1,6 +1,6 @@
 baseURL = "https://ikaqutami.github.io/"
 languageCode = "en-us"
-title = "Ika Qutami's Log"
+title = "Ika Qutami's Blog"
 theme = "PaperMod"
 
 [pagination]
@@ -18,7 +18,9 @@ ShowCodeCopyButtons = true
 [params.homeInfoParams]
 Title = "Welcome to My Academic Website"
 Content = """
-Lecturer, Researcher, and AI Enthusiast
+Hello, I am a lecturer and researcher whose work focuses on the intersection of Artificial Intelligence, Applied Data Science, 
+and Large Language Models (LLMs) for data-driven learning and education. I am particularly interested in leveraging LLMs, educational data, 
+and computational approaches to support learning analytics, improve learning performance, and develop innovative AI-assisted educational systems.
 """
 
 [[menu.main]]
