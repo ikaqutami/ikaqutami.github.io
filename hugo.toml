@@ -1,6 +1,6 @@
 baseURL = "https://ikaqutami.github.io/"
 languageCode = "en-us"
-title = "Ika Utami"
+title = "Ika Utami's Log"
 theme = "PaperMod"
 
 [pagination]
