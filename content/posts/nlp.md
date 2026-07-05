@@ -1,11 +1,11 @@
 +++
 date = '2026-07-05T20:03:13+07:00'
 draft = false
-slug: "introduction-nlp"
-categories: 
+slug = "introduction-nlp"
+categories =
   - "nlp"
   - "natural language processing"
-tags:
+tags =
   - "nlp"
 title = 'Introduction to Natural Language Processing'
 +++
