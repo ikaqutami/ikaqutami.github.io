@@ -4,6 +4,9 @@ draft = false
 title = 'Introduction'
 +++
 
-Hi, I'm Ika Utami, a lecturer and researcher in Artificial Intelligence, Applied Data Science, and Large Language Models (LLMs). My work focuses on using AI and data-driven approaches to support learning and improve education. I am especially interested in developing innovative educational systems powered by LLMs and educational data.
+Hi, I'm Ika Utami.
+
+Welcome to my personal website. This space serves as a platform for sharing my thoughts, research, and experiences in the field of Artificial Intelligence, with a particular focus on Natural Language Processing (NLP), Large Language Models (LLMs), and Applied Data Science.
+
 
 
