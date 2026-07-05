@@ -24,6 +24,12 @@ params:
   ShowReadingTime: true
   ShowPostNavLinks: true
 
+menu:
+  main:
+    - name: "Search"
+      url: "/search/" 
+      weight: 1
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
