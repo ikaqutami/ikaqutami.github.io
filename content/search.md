@@ -1,7 +1,7 @@
 ---
 title: "Search"
-layout: "search" # Ini wajib agar Hugo memanggil template pencarian PaperMod
+layout: "search"
 summary: "search"
 placeholder: "Ketik kata kunci artikel yang Anda cari..."
-menu: "search"
+draft: false
 ---
