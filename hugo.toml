@@ -1,0 +1,34 @@
+baseURL = "https://ikaqutami.github.io/"
+languageCode = "en-us"
+title = "Ika Utami"
+theme = "PaperMod"
+
+[pagination]
+pagerSize = 5
+
+[params]
+author = "Ika Utami"
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+
+[params.homeInfoParams]
+Title = "Welcome to My Academic Website"
+Content = """
+Lecturer, Researcher, and AI Enthusiast
+"""
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 10
+
+[[menu.main]]
+identifier = "publications"
+name = "Publications"
+url = "/publications/"
+weight = 20
