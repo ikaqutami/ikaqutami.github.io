@@ -1,6 +1,6 @@
 baseURL = "https://ikaqutami.github.io/"
 languageCode = "en-us"
-title = "Ika Utami's Log"
+title = "Ika Qutami's Blog"
 theme = "PaperMod"
 
 [pagination]
@@ -16,9 +16,11 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 
 [params.homeInfoParams]
-Title = "Welcome to My Academic Website"
+Title = "Welcome to My Blog"
 Content = """
-Lecturer, Researcher, and AI Enthusiast
+Hi, I'm Ika, a lecturer and researcher in Artificial Intelligence, Applied Data Science, and Large Language Models (LLMs). 
+My work focuses on using AI and data-driven approaches to support learning and improve education. 
+I am especially interested in developing innovative educational systems powered by LLMs and educational data.
 """
 
 [[menu.main]]
@@ -28,7 +30,25 @@ url = "/posts/"
 weight = 10
 
 [[menu.main]]
+identifier = "archives"
+name = "Archive"
+url = "/archives/"
+weight = 10
+
+[[menu.main]]
 identifier = "publications"
 name = "Publications"
 url = "/publications/"
+weight = 20
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
 weight = 20
