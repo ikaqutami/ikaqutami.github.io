@@ -30,9 +30,9 @@ url = "/posts/"
 weight = 10
 
 [[menu.main]]
-identifier = "archives"
-name = "Archive"
-url = "/archives/"
+identifier = "publications"
+name = "Publications"
+url = "/publications/"
 weight = 20
 
 [[menu.main]]
