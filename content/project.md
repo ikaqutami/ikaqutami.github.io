@@ -5,7 +5,7 @@ draft = false
 summary = "List of Projects"
 +++
 
-This page highlights several research projects related to Artificial Intelligence, Data Science, Natural Language Processing, and Educational Technology.
+This page highlights several research projects in Utami's Lab.
 
 #### 1. Automating Systematic Literature Reviews (SLR) with LangChain and Open-Source LLMs
 This project focuses on automating key stages of the Systematic Literature Review (SLR) process using LangChain and open-source Large Language Models (LLMs). The system assists researchers in literature search, paper screening, information extraction, study classification, and evidence synthesis, reducing the time and effort required for manual review.
