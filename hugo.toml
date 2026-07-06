@@ -75,6 +75,10 @@ name = "instagram"
 url = "https://www.instagram.com/ikaqutami/"
 
 [[params.socialIcons]]
+name = "youtube"
+url = "https://www.youtube.com/@ikaqutami"
+
+[[params.socialIcons]]
 name = "google-scholar"
 url = "https://scholar.google.com/citations?user=O8s3Dn4AAAAJ&hl=en"
 
