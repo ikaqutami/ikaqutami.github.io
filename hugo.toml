@@ -16,7 +16,6 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 disableSpecial1stPost = true
 ShowToc = true
-TocOpen = true
 
 [[menu.main]]
 identifier = "posts"
