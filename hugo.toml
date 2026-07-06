@@ -16,11 +16,13 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 disableSpecial1stPost = true
 ShowToc = true
+homeInfoParams = true
+ShowBreadCrumbs = true
 
 [params.homeInfoParams]
 Title = "Hi, I'm Ika Utami 👋"
 Content = """
-Welcome to my blog, where I share articles, tutorials,
+Welcome to my blog, where I share articles, lecture notes, tutorials,
 and insights on NLP, LLMs, and Applied Data Science.
 """
 
