@@ -16,7 +16,6 @@ ShowBreadCrumbs = true
 ShowCodeCopyButtons = true
 disableSpecial1stPost = true
 ShowToc = true
-homeInfoParams = true
 
 [params.homeInfoParams]
 Title = "Hi, I'm Ika Utami 👋"
