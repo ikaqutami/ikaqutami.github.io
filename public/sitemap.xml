@@ -2,41 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ikaqutami.github.io/project/</loc>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/data-structure/</loc>
+    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/python-list/</loc>
+    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python-data-structure/</loc>
+    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/project/</loc>
     <lastmod>2026-07-05T22:30:00+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/publication/</loc>
+    <loc>http://localhost:1313/publication/</loc>
     <lastmod>2026-07-05T22:30:00+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/categories/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/</loc>
+    <loc>http://localhost:1313/posts/introduction-nlp/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/posts/introduction-nlp/</loc>
+    <loc>http://localhost:1313/tags/natural-language-processing/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/tags/natural-language-processing/</loc>
+    <loc>http://localhost:1313/categories/nlp/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/categories/nlp/</loc>
+    <loc>http://localhost:1313/tags/nlp/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/tags/nlp/</loc>
-    <lastmod>2026-07-05T20:03:13+07:00</lastmod>
-  </url><url>
-    <loc>https://ikaqutami.github.io/posts/</loc>
-    <lastmod>2026-07-05T20:03:13+07:00</lastmod>
-  </url><url>
-    <loc>https://ikaqutami.github.io/tags/</loc>
-    <lastmod>2026-07-05T20:03:13+07:00</lastmod>
-  </url><url>
-    <loc>https://ikaqutami.github.io/posts/introduction/</loc>
+    <loc>http://localhost:1313/posts/introduction/</loc>
     <lastmod>2025-01-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>https://ikaqutami.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
-    <loc>https://ikaqutami.github.io/search/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>
