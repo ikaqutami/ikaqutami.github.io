@@ -1,5 +1,5 @@
 ---
-date : '2026-07-10'
+date : '2026-06-10'
 draft : false
 slug : 'python-set'
 categories : 'Data Structure'

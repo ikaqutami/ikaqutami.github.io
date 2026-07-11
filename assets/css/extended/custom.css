@@ -48,7 +48,7 @@ body, .post-content, .entry-content, .content {
     margin: auto 0;
     padding: 10px;
     color: #d5d5d6;
-    background: rgb(24, 29, 47) !important;
+    background: rgb(0, 0, 0) !important;
     border-radius: var(--radius);
     overflow-x: auto;
     word-break: break-all
