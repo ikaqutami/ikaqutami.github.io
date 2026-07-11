@@ -19,6 +19,6 @@ body, .post-content, .entry-content, .content {
 }
 
 /* Optional: If you want to make sure paragraphs scale down specifically */
-p {
-    font-size: 15px; /* Or use a percentage, e.g., 95% */
+p, code {
+    font-size: 0.9em; /* Or use a percentage, e.g., 95% */
 }
