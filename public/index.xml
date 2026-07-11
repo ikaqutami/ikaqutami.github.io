@@ -9,25 +9,11 @@
     <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>File Handling in Python</title>
-      <link>http://localhost:1313/posts/file-handling/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/file-handling/</guid>
-      <description>Learn how to read and write files and work with file paths in Python.</description>
-    </item>
-    <item>
       <title>NLP with Machine Learning</title>
       <link>http://localhost:1313/posts/nlp-with-machinelearning/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/nlp-with-machinelearning/</guid>
       <description>Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech (POS) tagging, and Named Entity Recognition (NER).</description>
-    </item>
-    <item>
-      <title>Python Dictionaries</title>
-      <link>http://localhost:1313/posts/python-dictionary/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-dictionary/</guid>
-      <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
     </item>
     <item>
       <title>Python List</title>
@@ -49,6 +35,20 @@
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/python-tuple/</guid>
       <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
+    </item>
+    <item>
+      <title>File Handling in Python</title>
+      <link>http://localhost:1313/posts/file-handling/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/file-handling/</guid>
+      <description>Learn how to read and write files and work with file paths in Python.</description>
+    </item>
+    <item>
+      <title>Python Dictionaries</title>
+      <link>http://localhost:1313/posts/python-dictionary/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-dictionary/</guid>
+      <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
     </item>
     <item>
       <title>Project</title>

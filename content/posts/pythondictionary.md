@@ -1,5 +1,5 @@
 ---
-date : '2026-07-11'
+date : '2026-07-10'
 draft : false
 slug : 'python-dictionary'
 categories : 'Data Structure'
@@ -50,7 +50,6 @@ Output
 {'name': 'Alice', 'age': 20, 'major': 'Computer Science'}
 ```
 
----
 
 ## Creating Dictionaries
 
@@ -76,7 +75,7 @@ student = dict()
 print(student)
 ```
 
----
+
 
 ### Dictionary with Initial Values
 
@@ -90,7 +89,7 @@ student = {
 print(student)
 ```
 
----
+
 
 ### Using the `dict()` Constructor
 
@@ -104,7 +103,7 @@ student = dict(
 print(student)
 ```
 
----
+
 
 ### Creating from a List of Tuples
 
@@ -118,7 +117,7 @@ student = dict([
 print(student)
 ```
 
----
+
 
 ## Accessing Dictionary Elements
 
@@ -141,7 +140,7 @@ Alice
 20
 ```
 
----
+
 
 ### Using `get()`
 
@@ -174,7 +173,7 @@ Output
 Not Available
 ```
 
----
+
 
 ## Modifying Dictionary Elements
 
@@ -197,7 +196,7 @@ Output
 {'name': 'Alice', 'age': 21}
 ```
 
----
+
 
 ### Adding New Key-Value Pairs
 
@@ -217,7 +216,7 @@ Output
 }
 ```
 
----
+
 
 ### Removing Elements
 
@@ -247,7 +246,7 @@ Removing everything
 student.clear()
 ```
 
----
+
 
 ## Dictionary Methods
 
@@ -287,7 +286,7 @@ dict_values(['Alice', 20])
 dict_items([('name', 'Alice'), ('age', 20)])
 ```
 
----
+
 
 ## Iterating Over Dictionaries
 
@@ -304,7 +303,7 @@ for key in student:
     print(key)
 ```
 
----
+
 
 ### Iterate Over Values
 
@@ -313,7 +312,7 @@ for value in student.values():
     print(value)
 ```
 
----
+
 
 ### Iterate Over Key-Value Pairs
 
@@ -330,7 +329,7 @@ age : 20
 major : CS
 ```
 
----
+
 
 ## Nested Dictionaries
 
@@ -365,7 +364,7 @@ Alice
 22
 ```
 
----
+
 
 ## Dictionary Comprehensions
 
@@ -418,7 +417,7 @@ Output
 }
 ```
 
----
+
 
 ## Practical Examples and Common Errors
 
@@ -445,7 +444,7 @@ major: Computer Science
 gpa: 3.85
 ```
 
----
+
 
 ### Example 2: Word Frequency Counter
 
@@ -472,7 +471,7 @@ Output
 }
 ```
 
----
+
 
 ### Example 3: Merge Dictionaries
 
@@ -496,7 +495,7 @@ Output
 }
 ```
 
----
+
 
 ### Common Error 1: Accessing a Missing Key
 
@@ -522,7 +521,7 @@ Correct:
 print(student.get("age"))
 ```
 
----
+
 
 ### Common Error 2: Duplicate Keys
 
@@ -543,7 +542,7 @@ Output
 
 The last value replaces the previous one.
 
----
+
 
 ### Common Error 3: Using Mutable Keys
 
@@ -589,7 +588,7 @@ Avoid using dictionaries when:
 - Duplicate keys are required
 - Maintaining repeated values under the same key is necessary (use a list instead)
 
----
+
 
 ## Summary
 

@@ -9,13 +9,6 @@
     <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/python-data-structure/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Python Dictionaries</title>
-      <link>http://localhost:1313/posts/python-dictionary/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-dictionary/</guid>
-      <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
-    </item>
-    <item>
       <title>Python List</title>
       <link>http://localhost:1313/posts/python-list/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
@@ -35,6 +28,13 @@
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/python-tuple/</guid>
       <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python Dictionaries</title>
+      <link>http://localhost:1313/posts/python-dictionary/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-dictionary/</guid>
+      <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
     </item>
   </channel>
 </rss>
