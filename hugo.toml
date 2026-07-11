@@ -22,13 +22,6 @@ Title = "Hi, I'm Ika Utami 👋"
 Content = """
 Welcome to my personal website. This space serves as a platform for sharing my thoughts, research, and experiences in the field of Artificial Intelligence, with a particular focus on Natural Language Processing (NLP), Large Language Models (LLMs), and Applied Data Science.
 """
-
-[[menu.main]]
-identifier = "posts"
-name = "Posts"
-url = "/posts/"
-weight = 20
-
 [[menu.main]]
 identifier = "archives"
 name = "Archive"
@@ -36,16 +29,10 @@ url = "/archives/"
 weight = 10
 
 [[menu.main]]
-identifier = "tags"
-name = "Tags"
-url = "/tags/"
-weight = 60
-
-[[menu.main]]
-identifier = "search"
-name = "Search"
-url = "/search/"
-weight = 50
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 20
 
 [[menu.main]]
 identifier = "publication"
@@ -58,6 +45,18 @@ identifier = "project"
 name = "Project"
 url = "/project/"
 weight = 40
+
+[[menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
+weight = 50
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 60
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
