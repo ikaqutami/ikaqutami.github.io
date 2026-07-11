@@ -15,13 +15,13 @@ ShowReadingTime: true
 ShowPostNavLinks: true
 ---
 
-# Introduction to Tuples
+## Introduction to Tuples
 
 A **tuple** is an ordered collection of items in Python. Like lists, tuples can store multiple values of different data types. However, unlike lists, **tuples are immutable**, meaning their contents cannot be modified after creation.
 
 Tuples are commonly used when you want to group related data that should remain unchanged throughout the program.
 
-## Characteristics of Tuples
+### Characteristics of Tuples
 
 - Ordered collection
 - Immutable (cannot be modified after creation)
@@ -45,11 +45,11 @@ Output:
 
 ---
 
-# Creating Tuples
+## Creating Tuples
 
 Tuples are created using parentheses `()`.
 
-## Empty Tuple
+### Empty Tuple
 
 ```python
 empty_tuple = ()
@@ -62,7 +62,7 @@ Output
 ()
 ```
 
-## Tuple with Multiple Elements
+### Tuple with Multiple Elements
 
 ```python
 numbers = (10, 20, 30, 40)
@@ -75,7 +75,7 @@ Output
 (10, 20, 30, 40)
 ```
 
-## Mixed Data Types
+### Mixed Data Types
 
 ```python
 person = ("John", 25, True, 75.5)
@@ -88,7 +88,7 @@ Output
 ('John', 25, True, 75.5)
 ```
 
-## Single-Element Tuple
+### Single-Element Tuple
 
 A trailing comma is required.
 
@@ -118,11 +118,11 @@ Output
 
 ---
 
-# Accessing Tuple Elements
+## Accessing Tuple Elements
 
 Tuple elements are accessed using indexing.
 
-## Positive Index
+### Positive Index
 
 ```python
 colors = ("red", "green", "blue")
@@ -138,7 +138,7 @@ red
 blue
 ```
 
-## Negative Index
+### Negative Index
 
 ```python
 print(colors[-1])
@@ -152,7 +152,7 @@ blue
 green
 ```
 
-## Slicing
+### Slicing
 
 ```python
 numbers = (10, 20, 30, 40, 50)
@@ -172,9 +172,9 @@ Output
 
 ---
 
-# Tuple Operations
+## Tuple Operations
 
-## Concatenation
+### Concatenation
 
 ```python
 tuple1 = (1, 2)
@@ -190,7 +190,7 @@ Output
 (1, 2, 3, 4)
 ```
 
-## Repetition
+### Repetition
 
 ```python
 numbers = (1, 2)
@@ -204,7 +204,7 @@ Output
 (1, 2, 1, 2, 1, 2)
 ```
 
-## Membership Test
+### Membership Test
 
 ```python
 fruits = ("apple", "banana", "orange")
@@ -220,7 +220,7 @@ True
 False
 ```
 
-## Length
+### Length
 
 ```python
 numbers = (10, 20, 30)
@@ -236,7 +236,7 @@ Output
 
 ---
 
-# Immutable Nature of Tuples
+## Immutable Nature of Tuples
 
 Once a tuple is created, its elements cannot be modified.
 
@@ -272,11 +272,11 @@ Output
 
 ---
 
-# Tuple Methods
+## Tuple Methods
 
 Tuples have only two built-in methods.
 
-## count()
+### count()
 
 Counts the number of occurrences of a value.
 
@@ -292,7 +292,7 @@ Output
 3
 ```
 
-## index()
+### index()
 
 Returns the first index of a value.
 
@@ -310,9 +310,9 @@ Output
 
 ---
 
-# Packing and Unpacking Tuples
+## Packing and Unpacking Tuples
 
-## Tuple Packing
+### Tuple Packing
 
 Packing combines multiple values into a tuple.
 
@@ -328,7 +328,7 @@ Output
 ('Alice', 20, 'CS')
 ```
 
-## Tuple Unpacking
+### Tuple Unpacking
 
 ```python
 student = ("Alice", 20, "CS")
@@ -348,7 +348,7 @@ Alice
 CS
 ```
 
-## Extended Unpacking
+### Extended Unpacking
 
 ```python
 numbers = (1, 2, 3, 4, 5)
@@ -370,7 +370,7 @@ Output
 
 ---
 
-# Nested Tuples
+## Nested Tuples
 
 A tuple can contain other tuples.
 
@@ -427,9 +427,9 @@ Charlie 21
 
 ---
 
-# Practical Examples and Common Errors
+## Practical Examples and Common Errors
 
-## Example 1: Returning Multiple Values
+### Example 1: Returning Multiple Values
 
 ```python
 def calculate(a, b):
@@ -464,7 +464,7 @@ Output
 
 ---
 
-## Example 2: Using Tuples as Dictionary Keys
+### Example 2: Using Tuples as Dictionary Keys
 
 ```python
 locations = {
@@ -485,7 +485,7 @@ Lists cannot be dictionary keys because they are mutable.
 
 ---
 
-## Common Error 1: Forgetting the Comma
+### Common Error 1: Forgetting the Comma
 
 Incorrect:
 
@@ -517,7 +517,7 @@ Output
 
 ---
 
-## Common Error 2: Trying to Modify a Tuple
+### Common Error 2: Trying to Modify a Tuple
 
 Incorrect:
 
@@ -535,7 +535,7 @@ TypeError
 
 ---
 
-## Common Error 3: Incorrect Unpacking
+### Common Error 3: Incorrect Unpacking
 
 Incorrect:
 
@@ -567,6 +567,6 @@ Output
 
 ---
 
-# Summary
+## Summary
 
 Python tuples are immutable, ordered collections that are ideal for storing fixed data. They support indexing, slicing, concatenation, repetition, and unpacking while offering better performance than lists for read-only data. Understanding tuples is essential because they are frequently used in function returns, dictionary keys, and representing structured records.

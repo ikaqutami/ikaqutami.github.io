@@ -15,7 +15,7 @@ ShowReadingTime: true
 ShowPostNavLinks: true
 ---
 
-# Introduction to Sets
+## Introduction to Sets
 
 A **set** is an unordered collection of unique elements in Python. Unlike lists and tuples, sets do not allow duplicate values and do not maintain the order of insertion.
 
@@ -26,7 +26,7 @@ Sets are particularly useful when you need to:
 - Check membership efficiently
 - Compare collections of data
 
-## Characteristics of Sets
+### Characteristics of Sets
 
 - Unordered collection
 - Mutable (elements can be added or removed)
@@ -53,9 +53,9 @@ Output
 
 ---
 
-# Creating Sets
+## Creating Sets
 
-## Empty Set
+### Empty Set
 
 Use the `set()` function.
 
@@ -87,7 +87,7 @@ Output
 
 ---
 
-## Set with Elements
+### Set with Elements
 
 ```python
 numbers = {10, 20, 30, 40}
@@ -97,7 +97,7 @@ print(numbers)
 
 ---
 
-## Creating a Set from a List
+### Creating a Set from a List
 
 ```python
 numbers = [1, 2, 2, 3, 4, 4, 5]
@@ -115,7 +115,7 @@ Output
 
 ---
 
-## Creating from a String
+### Creating from a String
 
 ```python
 letters = set("programming")
@@ -131,7 +131,7 @@ Possible output
 
 ---
 
-# Accessing Set Elements
+## Accessing Set Elements
 
 Sets do **not** support indexing or slicing.
 
@@ -160,9 +160,9 @@ for number in numbers:
 
 ---
 
-# Adding Elements
+## Adding Elements
 
-## add()
+### add()
 
 Adds a single element.
 
@@ -182,7 +182,7 @@ Output
 
 ---
 
-## update()
+### update()
 
 Adds multiple elements.
 
@@ -202,9 +202,9 @@ Output
 
 ---
 
-# Removing Elements
+## Removing Elements
 
-## remove()
+### remove()
 
 Removes an element.
 
@@ -236,7 +236,7 @@ KeyError
 
 ---
 
-## discard()
+### discard()
 
 Removes an element if it exists.
 
@@ -252,7 +252,7 @@ No error occurs.
 
 ---
 
-## pop()
+### pop()
 
 Removes and returns an arbitrary element.
 
@@ -267,7 +267,7 @@ print(numbers)
 
 ---
 
-## clear()
+### clear()
 
 Removes all elements.
 
@@ -287,9 +287,9 @@ set()
 
 ---
 
-# Set Operations
+## Set Operations
 
-## Union
+### Union
 
 Combines two sets.
 
@@ -309,7 +309,7 @@ Output
 
 ---
 
-## Intersection
+### Intersection
 
 Returns common elements.
 
@@ -328,7 +328,7 @@ Output
 
 ---
 
-## Difference
+### Difference
 
 Returns elements only in the first set.
 
@@ -347,7 +347,7 @@ Output
 
 ---
 
-## Symmetric Difference
+### Symmetric Difference
 
 Returns elements in either set but not both.
 
@@ -366,7 +366,7 @@ Output
 
 ---
 
-# Membership Testing
+## Membership Testing
 
 ```python
 fruits = {"apple", "banana", "orange"}
@@ -384,7 +384,7 @@ False
 
 ---
 
-# Set Methods
+## Set Methods
 
 Some commonly used methods include:
 
@@ -424,7 +424,7 @@ True
 
 ---
 
-# Frozen Sets
+## Frozen Sets
 
 A **frozenset** is an immutable version of a set.
 
@@ -454,9 +454,9 @@ AttributeError
 
 ---
 
-# Practical Examples
+## Practical Examples
 
-## Example 1: Remove Duplicates
+### Example 1: Remove Duplicates
 
 ```python
 scores = [80, 90, 80, 95, 90, 100]
@@ -468,7 +468,7 @@ print(unique_scores)
 
 ---
 
-## Example 2: Find Common Courses
+### Example 2: Find Common Courses
 
 ```python
 student1 = {"Math", "Physics", "Programming"}
@@ -487,7 +487,7 @@ Output
 
 ---
 
-## Example 3: Unique Words
+### Example 3: Unique Words
 
 ```python
 sentence = "python is fun and python is powerful"
@@ -499,9 +499,9 @@ print(words)
 
 ---
 
-# Common Errors
+## Common Errors
 
-## Error 1: Duplicate Values
+### Error 1: Duplicate Values
 
 ```python
 numbers = {1, 2, 2, 3, 3}
@@ -519,7 +519,7 @@ Duplicates are automatically removed.
 
 ---
 
-## Error 2: Using Mutable Objects
+### Error 2: Using Mutable Objects
 
 Incorrect:
 
@@ -543,7 +543,7 @@ print(numbers)
 
 ---
 
-## Error 3: Assuming Order
+### Error 3: Assuming Order
 
 Incorrect:
 
@@ -557,7 +557,7 @@ The output order is **not guaranteed**.
 
 ---
 
-# When to Use Sets
+## When to Use Sets
 
 Use a set when you need to:
 
@@ -574,6 +574,6 @@ Avoid using sets when:
 
 ---
 
-# Summary
+## Summary
 
 Python **sets** are mutable, unordered collections of unique elements. They are ideal for eliminating duplicates, performing mathematical set operations, and efficiently checking membership. Understanding sets is essential for writing cleaner, faster, and more efficient Python programs, especially when working with collections of unique data.

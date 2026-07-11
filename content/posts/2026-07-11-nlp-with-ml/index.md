@@ -4,26 +4,23 @@ draft : false
 slug : 'nlp-with-machinelearning'
 categories : 'Natural Language Processing with Machine Learning'
 summary: 'A beginner-friendly introduction to NLP preprocessing techniques in Python.'
-description: 'Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech tagging, and Named Entity Recognition.'
+description: 'Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech (POS) tagging, and Named Entity Recognition (NER).'
 author : 'Ika Utami'
 tags :
     - "Natural Language Processing"
     - "Machine Learning"
 series:
     - "Natural Language Processing"
-title : 'Natural Language Processing with Machine Learning'
+title : 'NLP with Machine Learning'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---
 
-# Natural Language Processing with Machine Learning
+## Natural Language Processing with Machine Learning
 
-Natural Language Processing (NLP) is a branch of Artificial Intelligence (AI) that enables computers to understand, interpret, and generate human language. By combining **linguistics**, **machine learning**, and **computer science**, NLP allows machines to process large volumes of textual data and extract meaningful information.
-
-Machine learning has significantly improved NLP by enabling systems to learn patterns directly from data instead of relying solely on handcrafted linguistic rules.
+Natural Language Processing (NLP) is a branch of Artificial Intelligence (AI) that enables computers to understand, interpret, and generate human language. By combining **linguistics**, **machine learning**, and **computer science**, NLP allows machines to process large volumes of textual data and extract meaningful information. Machine learning has significantly improved NLP by enabling systems to learn patterns directly from data instead of relying solely on handcrafted linguistic rules.
 
 Common NLP applications include:
-
 - Sentiment analysis
 - Machine translation
 - Spam detection
@@ -34,7 +31,6 @@ Common NLP applications include:
 - Document summarization
 
 A typical NLP workflow consists of:
-
 1. Collect text data
 2. Preprocess the text
 3. Convert text into numerical features
@@ -42,29 +38,55 @@ A typical NLP workflow consists of:
 5. Evaluate the model
 6. Deploy the application
 
-Text preprocessing is one of the most important steps because machine learning algorithms require clean and structured input.
+## Open-Source Python Libraries for NLP
 
----
+There are many open-source Python libraries available for Natural Language Processing (NLP). Each library is designed for different purposes, ranging from text preprocessing to state-of-the-art deep learning models.
 
-# Tokenization
+| Library | Primary Purpose | Best For |
+|----------|-----------------|----------|
+| NLTK (Natural Language Toolkit) | Classical NLP | Learning, education, text preprocessing |
+| spaCy | Industrial-strength NLP | Production applications, fast NLP pipelines |
+| Gensim | Topic modeling and word embeddings | Word2Vec, Doc2Vec, LDA topic modeling |
+| scikit-learn | Machine learning | Text classification, clustering, feature extraction |
+| Hugging Face Transformers | Transformer-based models | BERT, GPT, T5, RoBERTa, LLaMA, modern NLP |
+| Flair | Sequence labeling | Named Entity Recognition (NER), POS tagging |
+| Stanza | Stanford NLP toolkit | Linguistic analysis, dependency parsing |
+| TextBlob | Simplified NLP | Sentiment analysis, noun phrase extraction |
+| spaCy-Transformers | spaCy + Transformers | Combining spaCy pipelines with transformer models |
+| sentence-transformers | Sentence embeddings | Semantic search, text similarity, retrieval |
+| FastText | Word embeddings and text classification | Efficient text classification and multilingual embeddings |
+| PyTorch | Deep learning framework | Building custom NLP models |
+| TensorFlow / Keras | Deep learning framework | Neural networks for NLP tasks |
+
+
+## 1. Tokenization
 
 Tokenization is the process of breaking text into smaller units called **tokens**. A token may represent a word, sentence, or even a character depending on the application.
 
-For example, the sentence
+{{< figure
+  src="tokenization.png"
+  alt="Tokenization Example"
+  align="center"
+  caption="Tokenization Example (src: https://smltar.com/tokenization.html)"
+>}}
+
+Another example, if I have a sentence:
 
 ```text
 Python makes NLP easier.
 ```
 
-becomes
+It will become:
 
 ```text
 ["Python", "makes", "NLP", "easier", "."]
 ```
 
-## Word Tokenization
+### A. Word Tokenization
 
-Using NLTK:
+Word tokenization is the process of splitting a sentence or document into individual words or tokens. It is one of the first preprocessing steps in Natural Language Processing (NLP), enabling computers to analyze text at the word level.
+
+For example, consider the following sentence using NLTK:
 
 ```python
 from nltk.tokenize import word_tokenize
@@ -82,7 +104,9 @@ Output
 ['Python', 'makes', 'NLP', 'easier', '.']
 ```
 
-## Sentence Tokenization
+### B. Sentence Tokenization
+
+Sentence tokenization (also called sentence segmentation) is the process of dividing a document into individual sentences. This helps NLP systems understand the boundaries between complete thoughts before performing more detailed analyses.
 
 ```python
 from nltk.tokenize import sent_tokenize
@@ -103,13 +127,10 @@ Output
 ['Python is popular.', 'It is widely used in AI.']
 ```
 
----
 
-# Stemming
+## 2. Stemming
 
-Stemming reduces a word to its root form by removing prefixes or suffixes. The resulting word may not always be a valid English word.
-
-Examples
+Stemming reduces a word to its root form by removing prefixes or suffixes. The resulting word may not always be a valid English word. Examples:
 
 | Original | Stem |
 |-----------|------|
@@ -118,9 +139,7 @@ Examples
 | studies | studi |
 | running | run |
 
-NLTK provides several stemming algorithms.
-
-Example using **Porter Stemmer**:
+NLTK provides several stemming algorithms. For example using **Porter Stemmer**:
 
 ```python
 from nltk.stem import PorterStemmer
@@ -152,15 +171,11 @@ studi
 - Produces non-dictionary words
 - Less linguistically accurate
 
----
 
-# Lemmatization
 
-Lemmatization converts words into their **dictionary form (lemma)** using vocabulary and grammatical information.
+## 3. Lemmatization
 
-Unlike stemming, lemmatization always attempts to produce valid words.
-
-Examples
+Lemmatization converts words into their **dictionary form (lemma)** using vocabulary and grammatical information. Unlike stemming, lemmatization always attempts to produce valid words. For examples:
 
 | Original | Lemma |
 |-----------|-------|
@@ -211,13 +226,11 @@ run
 | Dictionary Lookup | No | Yes |
 | Produces Valid Words | Not always | Yes |
 
----
 
-# Stopwords
 
-Stopwords are common words that usually carry little semantic meaning and are often removed before training machine learning models.
+## 4. Stopwords
 
-Examples
+Stopwords are common words that usually carry little semantic meaning and are often removed before training machine learning models. Examples:
 
 ```text
 the
@@ -266,13 +279,11 @@ Output
 
 However, stopwords should **not** always be removed. For example, in sentiment analysis, words such as **not** can completely change the meaning of a sentence.
 
----
 
-# Part-of-Speech (POS) Tagging
 
-Part-of-Speech (POS) tagging identifies the grammatical role of each word in a sentence.
+## 5. Part-of-Speech (POS) Tagging
 
-Common POS tags include:
+Part-of-Speech (POS) tagging identifies the grammatical role of each word in a sentence. Common POS tags include:
 
 | Tag | Meaning |
 |------|---------|
@@ -340,13 +351,11 @@ Applications of POS tagging include:
 - Text summarization
 - Question answering
 
----
 
-# Named Entity Recognition (NER)
 
-Named Entity Recognition (NER) identifies and classifies important entities within text.
+## 6. Named Entity Recognition (NER)
 
-Common entity categories include:
+Named Entity Recognition (NER) identifies and classifies important entities within text. Common entity categories include:
 
 | Entity Type | Example |
 |-------------|----------|
@@ -402,113 +411,7 @@ Applications of NER include:
 - Search engines
 - Question answering systems
 
----
 
-# Practical Example: NLP Preprocessing Pipeline
-
-The following example demonstrates a simple NLP preprocessing workflow.
-
-```python
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
-
-text = "Python makes machine learning easier and more powerful."
-
-tokens = word_tokenize(text)
-
-stop_words = set(stopwords.words("english"))
-
-tokens = [
-    word.lower()
-    for word in tokens
-    if word.lower() not in stop_words
-]
-
-stemmer = PorterStemmer()
-
-stems = [
-    stemmer.stem(word)
-    for word in tokens
-]
-
-print(stems)
-```
-
-Output
-
-```text
-['python', 'make', 'machin', 'learn', 'easier', 'power']
-```
-
----
-
-# Common Errors
-
-## Error 1: Forgetting to Download NLTK Resources
-
-```python
-LookupError
-```
-
-Solution
-
-```python
-import nltk
-
-nltk.download("punkt")
-nltk.download("stopwords")
-nltk.download("wordnet")
-nltk.download("averaged_perceptron_tagger")
-```
-
----
-
-## Error 2: Applying Stemming to Proper Names
-
-```text
-Indonesia
-```
-
-may become
-
-```text
-indones
-```
-
-which changes its meaning.
-
----
-
-## Error 3: Removing Important Stopwords
-
-Sentence
-
-```text
-I do not like this movie.
-```
-
-Removing stopwords may produce
-
-```text
-like movie
-```
-
-which reverses the sentiment.
-
----
-
-## Best Practices
-
-- Clean text before tokenization.
-- Use **lemmatization** instead of stemming when semantic accuracy is important.
-- Remove stopwords only when appropriate for the task.
-- Use POS tagging to improve lemmatization accuracy.
-- Use NER to extract structured information from unstructured text.
-- Build preprocessing pipelines to ensure consistent data preparation.
-
----
-
-# Summary
+## Summary
 
 Natural Language Processing (NLP) combines linguistics and machine learning to enable computers to understand human language. Text preprocessing techniques such as **tokenization**, **stemming**, **lemmatization**, **stopword removal**, **Part-of-Speech tagging**, and **Named Entity Recognition (NER)** play a fundamental role in preparing textual data for machine learning models. Mastering these techniques provides the foundation for building applications such as sentiment analysis, chatbots, machine translation, information extraction, and document classification.

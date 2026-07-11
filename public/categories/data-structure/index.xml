@@ -2,20 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Data Structure on Ika Qutami&#39;s Blog</title>
-    <link>http://localhost:1313/categories/data-structure/</link>
+    <link>http://localhost:56589/categories/data-structure/</link>
     <description>Recent content in Data Structure on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/data-structure/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:56589/categories/data-structure/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>List Data Structure with Python</title>
-      <link>http://localhost:1313/posts/python-list/</link>
+      <title>Python Dictionaries Data Structure</title>
+      <link>http://localhost:56589/posts/python-dictionary/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-list/</guid>
-      <description>&lt;h1 id=&#34;introduction-to-lists&#34;&gt;&lt;strong&gt;Introduction to Lists&lt;/strong&gt;&lt;/h1&gt;
-&lt;p&gt;A list is one of the most commonly used data structures in Python. It is an ordered, mutable collection of items, meaning that the elements are stored in a specific sequence and can be modified after the list is created. Lists are versatile because they can store multiple values of different data types within a single variable.&lt;/p&gt;
-&lt;p&gt;For example, a list can contain integers, floating-point numbers, strings, Boolean values, and even other lists. This flexibility makes lists suitable for representing collections such as student names, exam scores, shopping items, or sensor readings.&lt;/p&gt;</description>
+      <guid>http://localhost:56589/posts/python-dictionary/</guid>
+      <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python List Data Structure</title>
+      <link>http://localhost:56589/posts/python-list/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56589/posts/python-list/</guid>
+      <description>A comprehensive guide to Python Lists for beginners.</description>
+    </item>
+    <item>
+      <title>Python Sets Data Structure</title>
+      <link>http://localhost:56589/posts/python-set/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56589/posts/python-set/</guid>
+      <description>Learn Python sets, including creation, operations, methods, set algebra, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python Tuples Data Structure</title>
+      <link>http://localhost:56589/posts/python-tuple/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56589/posts/python-tuple/</guid>
+      <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
     </item>
   </channel>
 </rss>

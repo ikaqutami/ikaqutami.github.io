@@ -15,7 +15,7 @@ ShowReadingTime: true
 ShowPostNavLinks: true
 ---
 
-# File Handling in Python
+## File Handling in Python
 
 File handling allows Python programs to **store data permanently** by reading from and writing to files. Unlike variables, whose values are lost when a program ends, files retain data on disk for future use.
 
@@ -31,7 +31,7 @@ Typical file operations include:
 
 ---
 
-# Opening Files
+## Opening Files
 
 Before reading or writing a file, it must be opened using the `open()` function.
 
@@ -59,11 +59,11 @@ Common file modes:
 
 ---
 
-# Reading Files
+## Reading Files
 
 Reading files is one of the most common tasks in Python. It allows programs to retrieve previously stored information.
 
-## Reading the Entire File
+### Reading the Entire File
 
 ```python
 file = open("example.txt", "r")
@@ -93,7 +93,7 @@ Language
 
 ---
 
-## Using the `with` Statement
+### Using the `with` Statement
 
 The recommended approach is to use the `with` statement because it automatically closes the file.
 
@@ -106,7 +106,7 @@ print(content)
 
 ---
 
-## Reading One Line
+### Reading One Line
 
 ```python
 with open("example.txt", "r") as file:
@@ -123,7 +123,7 @@ Python
 
 ---
 
-## Reading All Lines
+### Reading All Lines
 
 ```python
 with open("example.txt", "r") as file:
@@ -140,7 +140,7 @@ Output
 
 ---
 
-## Reading Line by Line
+### Reading Line by Line
 
 ```python
 with open("example.txt") as file:
@@ -158,11 +158,11 @@ Language
 
 ---
 
-# Writing Files
+## Writing Files
 
 Writing files allows a program to save information for later use.
 
-## Writing a New File
+### Writing a New File
 
 The `"w"` mode creates a new file or overwrites an existing one.
 
@@ -179,7 +179,7 @@ Hello Python!
 
 ---
 
-## Writing Multiple Lines
+### Writing Multiple Lines
 
 ```python
 lines = [
@@ -202,7 +202,7 @@ C++
 
 ---
 
-## Appending to a File
+### Appending to a File
 
 The `"a"` mode adds content without deleting existing data.
 
@@ -220,7 +220,7 @@ Welcome to File Handling.
 
 ---
 
-## Creating a File
+### Creating a File
 
 The `"x"` mode creates a new file and raises an error if it already exists.
 
@@ -231,7 +231,7 @@ with open("newfile.txt", "x") as file:
 
 ---
 
-# Working with File Paths
+## Working with File Paths
 
 Python provides the `pathlib` module, which offers a modern and platform-independent way to work with file paths.
 
@@ -243,7 +243,7 @@ from pathlib import Path
 
 ---
 
-## Creating a Path
+### Creating a Path
 
 ```python
 from pathlib import Path
@@ -261,7 +261,7 @@ data/example.txt
 
 ---
 
-## Checking Whether a File Exists
+### Checking Whether a File Exists
 
 ```python
 from pathlib import Path
@@ -285,7 +285,7 @@ False
 
 ---
 
-## Checking Whether It Is a File
+### Checking Whether It Is a File
 
 ```python
 from pathlib import Path
@@ -297,7 +297,7 @@ print(path.is_file())
 
 ---
 
-## Checking Whether It Is a Directory
+### Checking Whether It Is a Directory
 
 ```python
 from pathlib import Path
@@ -309,7 +309,7 @@ print(path.is_dir())
 
 ---
 
-## Getting File Name
+### Getting File Name
 
 ```python
 from pathlib import Path
@@ -327,7 +327,7 @@ report.pdf
 
 ---
 
-## Getting File Extension
+### Getting File Extension
 
 ```python
 from pathlib import Path
@@ -345,7 +345,7 @@ Output
 
 ---
 
-## Getting File Name Without Extension
+### Getting File Name Without Extension
 
 ```python
 from pathlib import Path
@@ -363,7 +363,7 @@ report
 
 ---
 
-## Getting the Parent Directory
+### Getting the Parent Directory
 
 ```python
 from pathlib import Path
@@ -381,7 +381,7 @@ documents
 
 ---
 
-## Creating Directories
+### Creating Directories
 
 ```python
 from pathlib import Path
@@ -395,7 +395,7 @@ The directory is created if it does not already exist.
 
 ---
 
-## Listing Files in a Directory
+### Listing Files in a Directory
 
 ```python
 from pathlib import Path
@@ -408,7 +408,7 @@ for file in folder.iterdir():
 
 ---
 
-## Joining Paths
+### Joining Paths
 
 ```python
 from pathlib import Path
@@ -428,9 +428,9 @@ data/students.txt
 
 ---
 
-# Practical Examples
+## Practical Examples
 
-## Example 1: Copy a Text File
+### Example 1: Copy a Text File
 
 ```python
 with open("input.txt", "r") as source:
@@ -442,7 +442,7 @@ with open("copy.txt", "w") as destination:
 
 ---
 
-## Example 2: Count the Number of Lines
+### Example 2: Count the Number of Lines
 
 ```python
 with open("example.txt") as file:
@@ -459,7 +459,7 @@ Total lines: 3
 
 ---
 
-## Example 3: Save User Input
+### Example 3: Save User Input
 
 ```python
 name = input("Enter your name: ")
@@ -470,7 +470,7 @@ with open("users.txt", "a") as file:
 
 ---
 
-## Example 4: Read Only Existing Files
+### Example 4: Read Only Existing Files
 
 ```python
 from pathlib import Path
@@ -486,9 +486,9 @@ else:
 
 ---
 
-# Common Errors
+## Common Errors
 
-## Error 1: File Not Found
+### Error 1: File Not Found
 
 ```python
 with open("missing.txt") as file:
@@ -515,7 +515,7 @@ if path.exists():
 
 ---
 
-## Error 2: Forgetting to Close a File
+### Error 2: Forgetting to Close a File
 
 Incorrect:
 
@@ -536,7 +536,7 @@ The `with` statement automatically closes the file.
 
 ---
 
-## Error 3: Overwriting Existing Data
+### Error 3: Overwriting Existing Data
 
 ```python
 with open("notes.txt", "w") as file:
@@ -549,7 +549,7 @@ If you want to preserve existing data, use `"a"` instead.
 
 ---
 
-# Best Practices
+### Best Practices
 
 - Always use the `with` statement when working with files.
 - Use `pathlib.Path` instead of manually constructing file paths.
@@ -560,6 +560,6 @@ If you want to preserve existing data, use `"a"` instead.
 
 ---
 
-# Summary
+## Summary
 
 Python provides simple yet powerful tools for working with files. You can **read** data using `read()`, `readline()`, and `readlines()`, **write** data using `write()` and `writelines()`, and safely manage files using the `with` statement. The `pathlib` module simplifies working with file paths, directories, and file metadata in a platform-independent way. Mastering file handling is an essential skill for building real-world Python applications that process and persist data.

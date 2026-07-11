@@ -11,13 +11,13 @@ title : 'Python List Data Structure'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---
-# Introduction to Lists
+## Introduction to Lists
 
 A list is one of the most commonly used data structures in Python. It is an ordered, mutable collection of items, meaning that the elements are stored in a specific sequence and can be modified after the list is created. Lists are versatile because they can store multiple values of different data types within a single variable.
 
 For example, a list can contain integers, floating-point numbers, strings, Boolean values, and even other lists. This flexibility makes lists suitable for representing collections such as student names, exam scores, shopping items, or sensor readings.
 
-# Characteristics of Lists
+## Characteristics of Lists
 - **Ordered** – Elements maintain their insertion order.
 - **Mutable** – Elements can be modified after creation.
 - **Indexed** – Elements are accessed using zero-based indexing.
@@ -25,7 +25,7 @@ For example, a list can contain integers, floating-point numbers, strings, Boole
 - **Heterogeneous** – Different data types can be stored in the same list.
 - **Duplicates Allowed** – Lists can contain duplicate values.
 
-# Creating Lists
+## Creating Lists
 
 Lists are created using square brackets `[]` with items separated by commas.
 
@@ -57,7 +57,7 @@ Output
 
 ---
 
-# Accessing List Elements
+## Accessing List Elements
 
 Each element has an index beginning from **0**.
 
@@ -77,7 +77,7 @@ Orange
 Mango
 ```
 
-## Index Illustration
+### Index Illustration
 
 | Index | 0 | 1 | 2 | 3 |
 |-------|---|---|---|---|
@@ -91,7 +91,7 @@ Negative indexing starts from the end.
 
 ---
 
-# Modifying List Elements
+## Modifying List Elements
 
 Lists are mutable, meaning elements can be changed.
 
@@ -137,7 +137,7 @@ Output
 
 ---
 
-# List Methods
+## List Methods
 
 Python provides many useful methods for manipulating lists.
 
@@ -176,7 +176,7 @@ Output
 
 ---
 
-# Slicing Lists
+## Slicing Lists
 
 Slicing extracts part of a list.
 
@@ -208,7 +208,7 @@ Output
 
 ---
 
-# Iterating Over Lists
+## Iterating Over Lists
 
 Lists are commonly processed using loops.
 
@@ -246,7 +246,7 @@ Output
 
 ---
 
-# List Comprehensions
+## List Comprehensions
 
 List comprehensions provide a concise way to create new lists.
 
@@ -288,7 +288,7 @@ Output
 
 ---
 
-# Nested Lists
+## Nested Lists
 
 A list can contain other lists.
 
@@ -327,9 +327,9 @@ Output
 
 ---
 
-# Practical Examples and Common Errors
+## Practical Examples and Common Errors
 
-## Example 1: Calculate Average Score
+### Example 1: Calculate Average Score
 
 ```python
 scores = [80, 90, 75, 95]
@@ -347,7 +347,7 @@ Average: 85.0
 
 ---
 
-## Example 2: Find the Largest Number
+### Example 2: Find the Largest Number
 
 ```python
 numbers = [12, 5, 33, 18]
@@ -365,7 +365,7 @@ Output
 
 ---
 
-## Example 3: Remove Duplicate Values
+### Example 3: Remove Duplicate Values
 
 ```python
 numbers = [1, 2, 2, 3, 4, 4, 5]
@@ -377,7 +377,7 @@ print(unique)
 
 ---
 
-## Common Error 1: Index Out of Range
+### Common Error 1: Index Out of Range
 
 ```python
 numbers = [10, 20, 30]
@@ -400,7 +400,7 @@ if len(numbers) > 5:
 
 ---
 
-## Common Error 2: Using Parentheses Instead of Brackets
+### Common Error 2: Using Parentheses Instead of Brackets
 
 Incorrect
 
@@ -424,7 +424,7 @@ numbers.append(4)
 
 ---
 
-## Common Error 3: Modifying a List While Iterating
+### Common Error 3: Modifying a List While Iterating
 
 Incorrect
 
@@ -456,6 +456,6 @@ Output
 
 ---
 
-# Summary
+## Summary
 
 Python lists are powerful and flexible containers for storing collections of data. They support indexing, slicing, iteration, nesting, and a rich collection of built-in methods. Mastering lists is essential because they are widely used in data processing, algorithm implementation, web development, machine learning, and many other Python applications.

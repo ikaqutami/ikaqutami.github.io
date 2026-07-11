@@ -15,7 +15,7 @@ ShowReadingTime: true
 ShowPostNavLinks: true
 ---
 
-# Introduction to Dictionaries
+## Introduction to Dictionaries
 
 A **dictionary** is a built-in Python data structure that stores data as **key-value pairs**. Each key is unique and is used to access its corresponding value.
 
@@ -23,7 +23,7 @@ Unlike lists and tuples, dictionaries are optimized for fast lookups using keys 
 
 Dictionaries are commonly used to represent structured data such as student records, employee information, product catalogs, configuration settings, and JSON objects.
 
-## Characteristics of Dictionaries
+### Characteristics of Dictionaries
 
 - Store data as **key-value pairs**
 - Mutable (items can be added, modified, or removed)
@@ -52,9 +52,9 @@ Output
 
 ---
 
-# Creating Dictionaries
+## Creating Dictionaries
 
-## Empty Dictionary
+### Empty Dictionary
 
 ```python
 student = {}
@@ -78,7 +78,7 @@ print(student)
 
 ---
 
-## Dictionary with Initial Values
+### Dictionary with Initial Values
 
 ```python
 student = {
@@ -92,7 +92,7 @@ print(student)
 
 ---
 
-## Using the `dict()` Constructor
+### Using the `dict()` Constructor
 
 ```python
 student = dict(
@@ -106,7 +106,7 @@ print(student)
 
 ---
 
-## Creating from a List of Tuples
+### Creating from a List of Tuples
 
 ```python
 student = dict([
@@ -120,9 +120,9 @@ print(student)
 
 ---
 
-# Accessing Dictionary Elements
+## Accessing Dictionary Elements
 
-## Using Square Brackets
+### Using Square Brackets
 
 ```python
 student = {
@@ -143,7 +143,7 @@ Alice
 
 ---
 
-## Using `get()`
+### Using `get()`
 
 ```python
 student = {
@@ -176,9 +176,9 @@ Not Available
 
 ---
 
-# Modifying Dictionary Elements
+## Modifying Dictionary Elements
 
-## Updating a Value
+### Updating a Value
 
 ```python
 student = {
@@ -199,7 +199,7 @@ Output
 
 ---
 
-## Adding New Key-Value Pairs
+### Adding New Key-Value Pairs
 
 ```python
 student["major"] = "Computer Science"
@@ -219,7 +219,7 @@ Output
 
 ---
 
-## Removing Elements
+### Removing Elements
 
 Using `del`
 
@@ -249,7 +249,7 @@ student.clear()
 
 ---
 
-# Dictionary Methods
+## Dictionary Methods
 
 Some commonly used dictionary methods include:
 
@@ -289,9 +289,9 @@ dict_items([('name', 'Alice'), ('age', 20)])
 
 ---
 
-# Iterating Over Dictionaries
+## Iterating Over Dictionaries
 
-## Iterate Over Keys
+### Iterate Over Keys
 
 ```python
 student = {
@@ -306,7 +306,7 @@ for key in student:
 
 ---
 
-## Iterate Over Values
+### Iterate Over Values
 
 ```python
 for value in student.values():
@@ -315,7 +315,7 @@ for value in student.values():
 
 ---
 
-## Iterate Over Key-Value Pairs
+### Iterate Over Key-Value Pairs
 
 ```python
 for key, value in student.items():
@@ -332,7 +332,7 @@ major : CS
 
 ---
 
-# Nested Dictionaries
+## Nested Dictionaries
 
 Dictionaries can contain other dictionaries.
 
@@ -367,7 +367,7 @@ Alice
 
 ---
 
-# Dictionary Comprehensions
+## Dictionary Comprehensions
 
 Dictionary comprehensions provide a concise way to create dictionaries.
 
@@ -420,9 +420,9 @@ Output
 
 ---
 
-# Practical Examples and Common Errors
+## Practical Examples and Common Errors
 
-## Example 1: Student Record
+### Example 1: Student Record
 
 ```python
 student = {
@@ -447,7 +447,7 @@ gpa: 3.85
 
 ---
 
-## Example 2: Word Frequency Counter
+### Example 2: Word Frequency Counter
 
 ```python
 sentence = "python is fun and python is powerful"
@@ -474,7 +474,7 @@ Output
 
 ---
 
-## Example 3: Merge Dictionaries
+### Example 3: Merge Dictionaries
 
 ```python
 dict1 = {"a": 1, "b": 2}
@@ -498,7 +498,7 @@ Output
 
 ---
 
-## Common Error 1: Accessing a Missing Key
+### Common Error 1: Accessing a Missing Key
 
 Incorrect:
 
@@ -524,7 +524,7 @@ print(student.get("age"))
 
 ---
 
-## Common Error 2: Duplicate Keys
+### Common Error 2: Duplicate Keys
 
 ```python
 student = {
@@ -545,7 +545,7 @@ The last value replaces the previous one.
 
 ---
 
-## Common Error 3: Using Mutable Keys
+### Common Error 3: Using Mutable Keys
 
 Incorrect:
 
@@ -573,7 +573,7 @@ print(data)
 
 ---
 
-# When to Use Dictionaries
+## When to Use Dictionaries
 
 Use dictionaries when you need to:
 
@@ -591,6 +591,6 @@ Avoid using dictionaries when:
 
 ---
 
-# Summary
+## Summary
 
 Python **dictionaries** are powerful, mutable collections that store data as **key-value pairs**. They provide fast access to values through unique keys and support a wide range of operations, including updating, deleting, iterating, nesting, and comprehensions. Dictionaries are one of the most commonly used data structures in Python and are essential for organizing and managing structured data efficiently.
