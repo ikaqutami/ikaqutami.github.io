@@ -13,8 +13,6 @@ series:
 title : 'Python Sets Data Structure'
 ShowReadingTime: true
 ShowPostNavLinks: true
-ShowToc: true
-TocOpen: true
 ---
 
 # Introduction to Sets
