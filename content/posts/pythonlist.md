@@ -3,6 +3,7 @@ date : '2026-07-11'
 draft : false
 slug : 'python-list'
 categories : 'Data Structure'
+summary: 'A comprehensive guide to Python Lists for beginners.'
 author : 'Ika Utami'
 tags :
     - "Python Data Structure"
