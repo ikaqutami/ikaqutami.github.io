@@ -30,6 +30,14 @@
       <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
     </item>
     <item>
+      <title>Introduction to Natural Language Processing</title>
+      <link>http://localhost:1313/posts/introduction-nlp/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/introduction-nlp/</guid>
+      <description>&lt;p&gt;Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to understand, process, and generate human language. By combining linguistics, computer science, and machine learning, NLP allows machines to analyze text and speech in ways that support meaningful interaction between humans and computers.&lt;/p&gt;
+&lt;p&gt;Machine learning has significantly advanced NLP by enabling systems to learn patterns directly from data rather than relying solely on manually defined rules. Modern NLP applications use machine learning algorithms to perform tasks such as text classification, sentiment analysis, machine translation, question answering, information extraction, and conversational AI.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Python List</title>
       <link>http://localhost:1313/posts/python-list/</link>
       <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
@@ -49,14 +57,6 @@
       <pubDate>Sun, 05 Jul 2026 22:30:00 +0700</pubDate>
       <guid>http://localhost:1313/publication/</guid>
       <description>List of research publications and scientific papers.</description>
-    </item>
-    <item>
-      <title>Introduction to Natural Language Processing</title>
-      <link>http://localhost:1313/posts/introduction-nlp/</link>
-      <pubDate>Sun, 05 Jul 2026 20:03:13 +0700</pubDate>
-      <guid>http://localhost:1313/posts/introduction-nlp/</guid>
-      <description>&lt;p&gt;Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to understand, process, and generate human language. By combining linguistics, computer science, and machine learning, NLP allows machines to analyze text and speech in ways that support meaningful interaction between humans and computers.&lt;/p&gt;
-&lt;p&gt;Machine learning has significantly advanced NLP by enabling systems to learn patterns directly from data rather than relying solely on manually defined rules. Modern NLP applications use machine learning algorithms to perform tasks such as text classification, sentiment analysis, machine translation, question answering, information extraction, and conversational AI.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Python Dictionaries</title>
