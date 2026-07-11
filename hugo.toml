@@ -17,6 +17,7 @@ ShowCodeCopyButtons = true
 disableSpecial1stPost = true
 ShowToc = true
 responsiveImages = false
+custom_css = ["css/custom.css"]
 
 [params.homeInfoParams]
 Title = "Hi, I'm Ika Utami 👋"
