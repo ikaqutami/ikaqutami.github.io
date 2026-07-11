@@ -34,7 +34,6 @@ body, .post-content, .entry-content, .content {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    text-align: justify;
 }
 
 .post-content code {
