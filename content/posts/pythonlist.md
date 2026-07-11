@@ -76,7 +76,7 @@ Orange
 Mango
 ```
 
-### Index Illustration
+## Index Illustration
 
 | Index | 0 | 1 | 2 | 3 |
 |-------|---|---|---|---|
