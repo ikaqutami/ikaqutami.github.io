@@ -29,7 +29,7 @@ Typical file operations include:
 - Managing file paths
 - Checking file existence
 
----
+
 
 ## Opening Files
 
@@ -57,7 +57,7 @@ Common file modes:
 | `"wb"` | Write binary file |
 | `"r+"` | Read and write |
 
----
+
 
 ## Reading Files
 
@@ -91,7 +91,7 @@ Programming
 Language
 ```
 
----
+
 
 ### Using the `with` Statement
 
@@ -104,7 +104,7 @@ with open("example.txt", "r") as file:
 print(content)
 ```
 
----
+
 
 ### Reading One Line
 
@@ -121,7 +121,7 @@ Output
 Python
 ```
 
----
+
 
 ### Reading All Lines
 
@@ -138,7 +138,7 @@ Output
 ['Python\n', 'Programming\n', 'Language']
 ```
 
----
+
 
 ### Reading Line by Line
 
@@ -156,7 +156,7 @@ Programming
 Language
 ```
 
----
+
 
 ## Writing Files
 
@@ -177,7 +177,7 @@ Contents of **output.txt**
 Hello Python!
 ```
 
----
+
 
 ### Writing Multiple Lines
 
@@ -200,7 +200,7 @@ Java
 C++
 ```
 
----
+
 
 ### Appending to a File
 
@@ -218,7 +218,7 @@ Hello Python!
 Welcome to File Handling.
 ```
 
----
+
 
 ### Creating a File
 
@@ -229,7 +229,7 @@ with open("newfile.txt", "x") as file:
     file.write("New file created.")
 ```
 
----
+
 
 ## Working with File Paths
 
@@ -241,7 +241,7 @@ Import the module:
 from pathlib import Path
 ```
 
----
+
 
 ### Creating a Path
 
@@ -259,7 +259,7 @@ Output
 data/example.txt
 ```
 
----
+
 
 ### Checking Whether a File Exists
 
@@ -283,7 +283,7 @@ or
 False
 ```
 
----
+
 
 ### Checking Whether It Is a File
 
@@ -295,7 +295,7 @@ path = Path("example.txt")
 print(path.is_file())
 ```
 
----
+
 
 ### Checking Whether It Is a Directory
 
@@ -307,7 +307,7 @@ path = Path("documents")
 print(path.is_dir())
 ```
 
----
+
 
 ### Getting File Name
 
@@ -325,7 +325,7 @@ Output
 report.pdf
 ```
 
----
+
 
 ### Getting File Extension
 
@@ -343,7 +343,7 @@ Output
 .pdf
 ```
 
----
+
 
 ### Getting File Name Without Extension
 
@@ -379,7 +379,7 @@ Output
 documents
 ```
 
----
+
 
 ### Creating Directories
 
@@ -393,7 +393,7 @@ folder.mkdir(exist_ok=True)
 
 The directory is created if it does not already exist.
 
----
+
 
 ### Listing Files in a Directory
 
@@ -406,7 +406,7 @@ for file in folder.iterdir():
     print(file)
 ```
 
----
+
 
 ### Joining Paths
 
@@ -426,7 +426,7 @@ Output
 data/students.txt
 ```
 
----
+
 
 ## Practical Examples
 
@@ -440,7 +440,7 @@ with open("copy.txt", "w") as destination:
     destination.write(content)
 ```
 
----
+
 
 ### Example 2: Count the Number of Lines
 
@@ -457,7 +457,7 @@ Output
 Total lines: 3
 ```
 
----
+
 
 ### Example 3: Save User Input
 
@@ -468,7 +468,7 @@ with open("users.txt", "a") as file:
     file.write(name + "\n")
 ```
 
----
+
 
 ### Example 4: Read Only Existing Files
 
@@ -484,7 +484,7 @@ else:
     print("File not found.")
 ```
 
----
+
 
 ## Common Errors
 
@@ -513,7 +513,7 @@ if path.exists():
         print(file.read())
 ```
 
----
+
 
 ### Error 2: Forgetting to Close a File
 
@@ -534,7 +534,7 @@ with open("example.txt") as file:
 
 The `with` statement automatically closes the file.
 
----
+
 
 ### Error 3: Overwriting Existing Data
 
@@ -547,7 +547,7 @@ The `"w"` mode removes all previous contents.
 
 If you want to preserve existing data, use `"a"` instead.
 
----
+
 
 ### Best Practices
 
@@ -558,7 +558,7 @@ If you want to preserve existing data, use `"a"` instead.
 - Close files properly to avoid resource leaks.
 - Handle exceptions for more robust programs.
 
----
+
 
 ## Summary
 

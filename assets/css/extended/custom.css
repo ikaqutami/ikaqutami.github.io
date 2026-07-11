@@ -15,10 +15,29 @@
 }
 
 body, .post-content, .entry-content, .content {
-    font-size: 0.9em; /* Adjust to 0.85em or smaller if you want it even smaller */
+    font-size: 1em; /* Adjust to 0.85em or smaller if you want it even smaller */
 }
 
 /* Optional: If you want to make sure paragraphs scale down specifically */
-p, code {
-    font-size: 0.9em; /* Or use a percentage, e.g., 95% */
+p {
+    font-size: 1em; /* Or use a percentage, e.g., 95% */
+}
+
+.post-content code {
+    padding: .2rem .3rem;
+    font-size: 1em;
+    line-height: 1.2;
+    background: var(--code-bg);
+    border-radius: .2rem
+}
+
+.md-content pre code {
+    display: grid;
+    margin: auto 0;
+    padding: 10px;
+    color: #d5d5d6;
+    background: rgb(24, 29, 47) !important;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    word-break: break-all
 }
