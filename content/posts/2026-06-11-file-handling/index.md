@@ -1,5 +1,5 @@
 ---
-date : '2026-07-10'
+date : '2026-06-11'
 draft : false
 slug : 'file-handling'
 categories : 'Python Programming'
