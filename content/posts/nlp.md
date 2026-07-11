@@ -5,7 +5,6 @@ slug : 'introduction-nlp'
 categories : 'nlp'
 author : 'Ika Utami'
 tags :
-    - "NLP"
     - "natural language processing"
 title : 'Introduction to Natural Language Processing'
 ShowReadingTime: true
