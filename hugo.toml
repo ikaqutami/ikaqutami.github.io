@@ -1,14 +1,20 @@
-baseURL = "https://ikaqutami.github.io"
-languageCode = "en-us"
-title = "Ika Qutami's Blog"
+baseURL = "https://ikaqutami.github.io/"
 theme = "PaperMod"
+
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 
 [pagination]
 pagerSize = 5
 
+############################
+# Global Parameters
+############################
+
 [params]
 author = "Ika Utami"
 defaultTheme = "auto"
+
 ShowReadingTime = true
 ShowShareButtons = true
 ShowPostNavLinks = true
@@ -17,54 +23,134 @@ ShowCodeCopyButtons = true
 disableSpecial1stPost = true
 ShowToc = true
 
-[params.homeInfoParams]
+############################
+# Languages
+############################
+
+[languages]
+
+############################
+# English
+############################
+
+[languages.en]
+languageName = "English"
+languageCode = "en-US"
+weight = 1
+title = "Ika Qutami's Blog"
+
+[languages.en.params.homeInfoParams]
 Title = "Hi, I'm Ika Utami 👋"
 Content = """
-Welcome to my personal website. This space serves as a platform for sharing my thoughts, research, and experiences in the field of Artificial Intelligence, with a particular focus on Natural Language Processing (NLP), Large Language Models (LLMs), and Applied Data Science.
+Welcome to my personal website. This space serves as a platform for sharing my thoughts, research, and experiences in Artificial Intelligence, particularly in Natural Language Processing (NLP), Large Language Models (LLMs), and Applied Data Science.
 """
 
-[[menu.main]]
+[[languages.en.menu.main]]
 identifier = "posts"
 name = "Posts"
 url = "/posts/"
 weight = 10
 
-[[menu.main]]
-identifier = "archives"
-name = "Archive"
-url = "/archives/"
-weight = 10
-
-[[menu.main]]
-identifier = "tags"
-name = "Tags"
-url = "/tags/"
-weight = 20
-
-[[menu.main]]
-identifier = "search"
-name = "Search"
-url = "/search/"
-weight = 10
-
-[[menu.main]]
+[[languages.en.menu.main]]
 identifier = "publication"
 name = "Publications"
 url = "/publication/"
+weight = 20
+
+[[languages.en.menu.main]]
+identifier = "project"
+name = "Projects"
+url = "/project/"
+weight = 30
+
+[[languages.en.menu.main]]
+identifier = "archives"
+name = "Archive"
+url = "/archives/"
+weight = 40
+
+[[languages.en.menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 50
+
+[[languages.en.menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
+weight = 60
+
+############################
+# Bahasa Indonesia
+############################
+
+[languages.id]
+languageName = "Bahasa Indonesia"
+languageCode = "id-ID"
+weight = 2
+title = "Blog Ika Qutami"
+
+[languages.id.params.homeInfoParams]
+Title = "Halo, saya Ika Utami 👋"
+Content = """
+Selamat datang di website pribadi saya. Website ini merupakan tempat saya berbagi pemikiran, penelitian, dan pengalaman di bidang Artificial Intelligence, khususnya Natural Language Processing (NLP), Large Language Models (LLMs), dan Applied Data Science.
+"""
+
+[[languages.id.menu.main]]
+identifier = "posts"
+name = "Artikel"
+url = "/posts/"
 weight = 10
 
-[[menu.main]]
+[[languages.id.menu.main]]
+identifier = "publication"
+name = "Publikasi"
+url = "/publication/"
+weight = 20
+
+[[languages.id.menu.main]]
 identifier = "project"
-name = "Project"
+name = "Proyek"
 url = "/project/"
-weight = 10
+weight = 30
+
+[[languages.id.menu.main]]
+identifier = "archives"
+name = "Arsip"
+url = "/archives/"
+weight = 40
+
+[[languages.id.menu.main]]
+identifier = "tags"
+name = "Tag"
+url = "/tags/"
+weight = 50
+
+[[languages.id.menu.main]]
+identifier = "search"
+name = "Pencarian"
+url = "/search/"
+weight = 60
+
+############################
+# Outputs
+############################
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+home = ["HTML", "RSS", "JSON"]
+
+############################
+# Google Analytics
+############################
 
 [services]
   [services.googleAnalytics]
     id = "G-0XBV3ZQGEX"
+
+############################
+# Social Icons
+############################
 
 [[params.socialIcons]]
 name = "github"
