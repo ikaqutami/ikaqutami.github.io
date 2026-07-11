@@ -16,13 +16,6 @@
       <description>Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech (POS) tagging, and Named Entity Recognition (NER).</description>
     </item>
     <item>
-      <title>Python List</title>
-      <link>http://localhost:1313/posts/python-list/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-list/</guid>
-      <description>A comprehensive guide to Python Lists for beginners.</description>
-    </item>
-    <item>
       <title>Python Sets</title>
       <link>http://localhost:1313/posts/python-set/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
@@ -49,6 +42,13 @@
       <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/python-dictionary/</guid>
       <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python List</title>
+      <link>http://localhost:1313/posts/python-list/</link>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-list/</guid>
+      <description>A comprehensive guide to Python Lists for beginners.</description>
     </item>
     <item>
       <title>Introduction to Natural Language Processing</title>
