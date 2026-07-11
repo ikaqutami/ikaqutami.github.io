@@ -1,1 +1,1 @@
-This site is powered by Hugo & PaperMod
+This site is developed by Ika Utami and powered by Hugo & PaperMod
