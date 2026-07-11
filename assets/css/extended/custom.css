@@ -19,14 +19,25 @@ body, .post-content, .entry-content, .content {
 }
 
 /* Optional: If you want to make sure paragraphs scale down specifically */
-p {
+.p {
     font-size: 1em; /* Or use a percentage, e.g., 95% */
+}
+
+.entry-content {
+    margin: 8px 0;
+    color: var(--secondary);
+    font-size: 1em;
+    line-height: 1.6;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .post-content code {
     padding: .2rem .3rem;
     font-size: 1em;
-    line-height: 1.2;
+    line-height: 1.6;
     background: var(--code-bg);
     border-radius: .2rem
 }
