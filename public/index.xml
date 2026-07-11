@@ -2,81 +2,81 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Home on Ika Qutami&#39;s Blog</title>
-    <link>http://localhost:56589/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content in Home on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:56589/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>File Handling in Python</title>
-      <link>http://localhost:56589/posts/file-handling/</link>
+      <link>http://localhost:1313/posts/file-handling/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:56589/posts/file-handling/</guid>
+      <guid>http://localhost:1313/posts/file-handling/</guid>
       <description>Learn how to read and write files and work with file paths in Python.</description>
     </item>
     <item>
       <title>NLP with Machine Learning</title>
-      <link>http://localhost:56589/posts/nlp-with-machinelearning/</link>
+      <link>http://localhost:1313/posts/nlp-with-machinelearning/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:56589/posts/nlp-with-machinelearning/</guid>
+      <guid>http://localhost:1313/posts/nlp-with-machinelearning/</guid>
       <description>Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech (POS) tagging, and Named Entity Recognition (NER).</description>
     </item>
     <item>
-      <title>Python Dictionaries Data Structure</title>
-      <link>http://localhost:56589/posts/python-dictionary/</link>
+      <title>Python Dictionaries</title>
+      <link>http://localhost:1313/posts/python-dictionary/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:56589/posts/python-dictionary/</guid>
+      <guid>http://localhost:1313/posts/python-dictionary/</guid>
       <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
     </item>
     <item>
-      <title>Python List Data Structure</title>
-      <link>http://localhost:56589/posts/python-list/</link>
+      <title>Python List</title>
+      <link>http://localhost:1313/posts/python-list/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:56589/posts/python-list/</guid>
+      <guid>http://localhost:1313/posts/python-list/</guid>
       <description>A comprehensive guide to Python Lists for beginners.</description>
     </item>
     <item>
-      <title>Python Sets Data Structure</title>
-      <link>http://localhost:56589/posts/python-set/</link>
+      <title>Python Sets</title>
+      <link>http://localhost:1313/posts/python-set/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:56589/posts/python-set/</guid>
+      <guid>http://localhost:1313/posts/python-set/</guid>
       <description>Learn Python sets, including creation, operations, methods, set algebra, and practical examples.</description>
     </item>
     <item>
-      <title>Python Tuples Data Structure</title>
-      <link>http://localhost:56589/posts/python-tuple/</link>
+      <title>Python Tuples</title>
+      <link>http://localhost:1313/posts/python-tuple/</link>
       <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:56589/posts/python-tuple/</guid>
+      <guid>http://localhost:1313/posts/python-tuple/</guid>
       <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
     </item>
     <item>
       <title>Project</title>
-      <link>http://localhost:56589/project/</link>
+      <link>http://localhost:1313/project/</link>
       <pubDate>Sun, 05 Jul 2026 22:30:00 +0700</pubDate>
-      <guid>http://localhost:56589/project/</guid>
+      <guid>http://localhost:1313/project/</guid>
       <description>List of Projects</description>
     </item>
     <item>
       <title>Publications</title>
-      <link>http://localhost:56589/publication/</link>
+      <link>http://localhost:1313/publication/</link>
       <pubDate>Sun, 05 Jul 2026 22:30:00 +0700</pubDate>
-      <guid>http://localhost:56589/publication/</guid>
+      <guid>http://localhost:1313/publication/</guid>
       <description>List of research publications and scientific papers.</description>
     </item>
     <item>
       <title>Introduction to Natural Language Processing</title>
-      <link>http://localhost:56589/posts/introduction-nlp/</link>
+      <link>http://localhost:1313/posts/introduction-nlp/</link>
       <pubDate>Sun, 05 Jul 2026 20:03:13 +0700</pubDate>
-      <guid>http://localhost:56589/posts/introduction-nlp/</guid>
+      <guid>http://localhost:1313/posts/introduction-nlp/</guid>
       <description>&lt;p&gt;Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to understand, process, and generate human language. By combining linguistics, computer science, and machine learning, NLP allows machines to analyze text and speech in ways that support meaningful interaction between humans and computers.&lt;/p&gt;
 &lt;p&gt;Machine learning has significantly advanced NLP by enabling systems to learn patterns directly from data rather than relying solely on manually defined rules. Modern NLP applications use machine learning algorithms to perform tasks such as text classification, sentiment analysis, machine translation, question answering, information extraction, and conversational AI.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Welcoming Post</title>
-      <link>http://localhost:56589/posts/introduction/</link>
+      <link>http://localhost:1313/posts/introduction/</link>
       <pubDate>Sun, 05 Jan 2025 20:03:13 +0700</pubDate>
-      <guid>http://localhost:56589/posts/introduction/</guid>
+      <guid>http://localhost:1313/posts/introduction/</guid>
       <description>&lt;p&gt;Hi, I&amp;rsquo;m Ika Utami.&lt;/p&gt;
 &lt;p&gt;I am lecturer and researcher in Artificial Intelligence, Applied Data Science, and Large Language Models (LLMs).&lt;/p&gt;
 &lt;p&gt;My work focuses on using AI and data-driven approaches to support learning and improve education. I am especially interested in developing innovative educational systems powered by LLMs and educational data.&lt;/p&gt;

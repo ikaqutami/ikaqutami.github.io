@@ -14,7 +14,11 @@
     font-size: 1.15rem;
 }
 
-.post-content p{
-    font-size: 0.9rem;
-    line-height: 1.5;
+body, .post-content, .entry-content, .content {
+    font-size: 0.9em; /* Adjust to 0.85em or smaller if you want it even smaller */
+}
+
+/* Optional: If you want to make sure paragraphs scale down specifically */
+p {
+    font-size: 15px; /* Or use a percentage, e.g., 95% */
 }

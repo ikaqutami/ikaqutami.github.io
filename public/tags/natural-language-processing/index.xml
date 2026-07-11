@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Natural Language Processing on Ika Qutami&#39;s Blog</title>
-    <link>http://localhost:56589/tags/natural-language-processing/</link>
+    <link>http://localhost:1313/tags/natural-language-processing/</link>
     <description>Recent content in Natural Language Processing on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Jul 2026 20:03:13 +0700</lastBuildDate>
-    <atom:link href="http://localhost:56589/tags/natural-language-processing/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/natural-language-processing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NLP with Machine Learning</title>
+      <link>http://localhost:1313/posts/nlp-with-machinelearning/</link>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/nlp-with-machinelearning/</guid>
+      <description>Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech (POS) tagging, and Named Entity Recognition (NER).</description>
+    </item>
     <item>
       <title>Introduction to Natural Language Processing</title>
-      <link>http://localhost:56589/posts/introduction-nlp/</link>
+      <link>http://localhost:1313/posts/introduction-nlp/</link>
       <pubDate>Sun, 05 Jul 2026 20:03:13 +0700</pubDate>
-      <guid>http://localhost:56589/posts/introduction-nlp/</guid>
+      <guid>http://localhost:1313/posts/introduction-nlp/</guid>
       <description>&lt;p&gt;Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to understand, process, and generate human language. By combining linguistics, computer science, and machine learning, NLP allows machines to analyze text and speech in ways that support meaningful interaction between humans and computers.&lt;/p&gt;
 &lt;p&gt;Machine learning has significantly advanced NLP by enabling systems to learn patterns directly from data rather than relying solely on manually defined rules. Modern NLP applications use machine learning algorithms to perform tasks such as text classification, sentiment analysis, machine translation, question answering, information extraction, and conversational AI.&lt;/p&gt;</description>
     </item>

@@ -2,74 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:56589/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/categories/data-structure/</loc>
+    <loc>http://localhost:1313/categories/data-structure/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/file-handling/</loc>
+    <loc>http://localhost:1313/posts/file-handling/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/tags/machine-learning/</loc>
+    <loc>http://localhost:1313/tags/machine-learning/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/tags/natural-language-processing/</loc>
+    <loc>http://localhost:1313/tags/natural-language-processing/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/categories/natural-language-processing-with-machine-learning/</loc>
+    <loc>http://localhost:1313/categories/natural-language-processing-with-machine-learning/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/nlp-with-machinelearning/</loc>
+    <loc>http://localhost:1313/posts/nlp-with-machinelearning/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/tags/python-data-structure/</loc>
+    <loc>http://localhost:1313/tags/python-data-structure/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/python-dictionary/</loc>
+    <loc>http://localhost:1313/posts/python-dictionary/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/python-list/</loc>
+    <loc>http://localhost:1313/posts/python-list/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/categories/python-programming/</loc>
+    <loc>http://localhost:1313/categories/python-programming/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/tags/python-programming/</loc>
+    <loc>http://localhost:1313/tags/python-programming/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/python-set/</loc>
+    <loc>http://localhost:1313/posts/python-set/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/python-tuple/</loc>
+    <loc>http://localhost:1313/posts/python-tuple/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/project/</loc>
+    <loc>http://localhost:1313/project/</loc>
     <lastmod>2026-07-05T22:30:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/publication/</loc>
+    <loc>http://localhost:1313/publication/</loc>
     <lastmod>2026-07-05T22:30:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/introduction-nlp/</loc>
+    <loc>http://localhost:1313/posts/introduction-nlp/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/categories/nlp/</loc>
+    <loc>http://localhost:1313/categories/nlp/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/posts/introduction/</loc>
+    <loc>http://localhost:1313/posts/introduction/</loc>
     <lastmod>2025-01-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:56589/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
-    <loc>http://localhost:56589/search/</loc>
+    <loc>http://localhost:1313/search/</loc>
   </url>
 </urlset>
