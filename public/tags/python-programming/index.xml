@@ -6,12 +6,12 @@
     <description>Recent content in Python Programming on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/python-programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>File Handling in Python</title>
       <link>http://localhost:1313/posts/file-handling/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/file-handling/</guid>
       <description>Learn how to read and write files and work with file paths in Python.</description>
     </item>

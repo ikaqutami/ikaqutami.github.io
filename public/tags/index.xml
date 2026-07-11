@@ -23,10 +23,10 @@
       <description></description>
     </item>
     <item>
-      <title>Python Data Structure</title>
-      <link>http://localhost:1313/tags/python-data-structure/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/python-data-structure/</guid>
+      <title>Data Science Libraries</title>
+      <link>http://localhost:1313/tags/data-science-libraries/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/data-science-libraries/</guid>
       <description></description>
     </item>
     <item>
@@ -34,6 +34,13 @@
       <link>http://localhost:1313/tags/python-programming/</link>
       <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/python-programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python Data Structure</title>
+      <link>http://localhost:1313/tags/python-data-structure/</link>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/python-data-structure/</guid>
       <description></description>
     </item>
   </channel>

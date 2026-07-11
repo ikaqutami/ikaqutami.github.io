@@ -3,7 +3,7 @@ date : '2026-07-11'
 draft : false
 slug : 'nlp-with-machinelearning'
 categories : 'Natural Language Processing with Machine Learning'
-summary: 'A beginner-friendly introduction to NLP preprocessing techniques in Python.'
+summary: 'Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques.'
 description: 'Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech (POS) tagging, and Named Entity Recognition (NER).'
 author : 'Ika Utami'
 tags :

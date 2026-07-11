@@ -5,12 +5,6 @@
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/data-structure/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/file-handling/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/machine-learning/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
@@ -26,29 +20,14 @@
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/python-data-structure/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/python-dictionary/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/python-list/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/python-programming/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/python-programming/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/python-set/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/python-tuple/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/introduction-nlp/</loc>
+    <lastmod>2026-07-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/nlp/</loc>
+    <lastmod>2026-07-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/project/</loc>
     <lastmod>2026-07-05T22:30:00+07:00</lastmod>
@@ -59,11 +38,44 @@
     <loc>http://localhost:1313/</loc>
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/introduction-nlp/</loc>
-    <lastmod>2026-07-05T20:03:13+07:00</lastmod>
+    <loc>http://localhost:1313/tags/data-science-libraries/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/nlp/</loc>
-    <lastmod>2026-07-05T20:03:13+07:00</lastmod>
+    <loc>http://localhost:1313/posts/basic-library/numpy/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/basic-library/pandas/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/python-data-science/</loc>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/file-handling/</loc>
+    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/python-programming/</loc>
+    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python-programming/</loc>
+    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/data-structure/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/python-data-structure/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/python-dictionary/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/python-list/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/python-set/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/python-tuple/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/introduction/</loc>
     <lastmod>2025-01-05T20:03:13+07:00</lastmod>

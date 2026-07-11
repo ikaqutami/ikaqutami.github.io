@@ -16,33 +16,25 @@
       <description>Learn the fundamentals of Natural Language Processing (NLP) with machine learning, including text preprocessing techniques such as tokenization, stemming, lemmatization, stopword removal, Part-of-Speech (POS) tagging, and Named Entity Recognition (NER).</description>
     </item>
     <item>
-      <title>Python Sets</title>
-      <link>http://localhost:1313/posts/python-set/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-set/</guid>
-      <description>Learn Python sets, including creation, operations, methods, set algebra, and practical examples.</description>
-    </item>
-    <item>
-      <title>Python Tuples</title>
-      <link>http://localhost:1313/posts/python-tuple/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-tuple/</guid>
-      <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
-    </item>
-    <item>
       <title>Introduction to Natural Language Processing</title>
       <link>http://localhost:1313/posts/introduction-nlp/</link>
       <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/introduction-nlp/</guid>
-      <description>&lt;p&gt;Natural Language Processing (NLP) is a field of Artificial Intelligence that enables computers to understand, process, and generate human language. By combining linguistics, computer science, and machine learning, NLP allows machines to analyze text and speech in ways that support meaningful interaction between humans and computers.&lt;/p&gt;
-&lt;p&gt;Machine learning has significantly advanced NLP by enabling systems to learn patterns directly from data rather than relying solely on manually defined rules. Modern NLP applications use machine learning algorithms to perform tasks such as text classification, sentiment analysis, machine translation, question answering, information extraction, and conversational AI.&lt;/p&gt;</description>
+      <description>Introduction to Natural Language Processing (NLP).</description>
     </item>
     <item>
-      <title>Python List</title>
-      <link>http://localhost:1313/posts/python-list/</link>
-      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-list/</guid>
-      <description>A comprehensive guide to Python Lists for beginners.</description>
+      <title>Numpy Fundamentals</title>
+      <link>http://localhost:1313/posts/basic-library/numpy/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/basic-library/numpy/</guid>
+      <description>NumPy (Numerical Python) is an open-source Python library designed for efficient numerical computing and data processing.</description>
+    </item>
+    <item>
+      <title>Pandas Fundamentals</title>
+      <link>http://localhost:1313/posts/basic-library/pandas/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/basic-library/pandas/</guid>
+      <description>Learn the fundamentals of Pandas, including Series, DataFrames, data selection, filtering, sorting, and basic data analysis.</description>
     </item>
     <item>
       <title>File Handling in Python</title>
@@ -57,6 +49,27 @@
       <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/python-dictionary/</guid>
       <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python List</title>
+      <link>http://localhost:1313/posts/python-list/</link>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-list/</guid>
+      <description>A comprehensive guide to Python Lists for beginners.</description>
+    </item>
+    <item>
+      <title>Python Sets</title>
+      <link>http://localhost:1313/posts/python-set/</link>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-set/</guid>
+      <description>Learn Python sets, including creation, operations, methods, set algebra, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python Tuples</title>
+      <link>http://localhost:1313/posts/python-tuple/</link>
+      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-tuple/</guid>
+      <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
     </item>
     <item>
       <title>Welcoming Post</title>
