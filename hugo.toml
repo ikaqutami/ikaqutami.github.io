@@ -27,13 +27,13 @@ Welcome to my personal website. This space serves as a platform for sharing my t
 identifier = "posts"
 name = "Posts"
 url = "/posts/"
-weight = 10
+weight = 20
 
 [[menu.main]]
 identifier = "archives"
 name = "Archive"
 url = "/archives/"
-weight = 20
+weight = 10
 
 [[menu.main]]
 identifier = "tags"
