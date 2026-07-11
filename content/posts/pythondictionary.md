@@ -10,7 +10,7 @@ tags :
     - "Python Data Structure"
 series:
   - "Python Basics"
-title : 'Python Dictionaries Data Structure'
+title : 'Python Dictionaries'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---

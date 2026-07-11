@@ -10,7 +10,7 @@ tags :
     - "Python Data Structure"
 series:
   - "Python Basics"
-title : 'Python Tuples Data Structure'
+title : 'Python Tuples'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---

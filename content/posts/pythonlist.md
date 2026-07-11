@@ -7,7 +7,7 @@ summary: 'A comprehensive guide to Python Lists for beginners.'
 author : 'Ika Utami'
 tags :
     - "Python Data Structure"
-title : 'Python List Data Structure'
+title : 'Python List'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---

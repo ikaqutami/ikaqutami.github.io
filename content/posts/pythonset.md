@@ -10,7 +10,7 @@ tags :
     - "Python Data Structure"
 series:
   - "Python Basics"
-title : 'Python Sets Data Structure'
+title : 'Python Sets'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---
