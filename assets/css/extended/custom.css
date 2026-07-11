@@ -16,7 +16,6 @@
 
 body, .post-content, .entry-content, .content {
     font-size: 1em; /* Adjust to 0.85em or smaller if you want it even smaller */
-    text-align: justify;
 }
 
 /* Optional: If you want to make sure paragraphs scale down specifically */
