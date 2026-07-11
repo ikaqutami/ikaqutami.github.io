@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Matplotlib Introduction | Ika Qutami&#39;s Blog</title>
+<meta name="keywords" content="Data Science Libraries">
+<meta name="description" content="Learn the basics of data visualization in Python using Matplotlib.">
+<meta name="author" content="Ika Utami">
+<link rel="canonical" href="http://localhost:1313/posts/matplotlib/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.681ace8578248d245b61ef5935c85a5df23afb321a1d0135e555692107441372.css" integrity="sha256-aBrOhXgkjSRbYe9ZNchaXfI6&#43;zIaHQE15VVpIQdEE3I=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/matplotlib/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XBV3ZQGEX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XBV3ZQGEX');
+</script>
+
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Ika Qutami&#39;s Blog (Alt + H)">Ika Qutami&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publication/" title="Publications">
+                    <span>Publications</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/project/" title="Project">
+                    <span>Project</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Matplotlib Introduction
+    </h1>
+    <div class="post-description">
+      Learn the basics of data visualization in Python using Matplotlib.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-06-12 00:00:00 +0000 UTC'>June 12, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;·&nbsp;<span>Ika Utami</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#introduction-to-matplotlib-and-seaborn" aria-label="Introduction to Matplotlib and Seaborn">Introduction to Matplotlib and Seaborn</a></li>
+            <li>
+                <a href="#1-matplotlib" aria-label="1. Matplotlib">1. Matplotlib</a><ul>
+                    
+            <li>
+                <a href="#a-what-is-matplotlib" aria-label="A. What is Matplotlib?">A. What is Matplotlib?</a></li>
+            <li>
+                <a href="#b-advantages" aria-label="B. Advantages">B. Advantages</a></li>
+            <li>
+                <a href="#c-importing-matplotlib" aria-label="C. Importing Matplotlib">C. Importing Matplotlib</a></li>
+            <li>
+                <a href="#d-basic-example" aria-label="D. Basic Example">D. Basic Example</a></li>
+            <li>
+                <a href="#e-basic-matplotlib-commands" aria-label="E. Basic Matplotlib Commands">E. Basic Matplotlib Commands</a><ul>
+                    
+            <li>
+                <a href="#code" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#f-creating-multiplots-on-same-canvas" aria-label="F. Creating Multiplots on Same Canvas">F. Creating Multiplots on Same Canvas</a><ul>
+                    
+            <li>
+                <a href="#code-1" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output-1" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#g-matplotlib-object-oriented-method" aria-label="G. Matplotlib Object Oriented Method">G. Matplotlib Object Oriented Method</a><ul>
+                    
+            <li>
+                <a href="#code-2" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output-2" aria-label="Output:">Output:</a></li>
+            <li>
+                <a href="#code-3" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output-3" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#h-subplot" aria-label="H. Subplot()">H. Subplot()</a><ul>
+                    
+            <li>
+                <a href="#code-4" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output-4" aria-label="Output:">Output:</a></li>
+            <li>
+                <a href="#code-5" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output-5" aria-label="Output:">Output:</a></li>
+            <li>
+                <a href="#code-6" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output-6" aria-label="Output:">Output:</a></li>
+            <li>
+                <a href="#code-7" aria-label="Code:">Code:</a></li>
+            <li>
+                <a href="#output-7" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#i-figure-size-aspect-ratio-and-dpi" aria-label="I. Figure size, aspect ratio and DPI">I. Figure size, aspect ratio and DPI</a><ul>
+                    
+            <li>
+                <a href="#output-8" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#j-saving-figure" aria-label="J. Saving Figure">J. Saving Figure</a></li>
+            <li>
+                <a href="#k-legends-labels-and-titles" aria-label="K. Legends, labels and titles">K. Legends, labels and titles</a><ul>
+                    
+            <li>
+                <a href="#output-9" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#l-setting-colors-linewidths-linetypes" aria-label="L. Setting colors, linewidths, linetypes">L. Setting colors, linewidths, linetypes</a><ul>
+                    
+            <li>
+                <a href="#output-10" aria-label="Output:">Output:</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#2-special-plot-types" aria-label="2. Special Plot Types">2. Special Plot Types</a><ul>
+                    
+            <li>
+                <a href="#a-scatter-plot" aria-label="A. Scatter Plot">A. Scatter Plot</a><ul>
+                    
+            <li>
+                <a href="#output-11" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#b-histogram" aria-label="B. Histogram">B. Histogram</a><ul>
+                    
+            <li>
+                <a href="#output-12" aria-label="Output:">Output:</a></li></ul>
+            </li>
+            <li>
+                <a href="#c-boxplot" aria-label="C. Boxplot">C. Boxplot</a><ul>
+                    
+            <li>
+                <a href="#output-13" aria-label="Output:">Output:</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#further-reading" aria-label="Further reading">Further reading</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="introduction-to-matplotlib-and-seaborn">Introduction to Matplotlib and Seaborn<a hidden class="anchor" aria-hidden="true" href="#introduction-to-matplotlib-and-seaborn">#</a></h2>
+<p>Data visualization is an essential part of data analysis because it helps us understand patterns, trends, and relationships in data. Python provides several libraries for creating visualizations, with <strong>Matplotlib</strong> and <strong>Seaborn</strong> being the most popular.</p>
+<ul>
+<li><strong>Matplotlib</strong> is a comprehensive plotting library that provides complete control over figures and axes.</li>
+<li><strong>Seaborn</strong> is built on top of Matplotlib and offers attractive statistical graphics with less code.</li>
+</ul>
+<h2 id="1-matplotlib">1. Matplotlib<a hidden class="anchor" aria-hidden="true" href="#1-matplotlib">#</a></h2>
+<h3 id="a-what-is-matplotlib">A. What is Matplotlib?<a hidden class="anchor" aria-hidden="true" href="#a-what-is-matplotlib">#</a></h3>
+<p>Matplotlib is the &ldquo;grandfather&rdquo; library of data visualization with Python. It was created by John Hunter. He created it to try to replicate MatLab&rsquo;s (another programming language) plotting capabilities in Python. So if you happen to be familiar with matlab, matplotlib will feel natural to you. It is an excellent <strong>2D and 3D graphics library for generating scientific figures</strong>.</p>
+<p>Some of the major Pros of Matplotlib are:</p>
+<ul>
+<li>Generally easy to get started for simple plots</li>
+<li>Support for custom labels and texts</li>
+<li>Great control of every element in a figure</li>
+<li>High-quality output in many formats</li>
+<li>Very customizable in general</li>
+</ul>
+<p>Matplotlib allows you to create reproducible figures programmatically. Let&rsquo;s learn how to use it! Before continuing this lecture, I encourage you just to explore the official Matplotlib web page: <a href="http://matplotlib.org/">http://matplotlib.org/</a></p>
+<h3 id="b-advantages">B. Advantages<a hidden class="anchor" aria-hidden="true" href="#b-advantages">#</a></h3>
+<ul>
+<li>Highly customizable</li>
+<li>Supports many chart types</li>
+<li>Works well with NumPy and Pandas</li>
+<li>Foundation for many visualization libraries</li>
+</ul>
+<h3 id="c-importing-matplotlib">C. Importing Matplotlib<a hidden class="anchor" aria-hidden="true" href="#c-importing-matplotlib">#</a></h3>
+<p>Import the matplotlib.pyplot module under the name plt (the tidy way):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span></code></pre></div><p>You&rsquo;ll also need to use this line to see plots in the notebook:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">%</span>matplotlib inline
+</span></span></code></pre></div><p>That line is only for jupyter notebooks, if you are using another editor, you&rsquo;ll use: plt.show() at the end of all your plotting commands to have the figure pop up in another window.</p>
+<h3 id="d-basic-example">D. Basic Example<a hidden class="anchor" aria-hidden="true" href="#d-basic-example">#</a></h3>
+<p>Let&rsquo;s walk through a very simple example using two numpy arrays:
+Example: Let&rsquo;s walk through a very simple example using two numpy arrays. You can also use lists, but most likely you&rsquo;ll be passing numpy arrays or pandas columns (which essentially also behave like arrays).</p>
+<p><strong>The data we want to plot:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">11</span>)
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> x <span style="color:#f92672">**</span> <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p><strong>Show x:</strong></p>
+<pre tabindex="0"><code>x
+</code></pre><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>array([0. , 0.5, 1. , 1.5, 2. , 2.5, 3. , 3.5, 4. , 4.5, 5. ])
+</code></pre><p><strong>Show y:</strong></p>
+<pre tabindex="0"><code>y
+</code></pre><p><strong>Output:</strong></p>
+<pre tabindex="0"><code>array([ 0.  ,  0.25,  1.  ,  2.25,  4.  ,  6.25,  9.  , 12.25, 16.  ,
+       20.25, 25.  ])
+</code></pre><h3 id="e-basic-matplotlib-commands">E. Basic Matplotlib Commands<a hidden class="anchor" aria-hidden="true" href="#e-basic-matplotlib-commands">#</a></h3>
+<p>We can create a very simple line plot using the following ( I encourage you to pause and use Shift+Tab along the way to check out the document strings for the functions we are using).</p>
+<h4 id="code">Code:<a hidden class="anchor" aria-hidden="true" href="#code">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#75715e"># &#39;r&#39; is the color red</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;X Axis Title Here&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Y Axis Title Here&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;String Title Here&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><h4 id="output">Output:<a hidden class="anchor" aria-hidden="true" href="#output">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output1.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Basic Matplotlib Output</p>
+        </figcaption>
+</figure>
+
+<h3 id="f-creating-multiplots-on-same-canvas">F. Creating Multiplots on Same Canvas<a hidden class="anchor" aria-hidden="true" href="#f-creating-multiplots-on-same-canvas">#</a></h3>
+<h4 id="code-1">Code:<a hidden class="anchor" aria-hidden="true" href="#code-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># plt.subplot(nrows, ncols, plot_number)</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;r--&#39;</span>) <span style="color:#75715e"># More on color options later</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(y, x, <span style="color:#e6db74">&#39;g*-&#39;</span>);
+</span></span></code></pre></div><h4 id="output-1">Output:<a hidden class="anchor" aria-hidden="true" href="#output-1">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output2.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Creating Multiplots on Same Canvas</p>
+        </figcaption>
+</figure>
+
+<h3 id="g-matplotlib-object-oriented-method">G. Matplotlib Object Oriented Method<a hidden class="anchor" aria-hidden="true" href="#g-matplotlib-object-oriented-method">#</a></h3>
+<p>Now that we&rsquo;ve seen the basics, let&rsquo;s break it all down with a more formal introduction of Matplotlib&rsquo;s Object Oriented API. This means we will instantiate figure objects and then call methods or attributes from that object.</p>
+<p>The main idea in using the more formal Object Oriented method is to create figure objects and then just call methods or attributes off of that object. This approach is nicer when dealing with a canvas that has multiple plots on it.</p>
+<p>To begin we create a figure instance. Then we can add axes to that figure:</p>
+<h4 id="code-2">Code:<a hidden class="anchor" aria-hidden="true" href="#code-2">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Create Figure (empty canvas)</span>
+</span></span><span style="display:flex;"><span>fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add set of axes to figure</span>
+</span></span><span style="display:flex;"><span>axes <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_axes([<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">0.8</span>]) <span style="color:#75715e"># left, bottom, width, height (range 0 to 1)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot on that set of axes</span>
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;b&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;Set X Label&#39;</span>) <span style="color:#75715e"># Notice the use of set_ to begin methods</span>
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Set y Label&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Set Title&#39;</span>)
+</span></span></code></pre></div><h4 id="output-2">Output:<a hidden class="anchor" aria-hidden="true" href="#output-2">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output3.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Object Oriented Method</p>
+        </figcaption>
+</figure>
+
+<p>Code is a little more complicated, but the advantage is that we now have full control of where the plot axes are placed, and we can easily add more than one axis to the figure:</p>
+<h4 id="code-3">Code:<a hidden class="anchor" aria-hidden="true" href="#code-3">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Creates blank canvas</span>
+</span></span><span style="display:flex;"><span>fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>axes1 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_axes([<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">0.8</span>]) <span style="color:#75715e"># main axes</span>
+</span></span><span style="display:flex;"><span>axes2 <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_axes([<span style="color:#ae81ff">0.2</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.4</span>, <span style="color:#ae81ff">0.3</span>]) <span style="color:#75715e"># inset axes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Larger Figure Axes 1</span>
+</span></span><span style="display:flex;"><span>axes1<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;b&#39;</span>)
+</span></span><span style="display:flex;"><span>axes1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;X_label_axes2&#39;</span>)
+</span></span><span style="display:flex;"><span>axes1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Y_label_axes2&#39;</span>)
+</span></span><span style="display:flex;"><span>axes1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Axes 2 Title&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Insert Figure Axes 2</span>
+</span></span><span style="display:flex;"><span>axes2<span style="color:#f92672">.</span>plot(y, x, <span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>axes2<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;X_label_axes2&#39;</span>)
+</span></span><span style="display:flex;"><span>axes2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;Y_label_axes2&#39;</span>)
+</span></span><span style="display:flex;"><span>axes2<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Axes 2 Title&#39;</span>);
+</span></span></code></pre></div><h4 id="output-3">Output:<a hidden class="anchor" aria-hidden="true" href="#output-3">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output4.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>More Complicated Visualization with Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h3 id="h-subplot">H. Subplot()<a hidden class="anchor" aria-hidden="true" href="#h-subplot">#</a></h3>
+<p>The plt.subplots() object will act as a more automatic axis manager. Basic use cases:</p>
+<h4 id="code-4">Code:<a hidden class="anchor" aria-hidden="true" href="#code-4">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Use similar to plt.figure() except use tuple unpacking to grab fig and axes</span>
+</span></span><span style="display:flex;"><span>fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Now use the axes object to add stuff to plot</span>
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;title&#39;</span>);
+</span></span></code></pre></div><h4 id="output-4">Output:<a hidden class="anchor" aria-hidden="true" href="#output-4">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output5.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Subplot with Matplotlib</p>
+        </figcaption>
+</figure>
+
+<p>Then you can specify the number of rows and columns when creating the subplots() object:</p>
+<h4 id="code-5">Code:<a hidden class="anchor" aria-hidden="true" href="#code-5">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Empty canvas of 1 by 2 subplots</span>
+</span></span><span style="display:flex;"><span>fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(nrows<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, ncols<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><h4 id="output-5">Output:<a hidden class="anchor" aria-hidden="true" href="#output-5">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output6.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Subplot with Matplotlib</p>
+        </figcaption>
+</figure>
+
+<p>We can iterate through this array:</p>
+<h4 id="code-6">Code:<a hidden class="anchor" aria-hidden="true" href="#code-6">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ax <span style="color:#f92672">in</span> axes:
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;b&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;title&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Display the figure object    </span>
+</span></span><span style="display:flex;"><span>fig
+</span></span></code></pre></div><h4 id="output-6">Output:<a hidden class="anchor" aria-hidden="true" href="#output-6">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output7.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Subplot with Matplotlib</p>
+        </figcaption>
+</figure>
+
+<p>A common issue with matplolib is overlapping subplots or figures. We ca use fig.tight_layout() or plt.tight_layout() method, which automatically adjusts the positions of the axes on the figure canvas so that there is no overlapping content:</p>
+<h4 id="code-7">Code:<a hidden class="anchor" aria-hidden="true" href="#code-7">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(nrows<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, ncols<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ax <span style="color:#f92672">in</span> axes:
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;g&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)
+</span></span><span style="display:flex;"><span>    ax<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;title&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig    
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span></code></pre></div><h4 id="output-7">Output:<a hidden class="anchor" aria-hidden="true" href="#output-7">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output8.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Subplot with Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h3 id="i-figure-size-aspect-ratio-and-dpi">I. Figure size, aspect ratio and DPI<a hidden class="anchor" aria-hidden="true" href="#i-figure-size-aspect-ratio-and-dpi">#</a></h3>
+<p>Matplotlib allows <strong>the aspect ratio, DPI and figure size</strong> to be specified when the Figure object is created. You can use the figsize and dpi keyword arguments.</p>
+<ul>
+<li>figsize is a tuple of the width and height of the figure in inches.</li>
+<li>dpi is the dots-per-inch (pixel per inch).</li>
+</ul>
+<p>For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">4</span>), dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fig, axes <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>plot(x, y, <span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)
+</span></span><span style="display:flex;"><span>axes<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;title&#39;</span>);
+</span></span></code></pre></div><h4 id="output-8">Output:<a hidden class="anchor" aria-hidden="true" href="#output-8">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output9.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Figure size, aspect ratio and DPI in Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h3 id="j-saving-figure">J. Saving Figure<a hidden class="anchor" aria-hidden="true" href="#j-saving-figure">#</a></h3>
+<p>Matplotlib can generate high-quality output in a number formats, including PNG, JPG, EPS, SVG, PGF and PDF.</p>
+<p>To save a figure to a file we can use the savefig method in the Figure class:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fig<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#34;filename.png&#34;</span>)
+</span></span></code></pre></div><p>Here we can also optionally specify the DPI and choose between different output formats:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fig<span style="color:#f92672">.</span>savefig(<span style="color:#e6db74">&#34;filename.png&#34;</span>, dpi<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>)
+</span></span></code></pre></div><h3 id="k-legends-labels-and-titles">K. Legends, labels and titles<a hidden class="anchor" aria-hidden="true" href="#k-legends-labels-and-titles">#</a></h3>
+<p>Now that we have covered the basics of how to create a figure canvas and add axes instances to the canvas, let&rsquo;s look at how decorate a figure with titles, axis labels, and legends.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#34;title&#34;</span>);
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#34;x&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#34;y&#34;</span>);
+</span></span></code></pre></div><p>You can use the label=&ldquo;label text&rdquo; keyword argument when plots or other objects are added to the figure, and then using the legend method without arguments to add the legend to the figure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>fig <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>figure()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax <span style="color:#f92672">=</span> fig<span style="color:#f92672">.</span>add_axes([<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;x**2&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, x<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;x**3&#34;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>legend()
+</span></span></code></pre></div><h4 id="output-9">Output:<a hidden class="anchor" aria-hidden="true" href="#output-9">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output10.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Adding Legends in Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h3 id="l-setting-colors-linewidths-linetypes">L. Setting colors, linewidths, linetypes<a hidden class="anchor" aria-hidden="true" href="#l-setting-colors-linewidths-linetypes">#</a></h3>
+<p>Matplotlib gives you a lot of options for customizing colors, linewidths, and linetypes.</p>
+<p>There is the basic MATLAB like syntax (which I would suggest you avoid using for more clairty sake:</p>
+<p>With matplotlib, we can define the colors of lines and other graphical elements in a number of ways. First of all, we can use the MATLAB-like syntax where &lsquo;b&rsquo; means blue, &lsquo;g&rsquo; means green, etc. The MATLAB API for selecting line styles are also supported: where, for example, &lsquo;b.-&rsquo; means a blue line with dots:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># MATLAB style line color and style </span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots()
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, x<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;b.-&#39;</span>) <span style="color:#75715e"># blue line with dots</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, x<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;g--&#39;</span>) <span style="color:#75715e"># green dashed line</span>
+</span></span></code></pre></div><h4 id="output-10">Output:<a hidden class="anchor" aria-hidden="true" href="#output-10">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output11.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Setting colors, linewidths, linetypes in Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h2 id="2-special-plot-types">2. Special Plot Types<a hidden class="anchor" aria-hidden="true" href="#2-special-plot-types">#</a></h2>
+<p>There are many specialized plots we can create, such as barplots, histograms, scatter plots, and much more. Most of these type of plots we will actually create using seaborn, a statistical plotting library for Python. But here are a few examples of these type of plots:</p>
+<h3 id="a-scatter-plot">A. Scatter Plot<a hidden class="anchor" aria-hidden="true" href="#a-scatter-plot">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>scatter(x,y)
+</span></span></code></pre></div><h4 id="output-11">Output:<a hidden class="anchor" aria-hidden="true" href="#output-11">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output12.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Scatterplot in Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h3 id="b-histogram">B. Histogram<a hidden class="anchor" aria-hidden="true" href="#b-histogram">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> sample
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> sample(range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1000</span>), <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>hist(data)
+</span></span></code></pre></div><h4 id="output-12">Output:<a hidden class="anchor" aria-hidden="true" href="#output-12">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output13.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Histogram in Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h3 id="c-boxplot">C. Boxplot<a hidden class="anchor" aria-hidden="true" href="#c-boxplot">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data <span style="color:#f92672">=</span> [np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">0</span>, std, <span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">for</span> std <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rectangular box plot</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>boxplot(data,vert<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,patch_artist<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>);   
+</span></span></code></pre></div><h4 id="output-13">Output:<a hidden class="anchor" aria-hidden="true" href="#output-13">#</a></h4>
+<figure class="align-center ">
+    <img loading="lazy" src="output14.png#center"
+         alt="Basic Example"/> <figcaption>
+            <p>Boxplot in Matplotlib</p>
+        </figcaption>
+</figure>
+
+<h2 id="further-reading">Further reading<a hidden class="anchor" aria-hidden="true" href="#further-reading">#</a></h2>
+<ul>
+<li><a href="http://www.matplotlib.org">http://www.matplotlib.org</a> - The project web page for matplotlib.</li>
+<li><a href="https://github.com/matplotlib/matplotlib">https://github.com/matplotlib/matplotlib</a> - The source code for matplotlib.</li>
+<li><a href="http://matplotlib.org/gallery.html">http://matplotlib.org/gallery.html</a> - A large gallery showcaseing various types of plots matplotlib can create. Highly recommended!</li>
+<li><a href="http://www.loria.fr/~rougier/teaching/matplotlib">http://www.loria.fr/~rougier/teaching/matplotlib</a> - A good matplotlib tutorial.</li>
+<li><a href="http://scipy-lectures.github.io/matplotlib/matplotlib.html">http://scipy-lectures.github.io/matplotlib/matplotlib.html</a> - Another good matplotlib reference.</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/data-science-libraries/">Data Science Libraries</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/introduction-nlp/">
+    <span class="title">« Prev</span>
+    <span>Introduction to Natural Language Processing</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/basic-library/numpy/">
+    <span class="title">Next »</span>
+    <span>Numpy Fundamentals</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Matplotlib Introduction on x"
+            href="https://x.com/intent/tweet/?text=Matplotlib%20Introduction&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f&amp;hashtags=DataScienceLibraries">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Matplotlib Introduction on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f&amp;title=Matplotlib%20Introduction&amp;summary=Matplotlib%20Introduction&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Matplotlib Introduction on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f&title=Matplotlib%20Introduction">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Matplotlib Introduction on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Matplotlib Introduction on whatsapp"
+            href="https://api.whatsapp.com/send?text=Matplotlib%20Introduction%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Matplotlib Introduction on telegram"
+            href="https://telegram.me/share/url?text=Matplotlib%20Introduction&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Matplotlib Introduction on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Matplotlib%20Introduction&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fmatplotlib%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Ika Qutami&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -9,6 +9,13 @@
     <lastBuildDate>Fri, 12 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/python-data-science/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Matplotlib and Seaborn Introduction</title>
+      <link>http://localhost:1313/posts/basic-library/matplotlib-seaborn/</link>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/basic-library/matplotlib-seaborn/</guid>
+      <description>Learn the basics of data visualization in Python using Matplotlib and Seaborn.</description>
+    </item>
+    <item>
       <title>Numpy Fundamentals</title>
       <link>http://localhost:1313/posts/basic-library/numpy/</link>
       <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
