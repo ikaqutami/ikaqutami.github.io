@@ -1062,26 +1062,6 @@ The parameter `sg=1` tells Word2Vec to use the **Skip-Gram** architecture.
 
 The following table summarizes the key characteristics, strengths, and limitations of the most commonly used text representation techniques in Natural Language Processing (NLP).
 
-| Feature | One-Hot Encoding (OHE) | Bag of Words (BoW) | TF-IDF | N-Grams | Word2Vec | CBOW | Skip-Gram |
-|---------|-------------------------|--------------------|---------|----------|-----------|------|-----------|
-| **Representation Type** | Sparse binary vectors | Sparse count vectors | Sparse weighted vectors | Sparse sequence-based vectors | Dense word embeddings | Dense word embeddings | Dense word embeddings |
-| **Represents** | Individual words | Entire documents | Entire documents | Word sequences | Individual words | Individual words | Individual words |
-| **Uses Word Frequency** | x | v | v | v | x | x | x |
-| **Uses Word Importance** | x | x | v | x | x | x | x |
-| **Preserves Word Order** | x | x | x | v (local) | v (through context) | Partially | Partially |
-| **Captures Context** | x | x | x | Limited | v | v | v |
-| **Captures Semantic Similarity** | x | x | x | x | v | v | v |
-| **Captures Syntactic Relationships** | x | x | x | Limited | v | v | v |
-| **Vector Type** | Sparse | Sparse | Sparse | Sparse | Dense | Dense | Dense |
-| **Vector Dimension** | Vocabulary size | Vocabulary size | Vocabulary size | Vocabulary size (or larger) | Fixed (e.g., 100–300) | Fixed (e.g., 100–300) | Fixed (e.g., 100–300) |
-| **Requires Training** | x | x | x | x | v | v | v |
-| **Neural Network Based** | x | x | x | x | v | v | v |
-| **Handles Rare Words Well** | x | x | x | x | Moderate | Moderate | v |
-| **Computational Cost** | Low | Low | Low | Medium | Medium | Low | High |
-| **Memory Efficiency** | Poor | Poor | Poor | Poor | Good | Good | Good |
-| **Interpretability** | High | High | High | Medium | Low | Low | Low |
-| **Typical Applications** | Categorical encoding | Text classification | Information retrieval | Language modeling | Semantic analysis | Large-scale embedding learning | Learning embeddings for rare words |
-
 ### Advantages and Disadvantages
 
 | Method | Main Advantages | Main Disadvantages |
