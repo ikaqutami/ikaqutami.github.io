@@ -9,7 +9,7 @@ author : 'Ika Utami'
 tags :
     - "Natural Language Processing"
     - "Encoder-Decoder"
-title : 'Encoder-Decoder Architecture'
+title : 'Encoder-Decoder Architecture (Seq2Seq)'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---

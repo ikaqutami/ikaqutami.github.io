@@ -16,7 +16,7 @@
       <description>Attention Mechanism Intuition.</description>
     </item>
     <item>
-      <title>Encoder-Decoder Architecture</title>
+      <title>Encoder-Decoder Architecture (Seq2Seq)</title>
       <link>http://localhost:1313/posts/encoder-decoder/encoder-decoder/</link>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/encoder-decoder/encoder-decoder/</guid>
