@@ -8,7 +8,7 @@ description: 'Learn the basics of word embeddings techniques for NLP.'
 author : 'Ika Utami'
 tags :
     - "Natural Language Processing"
-title : 'Word Embeddings Techniques'
+title : 'Traditional Word Embeddings Techniques'
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---
