@@ -30,13 +30,6 @@
       <description>Introduction of Recurrent Neural Network (RNN) for NLP.</description>
     </item>
     <item>
-      <title>Transformer</title>
-      <link>http://localhost:1313/posts/transformer/transformer-intro/</link>
-      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/transformer/transformer-intro/</guid>
-      <description>Transformer Introduction</description>
-    </item>
-    <item>
       <title>Word Embeddings Techniques</title>
       <link>http://localhost:1313/posts/word-embeddings/word-embeddings/</link>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
