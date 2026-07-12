@@ -6,26 +6,26 @@
     <description>Recent content in Python Data Science on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/python-data-science/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Matplotlib Introduction</title>
       <link>http://localhost:1313/posts/matplotlib/</link>
-      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/matplotlib/</guid>
       <description>Learn the basics of data visualization in Python using Matplotlib.</description>
     </item>
     <item>
       <title>Numpy Fundamentals</title>
       <link>http://localhost:1313/posts/numpy/</link>
-      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/numpy/</guid>
       <description>NumPy (Numerical Python) is an open-source Python library designed for efficient numerical computing and data processing.</description>
     </item>
     <item>
       <title>Pandas Fundamentals</title>
       <link>http://localhost:1313/posts/pandas/</link>
-      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/pandas/</guid>
       <description>Learn the fundamentals of Pandas, including Series, DataFrames, data selection, filtering, sorting, and basic data analysis.</description>
     </item>

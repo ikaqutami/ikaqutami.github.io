@@ -9,7 +9,14 @@
     <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/natural-language-processing/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Matplotlib Introduction</title>
+      <title>Recurrent Neural Network</title>
+      <link>http://localhost:1313/posts/rnn-nlp/rnn-types/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rnn-nlp/rnn-types/</guid>
+      <description>Introduction of Recurrent Neural Network (RNN) for NLP.</description>
+    </item>
+    <item>
+      <title>Word Embeddings Techniques</title>
       <link>http://localhost:1313/posts/word-embeddings/word-embeddings/</link>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/word-embeddings/word-embeddings/</guid>

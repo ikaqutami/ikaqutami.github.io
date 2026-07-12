@@ -3,24 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/machine-learning/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/categories/natural-language-processing/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/natural-language-processing/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/rnn-nlp/rnn-types/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/recurrent-neural-network/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/word-embeddings/word-embeddings/</loc>
+    <lastmod>2026-07-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/machine-learning/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/natural-language-processing-with-machine-learning/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/nlp-with-machinelearning/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-07-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/introduction-nlp/</loc>
@@ -39,48 +51,54 @@
     <lastmod>2026-07-05T20:03:13+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/data-science-libraries/</loc>
-    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/matplotlib/</loc>
-    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/numpy/</loc>
-    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/pandas/</loc>
-    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/python-data-science/</loc>
-    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/file-handling/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/python-programming/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/python-programming/</loc>
-    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/data-structure/</loc>
-    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/python-data-structure/</loc>
-    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/python-dictionary/</loc>
-    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/python-list/</loc>
-    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/python-set/</loc>
-    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/python-tuple/</loc>
     <lastmod>2026-06-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/welcoming/</loc>
+    <loc>http://localhost:1313/posts/python-set/</loc>
+    <lastmod>2026-06-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/python-list/</loc>
+    <lastmod>2026-06-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/welcoming-post/</loc>
+    <lastmod>2025-01-05T20:03:13+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/welcoming-post/</loc>
+    <lastmod>2025-01-05T20:03:13+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/welcoming-post/</loc>
     <lastmod>2025-01-05T20:03:13+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/archives/</loc>

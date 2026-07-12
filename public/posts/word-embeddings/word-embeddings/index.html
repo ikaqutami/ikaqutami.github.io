@@ -161,7 +161,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-07-12 00:00:00 +0000 UTC'>July 12, 2026</span>&nbsp;·&nbsp;<span>23 min</span>&nbsp;·&nbsp;<span>Ika Utami</span>
+<span title='2026-07-12 00:00:00 +0000 UTC'>July 12, 2026</span>&nbsp;·&nbsp;<span>22 min</span>&nbsp;·&nbsp;<span>Ika Utami</span>
 
 </div>
   </header> <details class="toc" >
@@ -1533,192 +1533,6 @@ Each word has only one vector, regardless of its meaning in different contexts. 
 <p><strong>Skip-Gram</strong> is one of the two architectures used by the Word2Vec algorithm to learn dense word embeddings. Instead of predicting the target word from its surrounding words, Skip-Gram predicts the surrounding context words from a target word. This approach generates multiple training examples for each target word, enabling the model to learn high-quality embeddings, particularly for rare words. Although Skip-Gram is slower and more computationally expensive than CBOW, it often produces better semantic representations and remains one of the foundational techniques in modern Natural Language Processing.</p>
 <h2 id="8-comparison-of-text-representation-techniques">8. Comparison of Text Representation Techniques<a hidden class="anchor" aria-hidden="true" href="#8-comparison-of-text-representation-techniques">#</a></h2>
 <p>The following table summarizes the key characteristics, strengths, and limitations of the most commonly used text representation techniques in Natural Language Processing (NLP).</p>
-<table>
-	<thead>
-			<tr>
-					<th>Feature</th>
-					<th>One-Hot Encoding (OHE)</th>
-					<th>Bag of Words (BoW)</th>
-					<th>TF-IDF</th>
-					<th>N-Grams</th>
-					<th>Word2Vec</th>
-					<th>CBOW</th>
-					<th>Skip-Gram</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Representation Type</strong></td>
-					<td>Sparse binary vectors</td>
-					<td>Sparse count vectors</td>
-					<td>Sparse weighted vectors</td>
-					<td>Sparse sequence-based vectors</td>
-					<td>Dense word embeddings</td>
-					<td>Dense word embeddings</td>
-					<td>Dense word embeddings</td>
-			</tr>
-			<tr>
-					<td><strong>Represents</strong></td>
-					<td>Individual words</td>
-					<td>Entire documents</td>
-					<td>Entire documents</td>
-					<td>Word sequences</td>
-					<td>Individual words</td>
-					<td>Individual words</td>
-					<td>Individual words</td>
-			</tr>
-			<tr>
-					<td><strong>Uses Word Frequency</strong></td>
-					<td>❌</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>Uses Word Importance</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>✅</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>Preserves Word Order</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>✅ (local)</td>
-					<td>✅ (through context)</td>
-					<td>Partially</td>
-					<td>Partially</td>
-			</tr>
-			<tr>
-					<td><strong>Captures Context</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>Limited</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-			</tr>
-			<tr>
-					<td><strong>Captures Semantic Similarity</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-			</tr>
-			<tr>
-					<td><strong>Captures Syntactic Relationships</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>Limited</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-			</tr>
-			<tr>
-					<td><strong>Vector Type</strong></td>
-					<td>Sparse</td>
-					<td>Sparse</td>
-					<td>Sparse</td>
-					<td>Sparse</td>
-					<td>Dense</td>
-					<td>Dense</td>
-					<td>Dense</td>
-			</tr>
-			<tr>
-					<td><strong>Vector Dimension</strong></td>
-					<td>Vocabulary size</td>
-					<td>Vocabulary size</td>
-					<td>Vocabulary size</td>
-					<td>Vocabulary size (or larger)</td>
-					<td>Fixed (e.g., 100–300)</td>
-					<td>Fixed (e.g., 100–300)</td>
-					<td>Fixed (e.g., 100–300)</td>
-			</tr>
-			<tr>
-					<td><strong>Requires Training</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-			</tr>
-			<tr>
-					<td><strong>Neural Network Based</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-			</tr>
-			<tr>
-					<td><strong>Handles Rare Words Well</strong></td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>Moderate</td>
-					<td>Moderate</td>
-					<td>✅</td>
-			</tr>
-			<tr>
-					<td><strong>Computational Cost</strong></td>
-					<td>Low</td>
-					<td>Low</td>
-					<td>Low</td>
-					<td>Medium</td>
-					<td>Medium</td>
-					<td>Low</td>
-					<td>High</td>
-			</tr>
-			<tr>
-					<td><strong>Memory Efficiency</strong></td>
-					<td>Poor</td>
-					<td>Poor</td>
-					<td>Poor</td>
-					<td>Poor</td>
-					<td>Good</td>
-					<td>Good</td>
-					<td>Good</td>
-			</tr>
-			<tr>
-					<td><strong>Interpretability</strong></td>
-					<td>High</td>
-					<td>High</td>
-					<td>High</td>
-					<td>Medium</td>
-					<td>Low</td>
-					<td>Low</td>
-					<td>Low</td>
-			</tr>
-			<tr>
-					<td><strong>Typical Applications</strong></td>
-					<td>Categorical encoding</td>
-					<td>Text classification</td>
-					<td>Information retrieval</td>
-					<td>Language modeling</td>
-					<td>Semantic analysis</td>
-					<td>Large-scale embedding learning</td>
-					<td>Learning embeddings for rare words</td>
-			</tr>
-	</tbody>
-</table>
 <h3 id="advantages-and-disadvantages">Advantages and Disadvantages<a hidden class="anchor" aria-hidden="true" href="#advantages-and-disadvantages">#</a></h3>
 <table>
 	<thead>
@@ -1770,7 +1584,7 @@ Each word has only one vector, regardless of its meaning in different contexts. 
 <table>
 	<thead>
 			<tr>
-					<th>If your goal is&hellip;</th>
+					<th>Goal</th>
 					<th>Recommended Technique</th>
 			</tr>
 	</thead>
@@ -1843,6 +1657,10 @@ Each word has only one vector, regardless of its meaning in different contexts. 
       <li><a href="http://localhost:1313/tags/natural-language-processing/">Natural Language Processing</a></li>
     </ul>
 <nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/rnn-nlp/rnn-types/">
+    <span class="title">« Prev</span>
+    <span>Recurrent Neural Network</span>
+  </a>
   <a class="next" href="http://localhost:1313/posts/nlp-with-machinelearning/">
     <span class="title">Next »</span>
     <span>NLP with Machine Learning</span>

@@ -6,8 +6,22 @@
     <description>Recent content in Natural Language Processing on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/natural-language-processing/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Recurrent Neural Network</title>
+      <link>http://localhost:1313/posts/rnn-nlp/rnn-types/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rnn-nlp/rnn-types/</guid>
+      <description>Introduction of Recurrent Neural Network (RNN) for NLP.</description>
+    </item>
+    <item>
+      <title>Word Embeddings Techniques</title>
+      <link>http://localhost:1313/posts/word-embeddings/word-embeddings/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/word-embeddings/word-embeddings/</guid>
+      <description>Learn the basics of word embeddings techniques for NLP.</description>
+    </item>
     <item>
       <title>NLP with Machine Learning</title>
       <link>http://localhost:1313/posts/nlp-with-machinelearning/</link>

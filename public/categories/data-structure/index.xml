@@ -6,28 +6,14 @@
     <description>Recent content in Data Structure on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/data-structure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python Dictionaries</title>
       <link>http://localhost:1313/posts/python-dictionary/</link>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/python-dictionary/</guid>
       <description>Learn Python dictionaries, including creating, accessing, modifying, iterating, dictionary methods, comprehensions, nested dictionaries, and practical examples.</description>
-    </item>
-    <item>
-      <title>Python List</title>
-      <link>http://localhost:1313/posts/python-list/</link>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-list/</guid>
-      <description>A comprehensive guide to Python Lists for beginners.</description>
-    </item>
-    <item>
-      <title>Python Sets</title>
-      <link>http://localhost:1313/posts/python-set/</link>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/python-set/</guid>
-      <description>Learn Python sets, including creation, operations, methods, set algebra, and practical examples.</description>
     </item>
     <item>
       <title>Python Tuples</title>
@@ -35,6 +21,20 @@
       <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/python-tuple/</guid>
       <description>Learn Python tuples, including creation, access, operations, packing, unpacking, nested tuples, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python Sets</title>
+      <link>http://localhost:1313/posts/python-set/</link>
+      <pubDate>Tue, 09 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-set/</guid>
+      <description>Learn Python sets, including creation, operations, methods, set algebra, and practical examples.</description>
+    </item>
+    <item>
+      <title>Python List</title>
+      <link>http://localhost:1313/posts/python-list/</link>
+      <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/python-list/</guid>
+      <description>A comprehensive guide to Python Lists for beginners.</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Encoder-Decoder Architecture | Ika Qutami&#39;s Blog</title>
+<meta name="keywords" content="Natural Language Processing, Encoder-Decoder">
+<meta name="description" content="Introduction of Encoder and Decoder Architecture.">
+<meta name="author" content="Ika Utami">
+<link rel="canonical" href="http://localhost:1313/posts/encoder-decoder/encoder-decoder/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.681ace8578248d245b61ef5935c85a5df23afb321a1d0135e555692107441372.css" integrity="sha256-aBrOhXgkjSRbYe9ZNchaXfI6&#43;zIaHQE15VVpIQdEE3I=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/encoder-decoder/encoder-decoder/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XBV3ZQGEX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XBV3ZQGEX');
+</script>
+
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Ika Qutami&#39;s Blog (Alt + H)">Ika Qutami&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publication/" title="Publications">
+                    <span>Publications</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/project/" title="Project">
+                    <span>Project</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Encoder-Decoder Architecture
+    </h1>
+    <div class="post-description">
+      Introduction of Encoder and Decoder Architecture.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-07-12 00:00:00 +0000 UTC'>July 12, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>Ika Utami</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#encoderdecoder-architecture" aria-label="Encoder–Decoder Architecture">Encoder–Decoder Architecture</a></li>
+            <li>
+                <a href="#motivation" aria-label="Motivation">Motivation</a></li>
+            <li>
+                <a href="#components-of-encoderdecoder-architecture" aria-label="Components of Encoder–Decoder Architecture">Components of Encoder–Decoder Architecture</a><ul>
+                    
+            <li>
+                <a href="#encoder" aria-label="Encoder">Encoder</a><ul>
+                    
+            <li>
+                <a href="#functions-of-the-encoder" aria-label="Functions of the Encoder">Functions of the Encoder</a></li>
+            <li>
+                <a href="#advantages" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#limitations" aria-label="Limitations">Limitations</a></li></ul>
+            </li>
+            <li>
+                <a href="#context-vector" aria-label="Context Vector">Context Vector</a><ul>
+                    
+            <li>
+                <a href="#characteristics" aria-label="Characteristics">Characteristics</a></li></ul>
+            </li>
+            <li>
+                <a href="#decoder" aria-label="Decoder">Decoder</a><ul>
+                    
+            <li>
+                <a href="#functions-of-the-decoder" aria-label="Functions of the Decoder">Functions of the Decoder</a></li>
+            <li>
+                <a href="#advantages-1" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#limitations-1" aria-label="Limitations">Limitations</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#sequence-to-sequence-seq2seq-learning" aria-label="Sequence-to-Sequence (Seq2Seq) Learning">Sequence-to-Sequence (Seq2Seq) Learning</a></li>
+            <li>
+                <a href="#training-the-encoderdecoder-model" aria-label="Training the Encoder–Decoder Model">Training the Encoder–Decoder Model</a></li>
+            <li>
+                <a href="#attention-mechanism" aria-label="Attention Mechanism">Attention Mechanism</a></li>
+            <li>
+                <a href="#applications-of-encoderdecoder-architecture" aria-label="Applications of Encoder–Decoder Architecture">Applications of Encoder–Decoder Architecture</a></li>
+            <li>
+                <a href="#advantages-2" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#limitations-2" aria-label="Limitations">Limitations</a></li>
+            <li>
+                <a href="#evolution-of-encoderdecoder-architecture" aria-label="Evolution of Encoder–Decoder Architecture">Evolution of Encoder–Decoder Architecture</a></li>
+            <li>
+                <a href="#summary" aria-label="Summary">Summary</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="encoderdecoder-architecture">Encoder–Decoder Architecture<a hidden class="anchor" aria-hidden="true" href="#encoderdecoder-architecture">#</a></h1>
+<p>The <strong>Encoder–Decoder architecture</strong> is a neural network framework designed to transform an input sequence into an output sequence. It is one of the most influential architectures in deep learning for <strong>sequence-to-sequence (Seq2Seq)</strong> tasks, particularly in <strong>Natural Language Processing (NLP)</strong>. Unlike traditional machine learning models that map fixed-size inputs to fixed-size outputs, the Encoder–Decoder architecture can process sequences of variable lengths, making it highly suitable for applications such as machine translation, text summarization, dialogue systems, and speech recognition.</p>
+<p>The architecture consists of two main components: an <strong>Encoder</strong> and a <strong>Decoder</strong>.</p>
+<ul>
+<li>The encoder is responsible for understanding the input sequence and compressing its information into a meaningful representation.</li>
+<li>The decoder generates the target sequence based on that representation.</li>
+</ul>
+<hr>
+<h1 id="motivation">Motivation<a hidden class="anchor" aria-hidden="true" href="#motivation">#</a></h1>
+<p>Many NLP tasks require converting one sequence into another. For example:</p>
+<ul>
+<li>Translating a sentence from English to French.</li>
+<li>Summarizing a long document into a short paragraph.</li>
+<li>Generating a response in a chatbot.</li>
+<li>Converting speech into text.</li>
+</ul>
+<p>In these tasks, the lengths of the input and output sequences are often different. Traditional neural networks cannot effectively handle this problem because they require fixed-size inputs and outputs. The Encoder–Decoder architecture overcomes this limitation by learning a mapping between variable-length sequences.</p>
+<hr>
+<h1 id="components-of-encoderdecoder-architecture">Components of Encoder–Decoder Architecture<a hidden class="anchor" aria-hidden="true" href="#components-of-encoderdecoder-architecture">#</a></h1>
+<h2 id="encoder">Encoder<a hidden class="anchor" aria-hidden="true" href="#encoder">#</a></h2>
+<p>The <strong>Encoder</strong> is the first part of the architecture. Its primary purpose is to read the input sequence and convert it into a numerical representation that captures the semantic meaning of the entire sequence.</p>
+<p>The encoder processes one token at a time. Each input token is transformed into an embedding vector and passed through recurrent units such as <strong>RNN</strong>, <strong>LSTM</strong>, or <strong>GRU</strong>. As the encoder processes each token, it continuously updates its hidden state. The final hidden state represents a compressed summary of the input sequence and is commonly referred to as the <strong>context vector</strong>.</p>
+<p>For example, consider the input sentence:</p>
+<blockquote>
+<p><em>I love deep learning.</em></p>
+</blockquote>
+<p>The encoder reads the words sequentially:</p>
+<ol>
+<li>I</li>
+<li>love</li>
+<li>deep</li>
+<li>learning</li>
+</ol>
+<p>After processing all words, the encoder produces a context vector containing information about the meaning of the entire sentence.</p>
+<h3 id="functions-of-the-encoder">Functions of the Encoder<a hidden class="anchor" aria-hidden="true" href="#functions-of-the-encoder">#</a></h3>
+<ul>
+<li>Reads the input sequence.</li>
+<li>Learns contextual information.</li>
+<li>Produces hidden states.</li>
+<li>Generates the context vector representing the input.</li>
+</ul>
+<h3 id="advantages">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages">#</a></h3>
+<ul>
+<li>Captures semantic information from the input sequence.</li>
+<li>Supports variable-length inputs.</li>
+<li>Works well with sequential data.</li>
+</ul>
+<h3 id="limitations">Limitations<a hidden class="anchor" aria-hidden="true" href="#limitations">#</a></h3>
+<ul>
+<li>Compressing long sequences into a single context vector may result in information loss.</li>
+<li>Performance decreases as sequence length increases.</li>
+<li>Motivated the development of attention mechanisms.</li>
+</ul>
+<hr>
+<h2 id="context-vector">Context Vector<a hidden class="anchor" aria-hidden="true" href="#context-vector">#</a></h2>
+<p>The <strong>Context Vector</strong> is the intermediate representation that connects the encoder and decoder. It is a dense vector containing information extracted from the input sequence.</p>
+<p>In the original Seq2Seq architecture, only the encoder&rsquo;s final hidden state is passed to the decoder as the context vector. This vector serves as the decoder&rsquo;s initial state and guides the generation of the output sequence.</p>
+<p>Although effective for short sequences, a single context vector often struggles to represent long or complex sentences because all information must be compressed into one fixed-length vector.</p>
+<h3 id="characteristics">Characteristics<a hidden class="anchor" aria-hidden="true" href="#characteristics">#</a></h3>
+<ul>
+<li>Fixed-length representation.</li>
+<li>Encodes semantic information.</li>
+<li>Bridges the encoder and decoder.</li>
+<li>May lose information for long sequences.</li>
+</ul>
+<hr>
+<h2 id="decoder">Decoder<a hidden class="anchor" aria-hidden="true" href="#decoder">#</a></h2>
+<p>The <strong>Decoder</strong> is responsible for generating the target sequence one token at a time based on the context vector received from the encoder.</p>
+<p>At the beginning of decoding, the context vector initializes the decoder&rsquo;s hidden state. The decoder then predicts the first output token. Each predicted token is fed back into the decoder to generate the next token until a special <strong>End-of-Sequence (EOS)</strong> token is produced.</p>
+<p>For example, if the input sentence is:</p>
+<blockquote>
+<p><em>I love deep learning.</em></p>
+</blockquote>
+<p>the decoder may generate:</p>
+<blockquote>
+<p><em>J&rsquo;aime l&rsquo;apprentissage profond.</em></p>
+</blockquote>
+<p>Each generated word depends on both the context vector and the previously generated words.</p>
+<h3 id="functions-of-the-decoder">Functions of the Decoder<a hidden class="anchor" aria-hidden="true" href="#functions-of-the-decoder">#</a></h3>
+<ul>
+<li>Generates the output sequence.</li>
+<li>Predicts one token at a time.</li>
+<li>Uses previous outputs to generate subsequent tokens.</li>
+<li>Stops when the EOS token is generated.</li>
+</ul>
+<h3 id="advantages-1">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-1">#</a></h3>
+<ul>
+<li>Produces variable-length outputs.</li>
+<li>Learns sequential dependencies.</li>
+<li>Suitable for text generation tasks.</li>
+</ul>
+<h3 id="limitations-1">Limitations<a hidden class="anchor" aria-hidden="true" href="#limitations-1">#</a></h3>
+<ul>
+<li>Early prediction errors may propagate to later predictions.</li>
+<li>Depends heavily on the quality of the context vector.</li>
+</ul>
+<hr>
+<h1 id="sequence-to-sequence-seq2seq-learning">Sequence-to-Sequence (Seq2Seq) Learning<a hidden class="anchor" aria-hidden="true" href="#sequence-to-sequence-seq2seq-learning">#</a></h1>
+<p>The Encoder–Decoder architecture is commonly known as the <strong>Sequence-to-Sequence (Seq2Seq)</strong> model because it maps one sequence into another.</p>
+<p>The learning process consists of two stages:</p>
+<ol>
+<li>
+<p><strong>Encoding Stage</strong></p>
+<ul>
+<li>The encoder processes the entire input sequence.</li>
+<li>Hidden states are updated at every time step.</li>
+<li>The final hidden state becomes the context vector.</li>
+</ul>
+</li>
+<li>
+<p><strong>Decoding Stage</strong></p>
+<ul>
+<li>The decoder initializes its hidden state using the context vector.</li>
+<li>Output tokens are generated sequentially.</li>
+<li>Generation continues until the EOS token is produced.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="training-the-encoderdecoder-model">Training the Encoder–Decoder Model<a hidden class="anchor" aria-hidden="true" href="#training-the-encoderdecoder-model">#</a></h1>
+<p>During training, the decoder often uses a technique called <strong>Teacher Forcing</strong>. Instead of using its own predicted token as the next input, the decoder receives the actual target token from the training data.</p>
+<p>Teacher forcing accelerates convergence and stabilizes training because the decoder always receives the correct previous token. However, during inference, the correct target tokens are unavailable, so the decoder must rely on its own predictions. This mismatch between training and inference is known as <strong>Exposure Bias</strong>.</p>
+<hr>
+<h1 id="attention-mechanism">Attention Mechanism<a hidden class="anchor" aria-hidden="true" href="#attention-mechanism">#</a></h1>
+<p>One limitation of the original Encoder–Decoder architecture is that the decoder relies entirely on a single context vector. As input sequences become longer, this fixed-size representation may fail to capture all important information.</p>
+<p>The <strong>Attention Mechanism</strong> addresses this problem by allowing the decoder to access all encoder hidden states rather than only the final one. At each decoding step, the decoder computes attention weights that determine which parts of the input sequence are most relevant for generating the current output token.</p>
+<p>For example, when translating:</p>
+<blockquote>
+<p><em>The cat sits on the mat.</em></p>
+</blockquote>
+<p>the decoder can focus on different words depending on which target word is being generated.</p>
+<p>Benefits of attention include:</p>
+<ul>
+<li>Better handling of long sequences.</li>
+<li>Improved translation quality.</li>
+<li>Richer contextual representation.</li>
+<li>Higher prediction accuracy.</li>
+</ul>
+<p>The attention mechanism became the foundation for modern Transformer architectures.</p>
+<hr>
+<h1 id="applications-of-encoderdecoder-architecture">Applications of Encoder–Decoder Architecture<a hidden class="anchor" aria-hidden="true" href="#applications-of-encoderdecoder-architecture">#</a></h1>
+<p>The Encoder–Decoder framework has been successfully applied to numerous sequence generation tasks, including:</p>
+<ul>
+<li>Machine Translation</li>
+<li>Text Summarization</li>
+<li>Question Answering</li>
+<li>Dialogue Systems and Chatbots</li>
+<li>Speech Recognition</li>
+<li>Image Captioning</li>
+<li>Grammar Correction</li>
+<li>Code Generation</li>
+<li>Text Simplification</li>
+</ul>
+<hr>
+<h1 id="advantages-2">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-2">#</a></h1>
+<ul>
+<li>Handles variable-length input and output sequences.</li>
+<li>Learns contextual representations automatically.</li>
+<li>Effective for sequence generation tasks.</li>
+<li>Flexible architecture that can be implemented using RNN, LSTM, GRU, or Transformer models.</li>
+<li>Forms the foundation of many modern NLP systems.</li>
+</ul>
+<hr>
+<h1 id="limitations-2">Limitations<a hidden class="anchor" aria-hidden="true" href="#limitations-2">#</a></h1>
+<ul>
+<li>Original Seq2Seq models struggle with long input sequences.</li>
+<li>Information bottleneck caused by the fixed-length context vector.</li>
+<li>Sequential computation limits parallelization when implemented with RNNs.</li>
+<li>Exposure bias may reduce inference performance.</li>
+<li>Training can be computationally expensive for long sequences.</li>
+</ul>
+<hr>
+<h1 id="evolution-of-encoderdecoder-architecture">Evolution of Encoder–Decoder Architecture<a hidden class="anchor" aria-hidden="true" href="#evolution-of-encoderdecoder-architecture">#</a></h1>
+<p>The Encoder–Decoder architecture has evolved significantly over time:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Generation</th>
+					<th>Encoder</th>
+					<th>Decoder</th>
+					<th>Main Improvement</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Seq2Seq (2014)</td>
+					<td>RNN</td>
+					<td>RNN</td>
+					<td>First sequence-to-sequence model</td>
+			</tr>
+			<tr>
+					<td>Seq2Seq + LSTM</td>
+					<td>LSTM</td>
+					<td>LSTM</td>
+					<td>Better long-term dependency learning</td>
+			</tr>
+			<tr>
+					<td>Seq2Seq + GRU</td>
+					<td>GRU</td>
+					<td>GRU</td>
+					<td>Faster training with fewer parameters</td>
+			</tr>
+			<tr>
+					<td>Seq2Seq + Attention</td>
+					<td>LSTM/GRU</td>
+					<td>LSTM/GRU</td>
+					<td>Access to all encoder hidden states</td>
+			</tr>
+			<tr>
+					<td>Transformer</td>
+					<td>Self-Attention</td>
+					<td>Self-Attention</td>
+					<td>Parallel computation and superior performance</td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h1 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h1>
+<p>The Encoder–Decoder architecture is a fundamental framework for sequence-to-sequence learning. It consists of an encoder that converts an input sequence into a contextual representation and a decoder that generates the target sequence based on that representation. Originally implemented using recurrent neural networks such as RNNs, LSTMs, and GRUs, the architecture demonstrated remarkable success in tasks such as machine translation and text generation.</p>
+<p>However, the fixed-length context vector introduced an information bottleneck for long sequences. This limitation was overcome by the introduction of the <strong>Attention Mechanism</strong>, which enabled the decoder to selectively focus on different parts of the input during generation. Attention later became the core principle behind the <strong>Transformer architecture</strong>, which has become the dominant model for modern NLP applications due to its ability to process sequences in parallel and capture long-range dependencies efficiently.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/natural-language-processing/">Natural Language Processing</a></li>
+      <li><a href="http://localhost:1313/tags/encoder-decoder/">Encoder-Decoder</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:1313/posts/attention-mechanism/attention-mechanism/">
+    <span class="title">« Prev</span>
+    <span>Attention-Mechanism</span>
+  </a>
+  <a class="next" href="http://localhost:1313/posts/rnn-nlp/rnn-types/">
+    <span class="title">Next »</span>
+    <span>Recurrent Neural Network (RNN)</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Encoder-Decoder Architecture on x"
+            href="https://x.com/intent/tweet/?text=Encoder-Decoder%20Architecture&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f&amp;hashtags=NaturalLanguageProcessing%2cEncoder-Decoder">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Encoder-Decoder Architecture on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f&amp;title=Encoder-Decoder%20Architecture&amp;summary=Encoder-Decoder%20Architecture&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Encoder-Decoder Architecture on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f&title=Encoder-Decoder%20Architecture">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Encoder-Decoder Architecture on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Encoder-Decoder Architecture on whatsapp"
+            href="https://api.whatsapp.com/send?text=Encoder-Decoder%20Architecture%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Encoder-Decoder Architecture on telegram"
+            href="https://telegram.me/share/url?text=Encoder-Decoder%20Architecture&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Encoder-Decoder Architecture on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Encoder-Decoder%20Architecture&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fencoder-decoder%2fencoder-decoder%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Ika Qutami&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

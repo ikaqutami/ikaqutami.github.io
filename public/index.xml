@@ -9,6 +9,27 @@
     <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Attention-Mechanism</title>
+      <link>http://localhost:1313/posts/attention-mechanism/attention-mechanism/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/attention-mechanism/attention-mechanism/</guid>
+      <description>Attention Mechanism Intuition.</description>
+    </item>
+    <item>
+      <title>Encoder-Decoder Architecture</title>
+      <link>http://localhost:1313/posts/encoder-decoder/encoder-decoder/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/encoder-decoder/encoder-decoder/</guid>
+      <description>Introduction of Encoder and Decoder Architecture.</description>
+    </item>
+    <item>
+      <title>Recurrent Neural Network (RNN)</title>
+      <link>http://localhost:1313/posts/rnn-nlp/rnn-types/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/rnn-nlp/rnn-types/</guid>
+      <description>Introduction of Recurrent Neural Network (RNN) for NLP.</description>
+    </item>
+    <item>
       <title>Word Embeddings Techniques</title>
       <link>http://localhost:1313/posts/word-embeddings/word-embeddings/</link>
       <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>

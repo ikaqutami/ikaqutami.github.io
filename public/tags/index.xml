@@ -6,8 +6,22 @@
     <description>Recent content in Tags on Ika Qutami&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Natural Language Processing</title>
+      <link>http://localhost:1313/tags/natural-language-processing/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/natural-language-processing/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Recurrent Neural Network</title>
+      <link>http://localhost:1313/tags/recurrent-neural-network/</link>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/recurrent-neural-network/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Machine Learning</title>
       <link>http://localhost:1313/tags/machine-learning/</link>
@@ -16,30 +30,23 @@
       <description></description>
     </item>
     <item>
-      <title>Natural Language Processing</title>
-      <link>http://localhost:1313/tags/natural-language-processing/</link>
-      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/natural-language-processing/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Data Science Libraries</title>
       <link>http://localhost:1313/tags/data-science-libraries/</link>
-      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/data-science-libraries/</guid>
       <description></description>
     </item>
     <item>
       <title>Python Programming</title>
       <link>http://localhost:1313/tags/python-programming/</link>
-      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/python-programming/</guid>
       <description></description>
     </item>
     <item>
       <title>Python Data Structure</title>
       <link>http://localhost:1313/tags/python-data-structure/</link>
-      <pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 11 Jun 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/tags/python-data-structure/</guid>
       <description></description>
     </item>
@@ -48,13 +55,6 @@
       <link>http://localhost:1313/tags/welcoming-post/</link>
       <pubDate>Sun, 05 Jan 2025 20:03:13 +0700</pubDate>
       <guid>http://localhost:1313/tags/welcoming-post/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Welcoming Post by Author</title>
-      <link>http://localhost:1313/tags/welcoming-post-by-author/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/welcoming-post-by-author/</guid>
       <description></description>
     </item>
   </channel>
