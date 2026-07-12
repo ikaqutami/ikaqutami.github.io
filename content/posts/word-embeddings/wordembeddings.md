@@ -1066,17 +1066,17 @@ The following table summarizes the key characteristics, strengths, and limitatio
 |---------|-------------------------|--------------------|---------|----------|-----------|------|-----------|
 | **Representation Type** | Sparse binary vectors | Sparse count vectors | Sparse weighted vectors | Sparse sequence-based vectors | Dense word embeddings | Dense word embeddings | Dense word embeddings |
 | **Represents** | Individual words | Entire documents | Entire documents | Word sequences | Individual words | Individual words | Individual words |
-| **Uses Word Frequency** | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ | ❌ |
-| **Uses Word Importance** | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ |
-| **Preserves Word Order** | ❌ | ❌ | ❌ | ✅ (local) | ✅ (through context) | Partially | Partially |
-| **Captures Context** | ❌ | ❌ | ❌ | Limited | ✅ | ✅ | ✅ |
-| **Captures Semantic Similarity** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Captures Syntactic Relationships** | ❌ | ❌ | ❌ | Limited | ✅ | ✅ | ✅ |
+| **Uses Word Frequency** | x | v | v | v | x | x | x |
+| **Uses Word Importance** | x | x | v | x | x | x | x |
+| **Preserves Word Order** | x | x | x | v (local) | v (through context) | Partially | Partially |
+| **Captures Context** | x | x | x | Limited | v | v | v |
+| **Captures Semantic Similarity** | x | x | x | x | v | v | v |
+| **Captures Syntactic Relationships** | x | x | x | Limited | v | v | v |
 | **Vector Type** | Sparse | Sparse | Sparse | Sparse | Dense | Dense | Dense |
 | **Vector Dimension** | Vocabulary size | Vocabulary size | Vocabulary size | Vocabulary size (or larger) | Fixed (e.g., 100–300) | Fixed (e.g., 100–300) | Fixed (e.g., 100–300) |
-| **Requires Training** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Neural Network Based** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ✅ |
-| **Handles Rare Words Well** | ❌ | ❌ | ❌ | ❌ | Moderate | Moderate | ✅ |
+| **Requires Training** | x | x | x | x | v | v | v |
+| **Neural Network Based** | x | x | x | x | v | v | v |
+| **Handles Rare Words Well** | x | x | x | x | Moderate | Moderate | v |
 | **Computational Cost** | Low | Low | Low | Medium | Medium | Low | High |
 | **Memory Efficiency** | Poor | Poor | Poor | Poor | Good | Good | Good |
 | **Interpretability** | High | High | High | Medium | Low | Low | Low |
