@@ -1,5 +1,5 @@
 ---
-date : '2026-07-12T20:03:13+07:00'
+date : '2026-07-12T14:30:13+07:00'
 draft : false
 slug : 'transformer-intro'
 categories : 'Natural Language Processing'
