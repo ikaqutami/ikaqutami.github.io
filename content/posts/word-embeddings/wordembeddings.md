@@ -1076,7 +1076,7 @@ The following table summarizes the key characteristics, strengths, and limitatio
 
 ### Choosing the Right Technique
 
-| If your goal is... | Recommended Technique |
+| Goal | Recommended Technique |
 |--------------------|-----------------------|
 | Encode categorical words | One-Hot Encoding |
 | Represent documents using word counts | Bag of Words |
