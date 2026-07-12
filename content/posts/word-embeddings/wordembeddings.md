@@ -3,7 +3,7 @@ date : '2026-07-12'
 draft : false
 slug : 'word-embeddings'
 categories : 'Natural Language Processing'
-summary: 'Converting words into vectors, commonly referred to as word embeddings, is fundamental. These embeddings serve as the foundation for numerous NLP applications, enabling computers to understand and interpret human language.'
+summary: 'Word embeddings serve as the foundation for numerous NLP applications, enabling computers to understand and interpret human language.'
 description: 'Learn the basics of word embeddings techniques for NLP.'
 author : 'Ika Utami'
 tags :
