@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Word Embeddings Techniques | Ika Qutami&#39;s Blog</title>
+<meta name="keywords" content="Natural Language Processing">
+<meta name="description" content="Learn the basics of word embeddings techniques for NLP.">
+<meta name="author" content="Ika Utami">
+<link rel="canonical" href="http://localhost:1313/posts/word-embeddings/word-embeddings/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.681ace8578248d245b61ef5935c85a5df23afb321a1d0135e555692107441372.css" integrity="sha256-aBrOhXgkjSRbYe9ZNchaXfI6&#43;zIaHQE15VVpIQdEE3I=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/word-embeddings/word-embeddings/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XBV3ZQGEX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XBV3ZQGEX');
+</script>
+
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Ika Qutami&#39;s Blog (Alt + H)">Ika Qutami&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:1313/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="Posts">
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/publication/" title="Publications">
+                    <span>Publications</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/project/" title="Project">
+                    <span>Project</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Word Embeddings Techniques
+    </h1>
+    <div class="post-description">
+      Learn the basics of word embeddings techniques for NLP.
+    </div>
+    <div class="post-meta">
+
+<span title='2026-07-12 00:00:00 +0000 UTC'>July 12, 2026</span>&nbsp;·&nbsp;<span>23 min</span>&nbsp;·&nbsp;<span>Ika Utami</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#text-representation" aria-label="Text Representation">Text Representation</a></li>
+            <li>
+                <a href="#1-one-hot-encoding" aria-label="1. One-Hot Encoding">1. One-Hot Encoding</a><ul>
+                    
+            <li>
+                <a href="#advantages" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#disadvantages" aria-label="Disadvantages">Disadvantages</a></li></ul>
+            </li>
+            <li>
+                <a href="#2-bag-of-words-bow" aria-label="2. Bag of Words (BoW)">2. Bag of Words (BoW)</a><ul>
+                    
+            <li>
+                <a href="#advantages-1" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#disadvantages-1" aria-label="Disadvantages">Disadvantages</a></li>
+            <li>
+                <a href="#how-bag-of-words-bow-works" aria-label="How Bag of Words (BoW) Works">How Bag of Words (BoW) Works</a><ul>
+                    
+            <li>
+                <a href="#step-1-collect-documents" aria-label="Step 1. Collect Documents">Step 1. Collect Documents</a></li>
+            <li>
+                <a href="#step-2-build-the-vocabulary" aria-label="Step 2. Build the Vocabulary">Step 2. Build the Vocabulary</a></li>
+            <li>
+                <a href="#step-3-count-word-frequencies" aria-label="Step 3. Count Word Frequencies">Step 3. Count Word Frequencies</a></li>
+            <li>
+                <a href="#step-4-create-the-feature-matrix" aria-label="Step 4. Create the Feature Matrix">Step 4. Create the Feature Matrix</a></li>
+            <li>
+                <a href="#workflow" aria-label="Workflow">Workflow</a></li>
+            <li>
+                <a href="#summary" aria-label="Summary">Summary</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#3-n-grams" aria-label="3. N-Grams">3. N-Grams</a><ul>
+                    
+            <li>
+                <a href="#advantages-2" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#disadvantages-2" aria-label="Disadvantages">Disadvantages</a></li>
+            <li>
+                <a href="#how-n-grams-works" aria-label="How N-Grams Works">How N-Grams Works</a><ul>
+                    
+            <li>
+                <a href="#step-1-collect-the-input-text" aria-label="Step 1. Collect the Input Text">Step 1. Collect the Input Text</a></li>
+            <li>
+                <a href="#step-2-tokenize-the-sentence" aria-label="Step 2. Tokenize the Sentence">Step 2. Tokenize the Sentence</a></li>
+            <li>
+                <a href="#step-3-choose-the-value-of-n" aria-label="Step 3. Choose the Value of N">Step 3. Choose the Value of N</a></li>
+            <li>
+                <a href="#workflow-of-the-n-gram-model" aria-label="Workflow of the N-Gram Model">Workflow of the N-Gram Model</a></li>
+            <li>
+                <a href="#summary-of-the-n-gram-model" aria-label="Summary of the N-Gram Model">Summary of the N-Gram Model</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#4-tf-idf" aria-label="4. TF-IDF">4. TF-IDF</a><ul>
+                    
+            <li>
+                <a href="#why-tf-idf" aria-label="Why TF-IDF?">Why TF-IDF?</a></li>
+            <li>
+                <a href="#advantages-3" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#disadvantages-3" aria-label="Disadvantages">Disadvantages</a></li>
+            <li>
+                <a href="#summary-of-tf-idf" aria-label="Summary of TF-IDF">Summary of TF-IDF</a></li></ul>
+            </li>
+            <li>
+                <a href="#5-word2vec" aria-label="5. Word2Vec">5. Word2Vec</a><ul>
+                    
+            <li>
+                <a href="#why-do-we-need-word2vec" aria-label="Why Do We Need Word2Vec?">Why Do We Need Word2Vec?</a></li>
+            <li>
+                <a href="#advantages-4" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#disadvantages-4" aria-label="Disadvantages">Disadvantages</a></li>
+            <li>
+                <a href="#summary-of-word2vec" aria-label="Summary of Word2Vec">Summary of Word2Vec</a></li></ul>
+            </li>
+            <li>
+                <a href="#6-continuous-bag-of-words-cbow" aria-label="6. Continuous Bag of Words (CBOW)">6. Continuous Bag of Words (CBOW)</a><ul>
+                    
+            <li>
+                <a href="#definition" aria-label="Definition">Definition</a></li>
+            <li>
+                <a href="#why-cbow" aria-label="Why CBOW?">Why CBOW?</a></li>
+            <li>
+                <a href="#how-cbow-works" aria-label="How CBOW Works">How CBOW Works</a><ul>
+                    
+            <li>
+                <a href="#step-1-prepare-the-corpus" aria-label="Step 1. Prepare the Corpus">Step 1. Prepare the Corpus</a></li>
+            <li>
+                <a href="#step-2-tokenize-the-sentence-1" aria-label="Step 2. Tokenize the Sentence">Step 2. Tokenize the Sentence</a></li>
+            <li>
+                <a href="#step-3-choose-the-context-window" aria-label="Step 3. Choose the Context Window">Step 3. Choose the Context Window</a></li>
+            <li>
+                <a href="#step-4-convert-words-into-one-hot-vectors" aria-label="Step 4. Convert Words into One-Hot Vectors">Step 4. Convert Words into One-Hot Vectors</a></li>
+            <li>
+                <a href="#step-5-project-to-the-embedding-layer" aria-label="Step 5. Project to the Embedding Layer">Step 5. Project to the Embedding Layer</a></li>
+            <li>
+                <a href="#step-6-average-the-context-embeddings" aria-label="Step 6. Average the Context Embeddings">Step 6. Average the Context Embeddings</a></li>
+            <li>
+                <a href="#step-7-predict-the-target-word" aria-label="Step 7. Predict the Target Word">Step 7. Predict the Target Word</a></li>
+            <li>
+                <a href="#step-8-update-the-model" aria-label="Step 8. Update the Model">Step 8. Update the Model</a></li>
+            <li>
+                <a href="#complete-workflow" aria-label="Complete Workflow">Complete Workflow</a></li>
+            <li>
+                <a href="#example" aria-label="Example">Example</a></li>
+            <li>
+                <a href="#python-implementation" aria-label="Python Implementation">Python Implementation</a></li></ul>
+            </li>
+            <li>
+                <a href="#advantages-5" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#disadvantages-5" aria-label="Disadvantages">Disadvantages</a></li>
+            <li>
+                <a href="#summary-of-cbow" aria-label="Summary of CBOW">Summary of CBOW</a></li></ul>
+            </li>
+            <li>
+                <a href="#7-skip-gram" aria-label="7. Skip-Gram">7. Skip-Gram</a><ul>
+                    
+            <li>
+                <a href="#why-skip-gram" aria-label="Why Skip-Gram?">Why Skip-Gram?</a></li>
+            <li>
+                <a href="#how-skip-gram-works" aria-label="How Skip-Gram Works">How Skip-Gram Works</a><ul>
+                    
+            <li>
+                <a href="#step-1-prepare-the-corpus-1" aria-label="Step 1. Prepare the Corpus">Step 1. Prepare the Corpus</a></li>
+            <li>
+                <a href="#step-2-tokenize-the-sentence-2" aria-label="Step 2. Tokenize the Sentence">Step 2. Tokenize the Sentence</a></li>
+            <li>
+                <a href="#step-3-choose-the-context-window-1" aria-label="Step 3. Choose the Context Window">Step 3. Choose the Context Window</a></li>
+            <li>
+                <a href="#step-4-convert-the-target-word-into-a-one-hot-vector" aria-label="Step 4. Convert the Target Word into a One-Hot Vector">Step 4. Convert the Target Word into a One-Hot Vector</a></li>
+            <li>
+                <a href="#step-5-project-to-the-embedding-layer-1" aria-label="Step 5. Project to the Embedding Layer">Step 5. Project to the Embedding Layer</a></li>
+            <li>
+                <a href="#step-6-predict-the-context-words" aria-label="Step 6. Predict the Context Words">Step 6. Predict the Context Words</a></li>
+            <li>
+                <a href="#step-7-update-the-model" aria-label="Step 7. Update the Model">Step 7. Update the Model</a></li>
+            <li>
+                <a href="#complete-workflow-1" aria-label="Complete Workflow">Complete Workflow</a></li>
+            <li>
+                <a href="#example-1" aria-label="Example">Example</a></li>
+            <li>
+                <a href="#python-implementation-1" aria-label="Python Implementation">Python Implementation</a></li></ul>
+            </li>
+            <li>
+                <a href="#advantages-6" aria-label="Advantages">Advantages</a></li>
+            <li>
+                <a href="#disadvantages-6" aria-label="Disadvantages">Disadvantages</a></li>
+            <li>
+                <a href="#cbow-vs-skip-gram" aria-label="CBOW vs Skip-Gram">CBOW vs Skip-Gram</a></li>
+            <li>
+                <a href="#summary-of-skipgram" aria-label="Summary of SkipGram">Summary of SkipGram</a></li></ul>
+            </li>
+            <li>
+                <a href="#8-comparison-of-text-representation-techniques" aria-label="8. Comparison of Text Representation Techniques">8. Comparison of Text Representation Techniques</a><ul>
+                    
+            <li>
+                <a href="#advantages-and-disadvantages" aria-label="Advantages and Disadvantages">Advantages and Disadvantages</a></li>
+            <li>
+                <a href="#choosing-the-right-technique" aria-label="Choosing the Right Technique">Choosing the Right Technique</a></li>
+            <li>
+                <a href="#evolution-of-text-representation" aria-label="Evolution of Text Representation">Evolution of Text Representation</a></li>
+            <li>
+                <a href="#summary-1" aria-label="Summary">Summary</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="text-representation">Text Representation<a hidden class="anchor" aria-hidden="true" href="#text-representation">#</a></h2>
+<p>In Natural Language Processing (NLP), <strong>computers cannot process text directly because machine learning algorithms operate on numerical data rather than words or sentences</strong>. Consequently, textual information must first be transformed into a numerical representation that preserves as much linguistic information as possible. <strong>This transformation is known as text representation</strong>, and the resulting numerical vectors are commonly referred to as <strong>word embeddings or vector representations</strong>, depending on the technique used.</p>
+<p>Text representation forms the foundation of nearly every NLP application, including:</p>
+<ul>
+<li>sentiment analysis</li>
+<li>machine translation</li>
+<li>text classification</li>
+<li>question answering</li>
+<li>information retrieval</li>
+<li>document summarization</li>
+<li>conversational AI</li>
+</ul>
+<p>The quality of these numerical representations significantly influences the performance of downstream machine learning and deep learning models. A well-designed representation captures not only the presence of words but also their <strong>semantic meaning, syntactic relationships, and contextual information</strong>.</p>
+<p>Over the years, researchers have developed a variety of techniques for converting text into numerical vectors. Early approaches, such as <strong>One-Hot Encoding, Bag of Words (BoW), N-Grams, and TF-IDF</strong>, represent words or documents using sparse vectors based primarily on word occurrence and frequency. While these methods are simple and computationally efficient, they generally fail to capture <strong>semantic relationships between words</strong>.</p>
+<p>To address these limitations, distributed representation methods, commonly known as word embeddings, were introduced. Models such as <strong>Word2Vec, including its Continuous Bag of Words (CBOW) and Skip-Gram architectures</strong>, learn dense vector representations in which semantically similar words are positioned close together in the vector space. These embedding techniques have significantly improved the ability of machines to understand linguistic patterns and have become fundamental components of modern NLP systems.</p>
+<h2 id="1-one-hot-encoding">1. One-Hot Encoding<a hidden class="anchor" aria-hidden="true" href="#1-one-hot-encoding">#</a></h2>
+<p>One-Hot Encoding is one of the simplest techniques for representing categorical data, including words, as numerical vectors. In NLP, it converts each unique word in a vocabulary into a binary vector in which exactly one element is 1 (hot) and all remaining elements are 0.</p>
+<h3 id="advantages">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages">#</a></h3>
+<ul>
+<li><strong>Simple and intuitive:</strong> Easy to understand and implement.</li>
+<li><strong>No training required:</strong> Vectors are generated directly from the vocabulary.</li>
+<li><strong>Unique representation:</strong> Every word has a distinct vector.</li>
+<li><strong>Suitable for small vocabularies:</strong> Works well in toy examples and educational settings.</li>
+</ul>
+<h3 id="disadvantages">Disadvantages<a hidden class="anchor" aria-hidden="true" href="#disadvantages">#</a></h3>
+<ul>
+<li><strong>High dimensionality:</strong> The vector length equals the vocabulary size. Large vocabularies produce very large vectors.</li>
+<li><strong>Sparse representation:</strong> Most vector elements are zeros, resulting in inefficient memory usage.</li>
+<li><strong>No semantic information:</strong> Similar words have completely different vectors. For example: cat and dog. Although &ldquo;cat&rdquo; and &ldquo;dog&rdquo; are semantically related, their vectors are equally distant as any unrelated pair of words.</li>
+<li><strong>Cannot capture context:</strong> The representation is the same regardless of where the word appears in a sentence.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> OneHotEncoder
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Vocabulary</span>
+</span></span><span style="display:flex;"><span>words <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array([[<span style="color:#e6db74">&#34;cat&#34;</span>], [<span style="color:#e6db74">&#34;dog&#34;</span>], [<span style="color:#e6db74">&#34;bird&#34;</span>], [<span style="color:#e6db74">&#34;fish&#34;</span>]])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>encoder <span style="color:#f92672">=</span> OneHotEncoder(sparse_output<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>one_hot_vectors <span style="color:#f92672">=</span> encoder<span style="color:#f92672">.</span>fit_transform(words)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(one_hot_vectors)
+</span></span></code></pre></div><pre tabindex="0"><code>[[1. 0. 0. 0.]
+ [0. 1. 0. 0.]
+ [0. 0. 1. 0.]
+ [0. 0. 0. 1.]]
+</code></pre><h2 id="2-bag-of-words-bow">2. Bag of Words (BoW)<a hidden class="anchor" aria-hidden="true" href="#2-bag-of-words-bow">#</a></h2>
+<p>Bag of Words (BoW) is one of the most widely used text representation techniques in Natural Language Processing (NLP). It converts a document into a numerical vector by counting the occurrence of each word in a predefined vocabulary. The fundamental assumption of BoW is that <strong>the meaning of a document can be approximated by the frequency of its words</strong>, regardless of their order.</p>
+<p>Unlike One-Hot Encoding, which represents individual words, <strong>BoW represents an entire document or sentence as a vector</strong>. Each element of the vector corresponds to a word in the vocabulary, and its value indicates how many times that word appears in the document. One-Hot Encoding creates a unique binary vector for each word, whereas Bag of Words summarizes an entire document by counting the frequency of each vocabulary word. Both methods ignore word order and semantic relationships, but BoW provides richer information by incorporating word frequencies.</p>
+<p>The term &ldquo;Bag of Words&rdquo; comes from the idea that <strong>all words are placed into a &ldquo;bag,&rdquo; meaning the original word order, grammar, and sentence structure are ignored. Only the presence or frequency of words is considered</strong>.</p>
+<h3 id="advantages-1">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-1">#</a></h3>
+<ul>
+<li>Easy to understand.</li>
+<li>Fast to compute.</li>
+<li>Effective for baseline text classification.</li>
+</ul>
+<h3 id="disadvantages-1">Disadvantages<a hidden class="anchor" aria-hidden="true" href="#disadvantages-1">#</a></h3>
+<ul>
+<li>Ignores word order and context.</li>
+<li>Produces sparse vectors.</li>
+<li>Cannot capture semantic similarity.</li>
+</ul>
+<h3 id="how-bag-of-words-bow-works">How Bag of Words (BoW) Works<a hidden class="anchor" aria-hidden="true" href="#how-bag-of-words-bow-works">#</a></h3>
+<p>The Bag of Words (BoW) model converts text into numerical vectors by counting how many times each word appears in a document.</p>
+<h4 id="step-1-collect-documents">Step 1. Collect Documents<a hidden class="anchor" aria-hidden="true" href="#step-1-collect-documents">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Document 1: I love NLP
+</span></span><span style="display:flex;"><span>Document 2: I love Python
+</span></span><span style="display:flex;"><span>Document 3: Python loves AI
+</span></span></code></pre></div><h4 id="step-2-build-the-vocabulary">Step 2. Build the Vocabulary<a hidden class="anchor" aria-hidden="true" href="#step-2-build-the-vocabulary">#</a></h4>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: right">Index</th>
+					<th>Word</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">0</td>
+					<td>I</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">1</td>
+					<td>love</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">2</td>
+					<td>NLP</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">3</td>
+					<td>Python</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">4</td>
+					<td>loves</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">5</td>
+					<td>AI</td>
+			</tr>
+	</tbody>
+</table>
+<p>Vocabulary:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[I, love, NLP, Python, loves, AI]
+</span></span></code></pre></div><h4 id="step-3-count-word-frequencies">Step 3. Count Word Frequencies<a hidden class="anchor" aria-hidden="true" href="#step-3-count-word-frequencies">#</a></h4>
+<table>
+	<thead>
+			<tr>
+					<th>Document</th>
+					<th style="text-align: right">I</th>
+					<th style="text-align: right">love</th>
+					<th style="text-align: right">NLP</th>
+					<th style="text-align: right">Python</th>
+					<th style="text-align: right">loves</th>
+					<th style="text-align: right">AI</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Document 1</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">0</td>
+					<td style="text-align: right">0</td>
+					<td style="text-align: right">0</td>
+			</tr>
+			<tr>
+					<td>Document 2</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">0</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">0</td>
+					<td style="text-align: right">0</td>
+			</tr>
+			<tr>
+					<td>Document 3</td>
+					<td style="text-align: right">0</td>
+					<td style="text-align: right">0</td>
+					<td style="text-align: right">0</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">1</td>
+					<td style="text-align: right">1</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="step-4-create-the-feature-matrix">Step 4. Create the Feature Matrix<a hidden class="anchor" aria-hidden="true" href="#step-4-create-the-feature-matrix">#</a></h4>
+<table>
+	<thead>
+			<tr>
+					<th>Document</th>
+					<th>Vector</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Document 1</td>
+					<td>[1,1,1,0,0,0]</td>
+			</tr>
+			<tr>
+					<td>Document 2</td>
+					<td>[1,1,0,1,0,0]</td>
+			</tr>
+			<tr>
+					<td>Document 3</td>
+					<td>[0,0,0,1,1,1]</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="workflow">Workflow<a hidden class="anchor" aria-hidden="true" href="#workflow">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Documents
+</span></span><span style="display:flex;"><span>   ↓
+</span></span><span style="display:flex;"><span>Tokenization
+</span></span><span style="display:flex;"><span>   ↓
+</span></span><span style="display:flex;"><span>Build Vocabulary
+</span></span><span style="display:flex;"><span>   ↓
+</span></span><span style="display:flex;"><span>Count Word Frequencies
+</span></span><span style="display:flex;"><span>   ↓
+</span></span><span style="display:flex;"><span>Generate Document Vectors
+</span></span></code></pre></div><h4 id="summary">Summary<a hidden class="anchor" aria-hidden="true" href="#summary">#</a></h4>
+<ol>
+<li>Collect documents.</li>
+<li>Tokenize text.</li>
+<li>Build the vocabulary.</li>
+<li>Count word frequencies.</li>
+<li>Convert each document into a numerical vector.</li>
+</ol>
+<p>BoW is simple and effective for traditional machine learning, but it ignores word order and semantic meaning.</p>
+<h2 id="3-n-grams">3. N-Grams<a hidden class="anchor" aria-hidden="true" href="#3-n-grams">#</a></h2>
+<p>An N-Gram is a contiguous sequence of N consecutive words or characters extracted from a text. In Natural Language Processing (NLP), N-Grams are used to capture local context by preserving the order of neighboring words. Unlike the Bag of Words (BoW) model, which ignores word order entirely, N-Grams retain partial sequential information, making them more informative for many NLP tasks.</p>
+<p>The value of N determines the size of the sequence:</p>
+<ul>
+<li>Unigram (N = 1): A single word</li>
+<li>Bigram (N = 2): Two consecutive words</li>
+<li>Trigram (N = 3): Three consecutive words</li>
+<li>4-gram (N = 4): Four consecutive words</li>
+<li>N-gram (N = N): A sequence of N consecutive words</li>
+</ul>
+<h3 id="advantages-2">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-2">#</a></h3>
+<ul>
+<li>Preserves local word order.</li>
+<li>Captures short phrases.</li>
+<li>Improves performance over unigram models.</li>
+</ul>
+<h3 id="disadvantages-2">Disadvantages<a hidden class="anchor" aria-hidden="true" href="#disadvantages-2">#</a></h3>
+<ul>
+<li>Feature space grows rapidly.</li>
+<li>Increased memory usage.</li>
+<li>Still limited in long-range context.</li>
+</ul>
+<h3 id="how-n-grams-works">How N-Grams Works<a hidden class="anchor" aria-hidden="true" href="#how-n-grams-works">#</a></h3>
+<p>The <strong>N-Gram</strong> model represents text as a sequence of <strong>N consecutive words (or characters)</strong>. Unlike the Bag of Words (BoW) model, which ignores word order, N-Grams preserve the local order of words, allowing the model to capture short phrases and contextual information.</p>
+<p>The process of generating N-Grams consists of four main steps.</p>
+<h4 id="step-1-collect-the-input-text">Step 1. Collect the Input Text<a hidden class="anchor" aria-hidden="true" href="#step-1-collect-the-input-text">#</a></h4>
+<p>Suppose we have the following sentence:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I love Natural Language Processing
+</span></span></code></pre></div><h4 id="step-2-tokenize-the-sentence">Step 2. Tokenize the Sentence<a hidden class="anchor" aria-hidden="true" href="#step-2-tokenize-the-sentence">#</a></h4>
+<p>The sentence is split into individual words (tokens).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[I, love, Natural, Language, Processing]
+</span></span></code></pre></div><p>There are <strong>5 tokens</strong> in the sentence.</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: right">Position</th>
+					<th>Token</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">1</td>
+					<td>I</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">2</td>
+					<td>love</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">3</td>
+					<td>Natural</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">4</td>
+					<td>Language</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">5</td>
+					<td>Processing</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="step-3-choose-the-value-of-n">Step 3. Choose the Value of N<a hidden class="anchor" aria-hidden="true" href="#step-3-choose-the-value-of-n">#</a></h4>
+<p>The value of <strong>N</strong> determines how many consecutive words will be grouped together.</p>
+<table>
+	<thead>
+			<tr>
+					<th>N</th>
+					<th>Name</th>
+					<th>Description</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>Unigram</td>
+					<td>One word</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>Bigram</td>
+					<td>Two consecutive words</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>Trigram</td>
+					<td>Three consecutive words</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>Four-gram</td>
+					<td>Four consecutive words</td>
+			</tr>
+	</tbody>
+</table>
+<p>For example:</p>
+<ul>
+<li><strong>N = 2</strong> → Generate <strong>Bigrams</strong></li>
+<li><strong>N = 3</strong> → Generate <strong>Trigrams</strong></li>
+</ul>
+<p><strong>Example for Generating Four-grams (N = 4):</strong></p>
+<p>The sliding window now contains <strong>4 words</strong>.</p>
+<p><strong>Window 1</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[I love Natural Language]
+</span></span></code></pre></div><p><strong>Window 2</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[love Natural Language Processing]
+</span></span></code></pre></div><p>Final Four-grams</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[I love Natural Language,
+</span></span><span style="display:flex;"><span> love Natural Language Processing]
+</span></span></code></pre></div><p><strong>Number of N-Grams:</strong></p>
+<p>If a sentence contains <strong>L</strong> words and the N-Gram size is <strong>N</strong>, then the total number of generated N-Grams is</p>
+<p><strong>Number of N-Grams</strong> = L - N + 1</p>
+<p>where:</p>
+<ul>
+<li><strong>L</strong> = Number of words (tokens)</li>
+<li><strong>N</strong> = Size of the N-Gram</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p>Sentence:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I love Natural Language Processing
+</span></span></code></pre></div><p>Number of words:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>L = 5
+</span></span></code></pre></div><table>
+	<thead>
+			<tr>
+					<th>N</th>
+					<th>Formula</th>
+					<th style="text-align: right">Number of N-Grams</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td>5 − 1 + 1</td>
+					<td style="text-align: right">5</td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td>5 − 2 + 1</td>
+					<td style="text-align: right">4</td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td>5 − 3 + 1</td>
+					<td style="text-align: right">3</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td>5 − 4 + 1</td>
+					<td style="text-align: right">2</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td>5 − 5 + 1</td>
+					<td style="text-align: right">1</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="workflow-of-the-n-gram-model">Workflow of the N-Gram Model<a hidden class="anchor" aria-hidden="true" href="#workflow-of-the-n-gram-model">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Input Sentence
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>Tokenize Text
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>Choose N
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>Slide a Window of Size N
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>Generate Consecutive Word Sequences
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>Create N-Gram Features
+</span></span></code></pre></div><h4 id="summary-of-the-n-gram-model">Summary of the N-Gram Model<a hidden class="anchor" aria-hidden="true" href="#summary-of-the-n-gram-model">#</a></h4>
+<p>The N-Gram model converts text into sequences of <strong>N consecutive words</strong> by moving a sliding window across the sentence. The process involves:</p>
+<ol>
+<li>Collecting the input text.</li>
+<li>Tokenizing the text into individual words.</li>
+<li>Choosing the value of <strong>N</strong>.</li>
+<li>Sliding a window of size <strong>N</strong> across the tokens.</li>
+<li>Generating consecutive word sequences (N-Grams).</li>
+</ol>
+<p>Compared with the Bag of Words model, N-Grams preserve the order of neighboring words and capture local contextual information. <em><strong>However, they still cannot model long-range dependencies or understand the semantic meaning of words.</strong></em></p>
+<h2 id="4-tf-idf">4. TF-IDF<a hidden class="anchor" aria-hidden="true" href="#4-tf-idf">#</a></h2>
+<p>TF-IDF (Term Frequency–Inverse Document Frequency) is a statistical text representation technique that <strong>measures how important a word is to a document within a collection (corpus) of documents</strong>. Unlike Bag of Words (BoW), which simply counts word occurrences, TF-IDF assigns a weight to each word based on two factors:</p>
+<ul>
+<li><strong>Term Frequency (TF):</strong> How often the word appears in a document.</li>
+<li><strong>Inverse Document Frequency (IDF):</strong> How rare the word is across all documents.</li>
+</ul>
+<p>The intuition behind TF-IDF is simple:</p>
+<ul>
+<li>Words that appear frequently in a document are likely to be important for that document.</li>
+<li>Words that appear in many documents (such as the, is, and) are less informative and should receive lower weights.</li>
+</ul>
+<p>Thus, TF-IDF gives higher scores to words that are frequent in one document but rare across the entire corpus.</p>
+<h3 id="why-tf-idf">Why TF-IDF?<a hidden class="anchor" aria-hidden="true" href="#why-tf-idf">#</a></h3>
+<p>Consider the following three documents:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Document</th>
+					<th>Text</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>D1</td>
+					<td>I love machine learning</td>
+			</tr>
+			<tr>
+					<td>D2</td>
+					<td>I love deep learning</td>
+			</tr>
+			<tr>
+					<td>D3</td>
+					<td>I love artificial intelligence</td>
+			</tr>
+	</tbody>
+</table>
+<p>Using Bag of Words, the word love appears in every document, so it has the same importance as machine or artificial. However, love does not help distinguish one document from another because it appears everywhere.</p>
+<p>TF-IDF solves this problem by:</p>
+<ul>
+<li>Increasing the weight of unique or rare words.</li>
+<li>Decreasing the weight of very common words.</li>
+</ul>
+<p>For example:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Word</th>
+					<th style="text-align: right">TF-IDF Weight</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>machine</td>
+					<td style="text-align: right">High</td>
+			</tr>
+			<tr>
+					<td>artificial</td>
+					<td style="text-align: right">High</td>
+			</tr>
+			<tr>
+					<td>love</td>
+					<td style="text-align: right">Low</td>
+			</tr>
+			<tr>
+					<td>I</td>
+					<td style="text-align: right">Very Low</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="advantages-3">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-3">#</a></h3>
+<ul>
+<li>Reduces the influence of very common words.</li>
+<li>Highlights informative and distinctive terms.</li>
+<li>Improves text classification and information retrieval.</li>
+<li>Simple to compute and widely supported.</li>
+<li>Works well with traditional machine learning algorithms.</li>
+</ul>
+<h3 id="disadvantages-3">Disadvantages<a hidden class="anchor" aria-hidden="true" href="#disadvantages-3">#</a></h3>
+<ul>
+<li>Ignores word order.</li>
+<li>Does not capture semantic meaning.</li>
+<li>Produces sparse vectors for large vocabularies.</li>
+<li>Cannot distinguish different meanings of the same word.</li>
+<li>Cannot capture contextual relationships between words.</li>
+</ul>
+<h3 id="summary-of-tf-idf">Summary of TF-IDF<a hidden class="anchor" aria-hidden="true" href="#summary-of-tf-idf">#</a></h3>
+<p>TF-IDF improves upon the Bag of Words model by weighting words according to both their frequency within a document and their rarity across the corpus. This enables it to emphasize informative terms while reducing the impact of common words. Although TF-IDF remains a powerful baseline for traditional NLP tasks, it still cannot capture semantic relationships or contextual meaning, which motivated the development of dense word embedding methods such as Word2Vec, GloVe, and contextual models like BERT.</p>
+<h2 id="5-word2vec">5. Word2Vec<a hidden class="anchor" aria-hidden="true" href="#5-word2vec">#</a></h2>
+<p>Word2Vec is a neural network-based algorithm introduced by researchers at Google in 2013 to learn dense vector representations (word embeddings) of words from large text corpora. Unlike traditional text representation methods such as One-Hot Encoding, Bag of Words (BoW), N-Grams, and TF-IDF, <strong>Word2Vec learns vector representations that capture the semantic and syntactic relationships between words.</strong></p>
+<p>The core idea of Word2Vec is based on the Distributional Hypothesis, which states:</p>
+<p><em><strong>&ldquo;Words that appear in similar contexts tend to have similar meanings.&rdquo;</strong></em></p>
+<p>For example, the words <em><strong>king, queen, prince, and princess</strong></em> often appear in similar contexts. Therefore, Word2Vec learns vector representations that place these words close together in the embedding space.</p>
+<p>Unlike sparse representations where the vector length equals the vocabulary size, Word2Vec generates dense vectors of fixed size (e.g., 100, 200, or 300 dimensions). These vectors contain meaningful numerical values that encode semantic information.</p>
+<h3 id="why-do-we-need-word2vec">Why Do We Need Word2Vec?<a hidden class="anchor" aria-hidden="true" href="#why-do-we-need-word2vec">#</a></h3>
+<p>Earlier text representation methods have several limitations:</p>
+<table>
+	<thead>
+			<tr>
+					<th><strong>Method</strong></th>
+					<th><strong>Limitation</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>One-Hot Encoding</strong></td>
+					<td>Produces <strong>high-dimensional sparse vectors</strong>, where each word is represented independently. It cannot capture semantic or syntactic relationships between words, so similar words (e.g., <em>car</em> and <em>automobile</em>) have completely different representations.</td>
+			</tr>
+			<tr>
+					<td><strong>Bag of Words (BoW)</strong></td>
+					<td>Represents documents using <strong>word frequencies</strong> but completely <strong>ignores word order, grammar, and context</strong>. As a result, sentences with different meanings may have identical representations if they contain the same words.</td>
+			</tr>
+			<tr>
+					<td><strong>N-Grams</strong></td>
+					<td>Preserves <strong>local word order</strong> by considering consecutive word sequences, but it only captures <strong>short-range context</strong>. As the value of <em>N</em> increases, the feature space grows exponentially, leading to high memory consumption and data sparsity.</td>
+			</tr>
+			<tr>
+					<td><strong>TF-IDF</strong></td>
+					<td>Assigns weights based on <strong>word importance</strong> within a document and across a corpus, improving over simple word counts. However, it <strong>cannot capture semantic similarity or contextual meaning</strong>, treating synonyms as unrelated words and producing sparse vector representations.</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="advantages-4">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-4">#</a></h3>
+<ul>
+<li>Dense Vector Representation: Word2Vec produces compact vectors (e.g., 100–300 dimensions), reducing memory usage compared with sparse methods.</li>
+<li>Efficient training: Despite using a neural network, Word2Vec is computationally efficient and can be trained on millions of words.</li>
+<li>Captures Semantic Similarity: Words with similar meanings have similar vector representations.</li>
+<li>Captures Syntactic Relationships: The model learns grammatical relationships, such as singular–plural forms and verb tenses.</li>
+<li>Produces high-quality embeddings: Word2Vec embeddings often outperform traditional representations in tasks such as text classification, clustering, and recommendation.</li>
+</ul>
+<h3 id="disadvantages-4">Disadvantages<a hidden class="anchor" aria-hidden="true" href="#disadvantages-4">#</a></h3>
+<ul>
+<li>
+<p>One vector per word.
+Each word has only one vector, regardless of its meaning in different contexts. For example, the word <em>bank</em> has the same embedding in: <em>&ldquo;I deposited money in the bank.&rdquo;</em> and <em>&ldquo;The fisherman sat on the river bank&rdquo;</em>.</p>
+</li>
+<li>
+<p>Cannot represent unseen words: Words not seen during training cannot be represented.</p>
+</li>
+<li>
+<p>Context-independent: Word2Vec considers only a fixed-size context window and cannot capture long-range dependencies.</p>
+</li>
+<li>
+<p>Requires Large Training Data: High-quality embeddings require a large and diverse corpus.</p>
+</li>
+</ul>
+<h3 id="summary-of-word2vec">Summary of Word2Vec<a hidden class="anchor" aria-hidden="true" href="#summary-of-word2vec">#</a></h3>
+<p>Word2Vec is a neural embedding model that learns dense vector representations of words based on their surrounding context. By leveraging the distributional hypothesis, it captures semantic and syntactic relationships that traditional methods such as One-Hot Encoding, Bag of Words, N-Grams, and TF-IDF cannot represent. Word2Vec has two training architectures - <strong>Continuous Bag of Words (CBOW) and Skip-Gram</strong> - which form the foundation of many modern word embedding techniques. Although Word2Vec produces powerful semantic representations, its embeddings are static and cannot adapt to different contexts, leading to the development of contextual embedding models such as <strong>ELMo, BERT, and GPT</strong>.</p>
+<h2 id="6-continuous-bag-of-words-cbow">6. Continuous Bag of Words (CBOW)<a hidden class="anchor" aria-hidden="true" href="#6-continuous-bag-of-words-cbow">#</a></h2>
+<h3 id="definition">Definition<a hidden class="anchor" aria-hidden="true" href="#definition">#</a></h3>
+<p><strong>Continuous Bag of Words (CBOW)</strong> is one of the two neural network architectures used by the <strong>Word2Vec</strong> algorithm to learn word embeddings. Proposed by Mikolov et al. (2013), CBOW predicts a <strong>target word</strong> based on its surrounding <strong>context words</strong>.</p>
+<p>The main idea behind CBOW is based on the <strong>Distributional Hypothesis</strong>, which states that words appearing in similar contexts tend to have similar meanings. By repeatedly predicting a target word from its neighboring words, CBOW learns dense vector representations (embeddings) that capture semantic and syntactic relationships between words.</p>
+<p>Unlike traditional text representation methods such as One-Hot Encoding, Bag of Words (BoW), N-Grams, and TF-IDF, CBOW produces <strong>dense, low-dimensional vectors</strong> that preserve semantic similarity between words.</p>
+<p>For example, in the sentence</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The cat sits on the mat.
+</span></span></code></pre></div><p>if the target word is <strong>&ldquo;sits&rdquo;</strong> and the context window size is <strong>2</strong>, the surrounding context words are</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The   cat   ____   on   the
+</span></span></code></pre></div><p>CBOW uses these context words to predict the missing word:</p>
+<p><strong>Input (Context Words)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The, cat, on, the
+</span></span></code></pre></div><p><strong>Output (Target Word)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sits
+</span></span></code></pre></div><h3 id="why-cbow">Why CBOW?<a hidden class="anchor" aria-hidden="true" href="#why-cbow">#</a></h3>
+<p>Traditional text representation methods have several limitations.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Limitation</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>One-Hot Encoding</td>
+					<td>Sparse vectors and no semantic information</td>
+			</tr>
+			<tr>
+					<td>Bag of Words</td>
+					<td>Ignores word order and context</td>
+			</tr>
+			<tr>
+					<td>N-Grams</td>
+					<td>Captures only local context</td>
+			</tr>
+			<tr>
+					<td>TF-IDF</td>
+					<td>Measures word importance but not semantic similarity</td>
+			</tr>
+	</tbody>
+</table>
+<p>CBOW addresses these limitations by learning word representations from the contexts in which words appear.</p>
+<h3 id="how-cbow-works">How CBOW Works<a hidden class="anchor" aria-hidden="true" href="#how-cbow-works">#</a></h3>
+<p>The CBOW model learns word embeddings through the following steps.</p>
+<h4 id="step-1-prepare-the-corpus">Step 1. Prepare the Corpus<a hidden class="anchor" aria-hidden="true" href="#step-1-prepare-the-corpus">#</a></h4>
+<p>Suppose we have the following sentence:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I love studying Natural Language Processing
+</span></span></code></pre></div><h4 id="step-2-tokenize-the-sentence-1">Step 2. Tokenize the Sentence<a hidden class="anchor" aria-hidden="true" href="#step-2-tokenize-the-sentence-1">#</a></h4>
+<p>Split the sentence into individual words.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[I, love, studying, Natural, Language, Processing]
+</span></span></code></pre></div><h4 id="step-3-choose-the-context-window">Step 3. Choose the Context Window<a hidden class="anchor" aria-hidden="true" href="#step-3-choose-the-context-window">#</a></h4>
+<p>The <strong>context window</strong> determines how many neighboring words are used to predict the target word.</p>
+<p>Suppose the window size is <strong>2</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I   love   studying   Natural   Language   Processing
+</span></span></code></pre></div><p>Target word:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>studying
+</span></span></code></pre></div><p>Context words:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I
+</span></span><span style="display:flex;"><span>love
+</span></span><span style="display:flex;"><span>Natural
+</span></span><span style="display:flex;"><span>Language
+</span></span></code></pre></div><p>The goal is to predict <strong>studying</strong> from these four surrounding words.</p>
+<h4 id="step-4-convert-words-into-one-hot-vectors">Step 4. Convert Words into One-Hot Vectors<a hidden class="anchor" aria-hidden="true" href="#step-4-convert-words-into-one-hot-vectors">#</a></h4>
+<p>Before training, each context word is converted into a <strong>One-Hot Encoding</strong> vector.</p>
+<p>Example vocabulary:</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: right">Index</th>
+					<th>Word</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">0</td>
+					<td>I</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">1</td>
+					<td>love</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">2</td>
+					<td>studying</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">3</td>
+					<td>Natural</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">4</td>
+					<td>Language</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">5</td>
+					<td>Processing</td>
+			</tr>
+	</tbody>
+</table>
+<p>The corresponding vectors are</p>
+<table>
+	<thead>
+			<tr>
+					<th>Word</th>
+					<th>One-Hot Vector</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>I</td>
+					<td>[1,0,0,0,0,0]</td>
+			</tr>
+			<tr>
+					<td>love</td>
+					<td>[0,1,0,0,0,0]</td>
+			</tr>
+			<tr>
+					<td>Natural</td>
+					<td>[0,0,0,1,0,0]</td>
+			</tr>
+			<tr>
+					<td>Language</td>
+					<td>[0,0,0,0,1,0]</td>
+			</tr>
+	</tbody>
+</table>
+<p>These vectors are used as inputs to the neural network.</p>
+<h4 id="step-5-project-to-the-embedding-layer">Step 5. Project to the Embedding Layer<a hidden class="anchor" aria-hidden="true" href="#step-5-project-to-the-embedding-layer">#</a></h4>
+<p>The one-hot vectors are multiplied by an <strong>embedding matrix</strong>.</p>
+<p>Each word is transformed into a dense embedding.</p>
+<p>Example:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Word</th>
+					<th>Embedding</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>I</td>
+					<td>[0.12, -0.44, 0.61]</td>
+			</tr>
+			<tr>
+					<td>love</td>
+					<td>[0.31, 0.20, -0.12]</td>
+			</tr>
+			<tr>
+					<td>Natural</td>
+					<td>[-0.25, 0.81, 0.46]</td>
+			</tr>
+			<tr>
+					<td>Language</td>
+					<td>[0.54, -0.18, 0.73]</td>
+			</tr>
+	</tbody>
+</table>
+<p>These vectors are much smaller than one-hot vectors and contain semantic information.</p>
+<h4 id="step-6-average-the-context-embeddings">Step 6. Average the Context Embeddings<a hidden class="anchor" aria-hidden="true" href="#step-6-average-the-context-embeddings">#</a></h4>
+<p>CBOW combines the embeddings of all context words by averaging them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Embedding(I)
+</span></span><span style="display:flex;"><span>      +
+</span></span><span style="display:flex;"><span>Embedding(love)
+</span></span><span style="display:flex;"><span>      +
+</span></span><span style="display:flex;"><span>Embedding(Natural)
+</span></span><span style="display:flex;"><span>      +
+</span></span><span style="display:flex;"><span>Embedding(Language)
+</span></span><span style="display:flex;"><span>      ------------------------
+</span></span><span style="display:flex;"><span>                4
+</span></span></code></pre></div><p>↓</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Average Context Vector
+</span></span></code></pre></div><p>This vector summarizes the information from the surrounding words.</p>
+<h4 id="step-7-predict-the-target-word">Step 7. Predict the Target Word<a hidden class="anchor" aria-hidden="true" href="#step-7-predict-the-target-word">#</a></h4>
+<p>The average context vector is passed through the output layer.</p>
+<p>A <strong>Softmax</strong> function computes the probability of every word in the vocabulary.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Average Context Vector
+</span></span><span style="display:flex;"><span>          │
+</span></span><span style="display:flex;"><span>          ▼
+</span></span><span style="display:flex;"><span>      Output Layer
+</span></span><span style="display:flex;"><span>          │
+</span></span><span style="display:flex;"><span>          ▼
+</span></span><span style="display:flex;"><span>   Softmax Function
+</span></span><span style="display:flex;"><span>          │
+</span></span><span style="display:flex;"><span>          ▼
+</span></span><span style="display:flex;"><span> Predicted Target Word
+</span></span></code></pre></div><p>The word with the highest probability becomes the prediction.</p>
+<p>Example</p>
+<table>
+	<thead>
+			<tr>
+					<th>Word</th>
+					<th style="text-align: right">Probability</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>studying</td>
+					<td style="text-align: right">0.82</td>
+			</tr>
+			<tr>
+					<td>learning</td>
+					<td style="text-align: right">0.10</td>
+			</tr>
+			<tr>
+					<td>reading</td>
+					<td style="text-align: right">0.05</td>
+			</tr>
+			<tr>
+					<td>Natural</td>
+					<td style="text-align: right">0.03</td>
+			</tr>
+	</tbody>
+</table>
+<p>Predicted word:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>studying
+</span></span></code></pre></div><h4 id="step-8-update-the-model">Step 8. Update the Model<a hidden class="anchor" aria-hidden="true" href="#step-8-update-the-model">#</a></h4>
+<p>The prediction is compared with the correct target word.</p>
+<p>If the prediction is incorrect, the model updates its weights using <strong>backpropagation</strong>.</p>
+<p>This process repeats millions of times over a large corpus until the embeddings become meaningful.</p>
+<h4 id="complete-workflow">Complete Workflow<a hidden class="anchor" aria-hidden="true" href="#complete-workflow">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Input Sentence
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Tokenization
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Choose Context Window
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Convert Context Words to One-Hot Vectors
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Embedding Layer
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Average Context Embeddings
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Output Layer
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Softmax Prediction
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Predicted Target Word
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Update Embedding Matrix
+</span></span></code></pre></div><h4 id="example">Example<a hidden class="anchor" aria-hidden="true" href="#example">#</a></h4>
+<p>Sentence</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The cat sits on the mat
+</span></span></code></pre></div><p>Window size = <strong>2</strong></p>
+<p>Training sample</p>
+<table>
+	<thead>
+			<tr>
+					<th>Context Words</th>
+					<th>Target Word</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>The, cat, on, the</td>
+					<td>sits</td>
+			</tr>
+	</tbody>
+</table>
+<p>Another training sample</p>
+<p>Sentence</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Machine learning improves education
+</span></span></code></pre></div><p>Window size = <strong>1</strong></p>
+<table>
+	<thead>
+			<tr>
+					<th>Context Words</th>
+					<th>Target Word</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Machine, improves</td>
+					<td>learning</td>
+			</tr>
+			<tr>
+					<td>learning, education</td>
+					<td>improves</td>
+			</tr>
+	</tbody>
+</table>
+<p>Each context-target pair becomes one training example.</p>
+<h4 id="python-implementation">Python Implementation<a hidden class="anchor" aria-hidden="true" href="#python-implementation">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> gensim.models <span style="color:#f92672">import</span> Word2Vec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sentences <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;I&#34;</span>, <span style="color:#e6db74">&#34;love&#34;</span>, <span style="color:#e6db74">&#34;machine&#34;</span>, <span style="color:#e6db74">&#34;learning&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;Machine&#34;</span>, <span style="color:#e6db74">&#34;learning&#34;</span>, <span style="color:#e6db74">&#34;is&#34;</span>, <span style="color:#e6db74">&#34;fun&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;I&#34;</span>, <span style="color:#e6db74">&#34;enjoy&#34;</span>, <span style="color:#e6db74">&#34;learning&#34;</span>, <span style="color:#e6db74">&#34;NLP&#34;</span>]
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Word2Vec(
+</span></span><span style="display:flex;"><span>    sentences,
+</span></span><span style="display:flex;"><span>    vector_size<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>    window<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    min_count<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    sg<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>          <span style="color:#75715e"># CBOW</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(model<span style="color:#f92672">.</span>wv[<span style="color:#e6db74">&#34;learning&#34;</span>])
+</span></span></code></pre></div><h3 id="advantages-5">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-5">#</a></h3>
+<ul>
+<li>Learns dense, low-dimensional word embeddings.</li>
+<li>Captures semantic and syntactic relationships between words.</li>
+<li>Faster to train than Skip-Gram.</li>
+<li>Computationally efficient for large datasets.</li>
+<li>Produces high-quality embeddings for frequently occurring words.</li>
+</ul>
+<h3 id="disadvantages-5">Disadvantages<a hidden class="anchor" aria-hidden="true" href="#disadvantages-5">#</a></h3>
+<ul>
+<li>Less effective for rare words.</li>
+<li>Ignores the order of context words because it averages their embeddings.</li>
+<li>Produces static embeddings, assigning only one vector to each word regardless of context.</li>
+<li>Limited to a fixed context window and cannot model long-range dependencies.</li>
+</ul>
+<h3 id="summary-of-cbow">Summary of CBOW<a hidden class="anchor" aria-hidden="true" href="#summary-of-cbow">#</a></h3>
+<p>The <strong>Continuous Bag of Words (CBOW)</strong> model is one of the two architectures used by Word2Vec to learn word embeddings. It predicts a target word from its surrounding context words by averaging their embeddings and training a shallow neural network. Through this prediction task, CBOW learns dense vector representations in which semantically similar words are located close together in the embedding space. Although CBOW is computationally efficient and performs well for frequent words, it is less effective for rare words and cannot capture different meanings of the same word in different contexts.</p>
+<h2 id="7-skip-gram">7. Skip-Gram<a hidden class="anchor" aria-hidden="true" href="#7-skip-gram">#</a></h2>
+<p><strong>Skip-Gram</strong> is one of the two neural network architectures used by the <strong>Word2Vec</strong> algorithm to learn word embeddings. Unlike the <strong>Continuous Bag of Words (CBOW)</strong> model, which predicts the <strong>target word</strong> from its surrounding context words, Skip-Gram performs the opposite task: it predicts the <strong>surrounding context words</strong> given a <strong>target word</strong>.</p>
+<p>The fundamental idea behind Skip-Gram is based on the <strong>Distributional Hypothesis</strong>, which states that words appearing in similar contexts tend to have similar meanings. By learning to predict neighboring words from a target word, Skip-Gram generates dense vector representations (embeddings) that capture semantic and syntactic relationships between words.</p>
+<p>For example, consider the sentence:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The cat sits on the mat.
+</span></span></code></pre></div><p>If the target word is <strong>&ldquo;sits&rdquo;</strong> and the context window size is <strong>2</strong>, the surrounding context words are:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The   cat   sits   on   the
+</span></span></code></pre></div><p><strong>Input (Target Word)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sits
+</span></span></code></pre></div><p><strong>Output (Context Words)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The
+</span></span><span style="display:flex;"><span>cat
+</span></span><span style="display:flex;"><span>on
+</span></span><span style="display:flex;"><span>the
+</span></span></code></pre></div><p>The Skip-Gram model learns to predict each context word from the target word.</p>
+<h3 id="why-skip-gram">Why Skip-Gram?<a hidden class="anchor" aria-hidden="true" href="#why-skip-gram">#</a></h3>
+<p>Although CBOW is faster and computationally efficient, it performs less effectively when learning representations for <strong>rare words</strong>.</p>
+<p>Skip-Gram addresses this limitation by using each target word to predict multiple surrounding words. Since each occurrence of a word generates several training examples, the model learns richer representations, especially for infrequent words.</p>
+<p>Compared with CBOW:</p>
+<ul>
+<li><strong>CBOW:</strong> Context → Target</li>
+<li><strong>Skip-Gram:</strong> Target → Context</li>
+</ul>
+<h3 id="how-skip-gram-works">How Skip-Gram Works<a hidden class="anchor" aria-hidden="true" href="#how-skip-gram-works">#</a></h3>
+<p>The Skip-Gram model learns word embeddings through the following steps.</p>
+<h4 id="step-1-prepare-the-corpus-1">Step 1. Prepare the Corpus<a hidden class="anchor" aria-hidden="true" href="#step-1-prepare-the-corpus-1">#</a></h4>
+<p>Suppose we have the following sentence:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I love studying Natural Language Processing
+</span></span></code></pre></div><h4 id="step-2-tokenize-the-sentence-2">Step 2. Tokenize the Sentence<a hidden class="anchor" aria-hidden="true" href="#step-2-tokenize-the-sentence-2">#</a></h4>
+<p>Split the sentence into individual words.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[I, love, studying, Natural, Language, Processing]
+</span></span></code></pre></div><h4 id="step-3-choose-the-context-window-1">Step 3. Choose the Context Window<a hidden class="anchor" aria-hidden="true" href="#step-3-choose-the-context-window-1">#</a></h4>
+<p>Assume the context window size is <strong>2</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I   love   studying   Natural   Language   Processing
+</span></span></code></pre></div><p>Target word</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>studying
+</span></span></code></pre></div><p>Context words</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I
+</span></span><span style="display:flex;"><span>love
+</span></span><span style="display:flex;"><span>Natural
+</span></span><span style="display:flex;"><span>Language
+</span></span></code></pre></div><p>Unlike CBOW, Skip-Gram uses <strong>&ldquo;studying&rdquo;</strong> as the input and predicts each context word individually.</p>
+<h4 id="step-4-convert-the-target-word-into-a-one-hot-vector">Step 4. Convert the Target Word into a One-Hot Vector<a hidden class="anchor" aria-hidden="true" href="#step-4-convert-the-target-word-into-a-one-hot-vector">#</a></h4>
+<p>Suppose the vocabulary is:</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: right">Index</th>
+					<th>Word</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: right">0</td>
+					<td>I</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">1</td>
+					<td>love</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">2</td>
+					<td>studying</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">3</td>
+					<td>Natural</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">4</td>
+					<td>Language</td>
+			</tr>
+			<tr>
+					<td style="text-align: right">5</td>
+					<td>Processing</td>
+			</tr>
+	</tbody>
+</table>
+<p>The target word <strong>&ldquo;studying&rdquo;</strong> is represented as</p>
+<table>
+	<thead>
+			<tr>
+					<th>Word</th>
+					<th>One-Hot Vector</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>studying</td>
+					<td>[0,0,1,0,0,0]</td>
+			</tr>
+	</tbody>
+</table>
+<p>This one-hot vector is the input to the neural network.</p>
+<h4 id="step-5-project-to-the-embedding-layer-1">Step 5. Project to the Embedding Layer<a hidden class="anchor" aria-hidden="true" href="#step-5-project-to-the-embedding-layer-1">#</a></h4>
+<p>The one-hot vector is multiplied by the embedding matrix to produce a dense word embedding.</p>
+<p>Example:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Word</th>
+					<th>Embedding</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>studying</td>
+					<td>[0.42, -0.18, 0.71]</td>
+			</tr>
+	</tbody>
+</table>
+<p>This dense vector represents the semantic meaning of the target word.</p>
+<h4 id="step-6-predict-the-context-words">Step 6. Predict the Context Words<a hidden class="anchor" aria-hidden="true" href="#step-6-predict-the-context-words">#</a></h4>
+<p>The embedding is passed through the output layer.</p>
+<p>A Softmax function computes the probability of every word in the vocabulary.</p>
+<p>The model predicts one surrounding word at a time.</p>
+<p>Example</p>
+<p>Input</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>studying
+</span></span></code></pre></div><p>Predictions</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>I
+</span></span><span style="display:flex;"><span>love
+</span></span><span style="display:flex;"><span>Natural
+</span></span><span style="display:flex;"><span>Language
+</span></span></code></pre></div><p>Each target-context pair becomes a separate training example.</p>
+<p>Training pairs</p>
+<table>
+	<thead>
+			<tr>
+					<th>Target</th>
+					<th>Context</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>studying</td>
+					<td>I</td>
+			</tr>
+			<tr>
+					<td>studying</td>
+					<td>love</td>
+			</tr>
+			<tr>
+					<td>studying</td>
+					<td>Natural</td>
+			</tr>
+			<tr>
+					<td>studying</td>
+					<td>Language</td>
+			</tr>
+	</tbody>
+</table>
+<h4 id="step-7-update-the-model">Step 7. Update the Model<a hidden class="anchor" aria-hidden="true" href="#step-7-update-the-model">#</a></h4>
+<p>The predicted context words are compared with the actual context words.</p>
+<p>The prediction error is propagated backward using <strong>backpropagation</strong>, updating the embedding matrix.</p>
+<p>After training on millions of sentences, words that appear in similar contexts obtain similar embeddings.</p>
+<h4 id="complete-workflow-1">Complete Workflow<a hidden class="anchor" aria-hidden="true" href="#complete-workflow-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Input Sentence
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Tokenization
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Choose Context Window
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Select Target Word
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Convert Target Word to One-Hot Vector
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Embedding Layer
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Output Layer
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Softmax Prediction
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Predict Context Words
+</span></span><span style="display:flex;"><span>       │
+</span></span><span style="display:flex;"><span>       ▼
+</span></span><span style="display:flex;"><span>Update Embedding Matrix
+</span></span></code></pre></div><h4 id="example-1">Example<a hidden class="anchor" aria-hidden="true" href="#example-1">#</a></h4>
+<p>Sentence</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>The cat sits on the mat
+</span></span></code></pre></div><p>Window size = <strong>2</strong></p>
+<p>Target word</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sits
+</span></span></code></pre></div><p>Generated training pairs</p>
+<table>
+	<thead>
+			<tr>
+					<th>Target</th>
+					<th>Context</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>sits</td>
+					<td>The</td>
+			</tr>
+			<tr>
+					<td>sits</td>
+					<td>cat</td>
+			</tr>
+			<tr>
+					<td>sits</td>
+					<td>on</td>
+			</tr>
+			<tr>
+					<td>sits</td>
+					<td>the</td>
+			</tr>
+	</tbody>
+</table>
+<p>Another example</p>
+<p>Sentence</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Machine learning improves education
+</span></span></code></pre></div><p>Window size = <strong>1</strong></p>
+<p>Generated training pairs</p>
+<table>
+	<thead>
+			<tr>
+					<th>Target</th>
+					<th>Context</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>learning</td>
+					<td>Machine</td>
+			</tr>
+			<tr>
+					<td>learning</td>
+					<td>improves</td>
+			</tr>
+			<tr>
+					<td>improves</td>
+					<td>learning</td>
+			</tr>
+			<tr>
+					<td>improves</td>
+					<td>education</td>
+			</tr>
+	</tbody>
+</table>
+<p>Each pair is treated as an independent training sample.</p>
+<h4 id="python-implementation-1">Python Implementation<a hidden class="anchor" aria-hidden="true" href="#python-implementation-1">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> gensim.models <span style="color:#f92672">import</span> Word2Vec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sentences <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;I&#34;</span>, <span style="color:#e6db74">&#34;love&#34;</span>, <span style="color:#e6db74">&#34;machine&#34;</span>, <span style="color:#e6db74">&#34;learning&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;Machine&#34;</span>, <span style="color:#e6db74">&#34;learning&#34;</span>, <span style="color:#e6db74">&#34;is&#34;</span>, <span style="color:#e6db74">&#34;fun&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;I&#34;</span>, <span style="color:#e6db74">&#34;enjoy&#34;</span>, <span style="color:#e6db74">&#34;learning&#34;</span>, <span style="color:#e6db74">&#34;NLP&#34;</span>]
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> Word2Vec(
+</span></span><span style="display:flex;"><span>    sentences,
+</span></span><span style="display:flex;"><span>    vector_size<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>    window<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    min_count<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    sg<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>          <span style="color:#75715e"># Skip-Gram</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(model<span style="color:#f92672">.</span>wv[<span style="color:#e6db74">&#34;learning&#34;</span>])
+</span></span></code></pre></div><p>The parameter <code>sg=1</code> tells Word2Vec to use the <strong>Skip-Gram</strong> architecture.</p>
+<h3 id="advantages-6">Advantages<a hidden class="anchor" aria-hidden="true" href="#advantages-6">#</a></h3>
+<ul>
+<li>Learns high-quality word embeddings.</li>
+<li>Better at learning representations for <strong>rare and infrequent words</strong>.</li>
+<li>Captures semantic and syntactic relationships effectively.</li>
+<li>Produces dense, low-dimensional vectors.</li>
+<li>Often performs better than CBOW on smaller datasets.</li>
+</ul>
+<h3 id="disadvantages-6">Disadvantages<a hidden class="anchor" aria-hidden="true" href="#disadvantages-6">#</a></h3>
+<ul>
+<li>Slower to train than CBOW because one target word generates multiple prediction tasks.</li>
+<li>Requires more computational resources.</li>
+<li>Produces static embeddings (one vector per word regardless of context).</li>
+<li>Limited to a fixed context window.</li>
+</ul>
+<h3 id="cbow-vs-skip-gram">CBOW vs Skip-Gram<a hidden class="anchor" aria-hidden="true" href="#cbow-vs-skip-gram">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>CBOW</th>
+					<th>Skip-Gram</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Prediction</td>
+					<td>Context → Target</td>
+					<td>Target → Context</td>
+			</tr>
+			<tr>
+					<td>Input</td>
+					<td>Context words</td>
+					<td>Target word</td>
+			</tr>
+			<tr>
+					<td>Output</td>
+					<td>One target word</td>
+					<td>Multiple context words</td>
+			</tr>
+			<tr>
+					<td>Training speed</td>
+					<td>Faster</td>
+					<td>Slower</td>
+			</tr>
+			<tr>
+					<td>Frequent words</td>
+					<td>Better</td>
+					<td>Good</td>
+			</tr>
+			<tr>
+					<td>Rare words</td>
+					<td>Moderate</td>
+					<td>Better</td>
+			</tr>
+			<tr>
+					<td>Computational cost</td>
+					<td>Lower</td>
+					<td>Higher</td>
+			</tr>
+			<tr>
+					<td>Best suited for</td>
+					<td>Large datasets</td>
+					<td>Small datasets and rare words</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="summary-of-skipgram">Summary of SkipGram<a hidden class="anchor" aria-hidden="true" href="#summary-of-skipgram">#</a></h3>
+<p><strong>Skip-Gram</strong> is one of the two architectures used by the Word2Vec algorithm to learn dense word embeddings. Instead of predicting the target word from its surrounding words, Skip-Gram predicts the surrounding context words from a target word. This approach generates multiple training examples for each target word, enabling the model to learn high-quality embeddings, particularly for rare words. Although Skip-Gram is slower and more computationally expensive than CBOW, it often produces better semantic representations and remains one of the foundational techniques in modern Natural Language Processing.</p>
+<h2 id="8-comparison-of-text-representation-techniques">8. Comparison of Text Representation Techniques<a hidden class="anchor" aria-hidden="true" href="#8-comparison-of-text-representation-techniques">#</a></h2>
+<p>The following table summarizes the key characteristics, strengths, and limitations of the most commonly used text representation techniques in Natural Language Processing (NLP).</p>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>One-Hot Encoding (OHE)</th>
+					<th>Bag of Words (BoW)</th>
+					<th>TF-IDF</th>
+					<th>N-Grams</th>
+					<th>Word2Vec</th>
+					<th>CBOW</th>
+					<th>Skip-Gram</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Representation Type</strong></td>
+					<td>Sparse binary vectors</td>
+					<td>Sparse count vectors</td>
+					<td>Sparse weighted vectors</td>
+					<td>Sparse sequence-based vectors</td>
+					<td>Dense word embeddings</td>
+					<td>Dense word embeddings</td>
+					<td>Dense word embeddings</td>
+			</tr>
+			<tr>
+					<td><strong>Represents</strong></td>
+					<td>Individual words</td>
+					<td>Entire documents</td>
+					<td>Entire documents</td>
+					<td>Word sequences</td>
+					<td>Individual words</td>
+					<td>Individual words</td>
+					<td>Individual words</td>
+			</tr>
+			<tr>
+					<td><strong>Uses Word Frequency</strong></td>
+					<td>❌</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td><strong>Uses Word Importance</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>✅</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td><strong>Preserves Word Order</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>✅ (local)</td>
+					<td>✅ (through context)</td>
+					<td>Partially</td>
+					<td>Partially</td>
+			</tr>
+			<tr>
+					<td><strong>Captures Context</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>Limited</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Captures Semantic Similarity</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Captures Syntactic Relationships</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>Limited</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Vector Type</strong></td>
+					<td>Sparse</td>
+					<td>Sparse</td>
+					<td>Sparse</td>
+					<td>Sparse</td>
+					<td>Dense</td>
+					<td>Dense</td>
+					<td>Dense</td>
+			</tr>
+			<tr>
+					<td><strong>Vector Dimension</strong></td>
+					<td>Vocabulary size</td>
+					<td>Vocabulary size</td>
+					<td>Vocabulary size</td>
+					<td>Vocabulary size (or larger)</td>
+					<td>Fixed (e.g., 100–300)</td>
+					<td>Fixed (e.g., 100–300)</td>
+					<td>Fixed (e.g., 100–300)</td>
+			</tr>
+			<tr>
+					<td><strong>Requires Training</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Neural Network Based</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Handles Rare Words Well</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>Moderate</td>
+					<td>Moderate</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Computational Cost</strong></td>
+					<td>Low</td>
+					<td>Low</td>
+					<td>Low</td>
+					<td>Medium</td>
+					<td>Medium</td>
+					<td>Low</td>
+					<td>High</td>
+			</tr>
+			<tr>
+					<td><strong>Memory Efficiency</strong></td>
+					<td>Poor</td>
+					<td>Poor</td>
+					<td>Poor</td>
+					<td>Poor</td>
+					<td>Good</td>
+					<td>Good</td>
+					<td>Good</td>
+			</tr>
+			<tr>
+					<td><strong>Interpretability</strong></td>
+					<td>High</td>
+					<td>High</td>
+					<td>High</td>
+					<td>Medium</td>
+					<td>Low</td>
+					<td>Low</td>
+					<td>Low</td>
+			</tr>
+			<tr>
+					<td><strong>Typical Applications</strong></td>
+					<td>Categorical encoding</td>
+					<td>Text classification</td>
+					<td>Information retrieval</td>
+					<td>Language modeling</td>
+					<td>Semantic analysis</td>
+					<td>Large-scale embedding learning</td>
+					<td>Learning embeddings for rare words</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="advantages-and-disadvantages">Advantages and Disadvantages<a hidden class="anchor" aria-hidden="true" href="#advantages-and-disadvantages">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Method</th>
+					<th>Main Advantages</th>
+					<th>Main Disadvantages</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>One-Hot Encoding (OHE)</strong></td>
+					<td>Simple, easy to implement, no training required</td>
+					<td>Produces sparse vectors and cannot capture semantic relationships</td>
+			</tr>
+			<tr>
+					<td><strong>Bag of Words (BoW)</strong></td>
+					<td>Represents document word frequencies, fast computation</td>
+					<td>Ignores word order, grammar, and semantic meaning</td>
+			</tr>
+			<tr>
+					<td><strong>TF-IDF</strong></td>
+					<td>Highlights important words and reduces the influence of common words</td>
+					<td>Cannot capture semantic similarity or contextual information</td>
+			</tr>
+			<tr>
+					<td><strong>N-Grams</strong></td>
+					<td>Preserves local word order and captures short phrases</td>
+					<td>High-dimensional feature space and increased sparsity as <em>N</em> grows</td>
+			</tr>
+			<tr>
+					<td><strong>Word2Vec</strong></td>
+					<td>Learns semantic and syntactic relationships using dense embeddings</td>
+					<td>Produces static embeddings and requires a large training corpus</td>
+			</tr>
+			<tr>
+					<td><strong>CBOW</strong></td>
+					<td>Fast training and efficient for learning embeddings of frequent words</td>
+					<td>Less effective for rare words and ignores the order of context words</td>
+			</tr>
+			<tr>
+					<td><strong>Skip-Gram</strong></td>
+					<td>Learns high-quality embeddings, especially for rare words</td>
+					<td>Slower training and higher computational cost than CBOW</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="choosing-the-right-technique">Choosing the Right Technique<a hidden class="anchor" aria-hidden="true" href="#choosing-the-right-technique">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>If your goal is&hellip;</th>
+					<th>Recommended Technique</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Encode categorical words</td>
+					<td>One-Hot Encoding</td>
+			</tr>
+			<tr>
+					<td>Represent documents using word counts</td>
+					<td>Bag of Words</td>
+			</tr>
+			<tr>
+					<td>Identify important words in documents</td>
+					<td>TF-IDF</td>
+			</tr>
+			<tr>
+					<td>Preserve short phrases or local word order</td>
+					<td>N-Grams</td>
+			</tr>
+			<tr>
+					<td>Learn semantic relationships between words</td>
+					<td>Word2Vec</td>
+			</tr>
+			<tr>
+					<td>Train embeddings quickly on a large corpus</td>
+					<td>CBOW</td>
+			</tr>
+			<tr>
+					<td>Learn better embeddings for rare words</td>
+					<td>Skip-Gram</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="evolution-of-text-representation">Evolution of Text Representation<a hidden class="anchor" aria-hidden="true" href="#evolution-of-text-representation">#</a></h3>
+<p>The development of text representation techniques reflects a progression toward richer linguistic understanding.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>One-Hot Encoding
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>Bag of Words (BoW)
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>TF-IDF
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>N-Grams
+</span></span><span style="display:flex;"><span>        │
+</span></span><span style="display:flex;"><span>        ▼
+</span></span><span style="display:flex;"><span>Word2Vec
+</span></span><span style="display:flex;"><span>      ┌─┴─┐
+</span></span><span style="display:flex;"><span>      ▼   ▼
+</span></span><span style="display:flex;"><span>    CBOW Skip-Gram
+</span></span></code></pre></div><ul>
+<li><strong>One-Hot Encoding</strong> represents each word independently without considering relationships.</li>
+<li><strong>Bag of Words</strong> improves this by counting word occurrences in documents.</li>
+<li><strong>TF-IDF</strong> further refines document representation by weighting words according to their importance.</li>
+<li><strong>N-Grams</strong> preserve local word order by representing sequences of consecutive words.</li>
+<li><strong>Word2Vec</strong> introduces dense vector representations that capture semantic and syntactic relationships.</li>
+<li><strong>CBOW</strong> and <strong>Skip-Gram</strong> are the two training architectures used by Word2Vec, each with different strengths depending on the dataset and application.</li>
+</ul>
+<h3 id="summary-1">Summary<a hidden class="anchor" aria-hidden="true" href="#summary-1">#</a></h3>
+<p>Traditional techniques such as <strong>One-Hot Encoding</strong>, <strong>Bag of Words</strong>, <strong>TF-IDF</strong>, and <strong>N-Grams</strong> represent text using sparse vectors and are effective for many classical machine learning tasks. However, they struggle to capture semantic relationships and contextual meaning.</p>
+<p><strong>Word2Vec</strong> addresses these limitations by learning dense word embeddings from large text corpora. Its two architectures, <strong>CBOW</strong> and <strong>Skip-Gram</strong>, generate meaningful vector representations that place semantically similar words close together in the embedding space. While CBOW is faster and better suited for frequent words, Skip-Gram generally produces higher-quality embeddings for rare words, making both foundational techniques in modern Natural Language Processing.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/natural-language-processing/">Natural Language Processing</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:1313/posts/nlp-with-machinelearning/">
+    <span class="title">Next »</span>
+    <span>NLP with Machine Learning</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Word Embeddings Techniques on x"
+            href="https://x.com/intent/tweet/?text=Word%20Embeddings%20Techniques&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f&amp;hashtags=NaturalLanguageProcessing">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Word Embeddings Techniques on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f&amp;title=Word%20Embeddings%20Techniques&amp;summary=Word%20Embeddings%20Techniques&amp;source=http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Word Embeddings Techniques on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f&title=Word%20Embeddings%20Techniques">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Word Embeddings Techniques on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Word Embeddings Techniques on whatsapp"
+            href="https://api.whatsapp.com/send?text=Word%20Embeddings%20Techniques%20-%20http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Word Embeddings Techniques on telegram"
+            href="https://telegram.me/share/url?text=Word%20Embeddings%20Techniques&amp;url=http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share Word Embeddings Techniques on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=Word%20Embeddings%20Techniques&u=http%3a%2f%2flocalhost%3a1313%2fposts%2fword-embeddings%2fword-embeddings%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">Ika Qutami&#39;s Blog</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

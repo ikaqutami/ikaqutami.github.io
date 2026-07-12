@@ -1,5 +1,5 @@
 ---
-date : '2026-06-12'
+date : '2026-06-13'
 draft : false
 slug : 'numpy'
 categories : 'Python Data Science'

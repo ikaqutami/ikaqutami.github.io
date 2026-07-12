@@ -2,14 +2,18 @@
 date : '2025-01-05T20:03:13+07:00'
 draft : false
 title : 'Welcoming Post'
+slug : 'welcoming-post'
 author : 'Ika Utami'
+categories : 'Welcoming Post'
+tags :
+    - "Welcoming Post"
 ShowReadingTime: true
 ShowPostNavLinks: true
 ---
 
 Hi, I'm Ika Utami.
 
-I am lecturer and researcher in Artificial Intelligence, Applied Data Science, and Large Language Models (LLMs). 
+I am lecturer and researcher in Artificial Intelligence, Applied Data Science, and Educational Technologies. 
 
 My work focuses on using AI and data-driven approaches to support learning and improve education. I am especially interested in developing innovative educational systems powered by LLMs and educational data.
 

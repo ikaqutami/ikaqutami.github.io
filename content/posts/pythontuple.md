@@ -9,7 +9,7 @@ author : 'Ika Utami'
 tags :
     - "Python Data Structure"
 series:
-  - "Python Basics"
+    - "Python Basics"
 title : 'Python Tuples'
 ShowReadingTime: true
 ShowPostNavLinks: true
